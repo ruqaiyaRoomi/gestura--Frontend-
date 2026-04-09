@@ -31,18 +31,22 @@
     const router = useRouter()
     const currentIndex = ref(0)
 
+    import slide1 from "../assets/Slide1.png"
+    import slide2 from "../assets/slide2.png"
+    import slide3 from "../assets/slide3.png"
+
     const slideshowInfo = [{
-        image : "/assets/Slide1.png",
+        image :  slide1,
         heading: "Communication shouldn't feel impossible.",
         subheading: "Gestura helps bridge the gap between signers and non-sginers"
     },
 
-    {image : "/assets/slide2.png",
+    {image : slide2,
         heading: "Translate fingerspelling in real time.",
         subheading: "Use your camers to recognize ASL fingerspelling and convert it to text instantly."
     },
 
-    {image : "/assets/slide3.png",
+    {image : slide3,
         heading: "Practice.Improve.Repeat",
         subheading: "Use guided practice mode to learn and refine your ASL fingerspelling skills"
     }
