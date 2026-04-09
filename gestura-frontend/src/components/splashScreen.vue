@@ -2,7 +2,7 @@
     <div class="splash" :class="{ hide: hiding}">
      <div class="circle"></div>
         <div  class="content">
-            <img class="logo" src="/src/images/gestura.png">
+            <img class="logo" src="/images/gestura.png">
              <span class="name">Gestura</span>
         </div>
     </div>

@@ -10,7 +10,7 @@
         <div class="body">
             
         <div class="image">
-            <img src="/src/images/quiz.png" alt="">
+            <img src="/images/quiz.png" alt="">
         </div>
 
         <div class="textBlock">

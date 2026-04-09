@@ -10,7 +10,7 @@
 
         <div class="lettersContainer">
             <div class="letterCard" v-for="(letter, index) in letters" :key="index">
-                    <img :src="`/src/images/${letter}.png`" alt="">
+                    <img :src="`/public/images/${letter}.png`" alt="">
 
                 <p>{{ letter }}</p>
             </div>

@@ -2,14 +2,14 @@
     <div class="screen">
         <div class="header">
             <div class="logo">
-                <img class="gestura" src="/src/images/gestura.png"> 
+                <img class="gestura" src="/images/gestura.png"> 
                 <span>Gestura</span>
             </div>
         </div>
         
         <div class="top">
-            <img class="illustration" src="/src/images/loginSignUp.png">
-            <img class="wave" src="/src/images/wave1.png">
+            <img class="illustration" src="/images/loginSignUp.png">
+            <img class="wave" src="/images/wave1.png">
         </div>
 
         <div class="body">

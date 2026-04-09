@@ -33,109 +33,109 @@ const router = useRouter();
 
 const alphabets = [{
     alphabet: 'A',
-    image: "/src/images/A.png"
+    image: "/images/A.png"
 },
 
 {
     alphabet: 'B',
-    image: '/src/images/B.png'
+    image: '/images/B.png'
 },
 
 {
     alphabet: 'C',
-    image: '/src/images/C.png'
+    image: '/images/C.png'
 },
 {
     alphabet: 'D',
-    image: '/src/images/D.png'
+    image: '/images/D.png'
 },
 {
     alphabet: 'E',
-    image: '/src/images/E.png'
+    image: '/images/E.png'
 },
 {
     alphabet: 'F',
-    image: '/src/images/F.png'
+    image: '/images/F.png'
 },
 {
     alphabet: 'G',
-    image: '/src/images/G.png'
+    image: '/images/G.png'
 },
 {
     alphabet: 'H',
-    image: '/src/images/H.png'
+    image: '/images/H.png'
 },
 {
     alphabet: 'I',
-    image: '/src/images/I.png'
+    image: '/images/I.png'
 },
 {
     alphabet: 'J',
-    image: '/src/images/J.png'
+    image: '/images/J.png'
 },
 {
     alphabet: 'K',
-    image: '/src/images/K.png'
+    image: '/images/K.png'
 },
 {
     alphabet: 'L',
-    image: '/src/images/L.png'
+    image: '/images/L.png'
 },
 {
     alphabet: 'M',
-    image: '/src/images/M.png'
+    image: '/images/M.png'
 },
 {
     alphabet: 'N',
-    image: '/src/images/N.png'
+    image: '/images/N.png'
 },
 {
     alphabet: 'O',
-    image: '/src/images/O.png'
+    image: '/images/O.png'
 },
 {
     alphabet: 'P',
-    image: '/src/images/P.png'
+    image: '/images/P.png'
 },
 {
     alphabet: 'Q',
-    image: '/src/images/Q.png'
+    image: '/images/Q.png'
 },
 {
     alphabet: 'R',
-    image: '/src/images/R.png'
+    image: '/images/R.png'
 },
 {
     alphabet: 'S',
-    image: '/src/images/S.png'
+    image: '/images/S.png'
 },
 {
     alphabet: 'T',
-    image: '/src/images/T.png'
+    image: '/images/T.png'
 },
 {
     alphabet: 'U',
-    image: '/src/images/U.png'
+    image: '/images/U.png'
 },
 {
     alphabet: 'V',
-    image: '/src/images/V.png'
+    image: '/images/V.png'
 },
 {
     alphabet: 'W',
-    image: '/src/images/W.png'
+    image: '/images/W.png'
 },
 {
     alphabet: 'X',
-    image: '/src/images/X.png'
+    image: '/images/X.png'
 },
 {
     alphabet: 'Y',
-    image: '/src/images/Y.png'
+    image: '/images/Y.png'
 },
 {
     alphabet: 'Z',
-    image: '/src/images/Z.png'
+    image: '/images/Z.png'
 },
 
 

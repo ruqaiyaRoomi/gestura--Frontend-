@@ -3,7 +3,7 @@
     <div class="slideShowContainer">
        <div class="slideShow">
         <div class="SlideShowBody">
-            <div class="img"><img :src="slideshowInfo[currentIndex].image"/></div>
+            <div class="img"><img v-bind:src="slideshowInfo[currentIndex].image"/></div>
             <div class="text">
                 <p class="heading">{{slideshowInfo[currentIndex].heading}}</p>
             <p class="subheading">{{slideshowInfo[currentIndex].subheading}}</p>
@@ -31,28 +31,22 @@
     const router = useRouter()
     const currentIndex = ref(0)
 
-    import Slide1 from "../assets/Slide1.png"
-    import slide2 from "../assets/slide2.png"
-    import slide3 from "../assets/slide3.png"
-
     const slideshowInfo = [{
-        image :  Slide1,
+        image : "/images/Slide1.png",
         heading: "Communication shouldn't feel impossible.",
         subheading: "Gestura helps bridge the gap between signers and non-sginers"
     },
 
-    {image : slide2,
+    {image : "/images/slide2.png",
         heading: "Translate fingerspelling in real time.",
         subheading: "Use your camers to recognize ASL fingerspelling and convert it to text instantly."
     },
 
-    {image : slide3,
+    {image : "/images/slide3.png",
         heading: "Practice.Improve.Repeat",
         subheading: "Use guided practice mode to learn and refine your ASL fingerspelling skills"
     }
 ]
-
-console.log(slideshowInfo[0].image)
 
     onMounted(() =>{
         const hasSeenOnboarding = localStorage.getItem('onboardingSeen')

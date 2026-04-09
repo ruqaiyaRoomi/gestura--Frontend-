@@ -11,7 +11,7 @@
     <div class="bodyContainer">
         <div class="cardContainer" v-on:click="router.push('/aslAlphabet')">
             <div class="imageContainer">
-                <img class="aslImage" src="/src/images/ASL.png" alt="">
+                <img class="aslImage" src="/public/images/ASL.png" alt="">
             </div>
             
             <div class="aslBody">
@@ -36,7 +36,7 @@
 
         <div class="cardContainer" v-on:click="router.push('/commonWords')">
             <div class="imageContainer">
-                <img src="/src/images/commonWords.png" alt="">
+                <img src="/public/images/commonWords.png" alt="">
             </div>
             
             <div class="aslBody">

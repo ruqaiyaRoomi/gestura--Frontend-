@@ -1,6 +1,6 @@
 <template>
     <div class="header">
-       <div class="image"> <img  src="/src/images/gestura.png"/> </div>
+       <div class="image"> <img  src="/images/gestura.png"/> </div>
         <span><i class="fa-solid fa-gear"></i></span>
     </div>
 </template>

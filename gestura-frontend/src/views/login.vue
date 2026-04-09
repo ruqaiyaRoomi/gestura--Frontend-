@@ -1,7 +1,7 @@
 <template>
   <div class="loginScreen">
     <div class="top">
-    <img class="logo" src="/src/images/gestura.png">
+    <img class="logo" src="/images/gestura.png">
     <h1>Login</h1>
   </div>
 
@@ -24,7 +24,7 @@
 
   <button v-on:click="login()">Login</button>
   <p class="bottomText">Don't have an Account? <a v-on:click="router.push('./signup')" class="link">Sign Up!</a></p>
-  <img class="wave" src="/src/images/wav2.png">
+  <img class="wave" src="/images/wav2.png">
   </div>
 
 </template>
