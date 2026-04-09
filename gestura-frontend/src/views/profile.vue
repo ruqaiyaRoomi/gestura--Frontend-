@@ -90,7 +90,7 @@ onMounted(async () =>{
 async function getQuizHistory() {
    try{
 
-      const response = await fetch(`http://localhost:3000/gestura/quizHistory?userId=${userStore.user._id}`)
+      const response = await fetch(`https://gestura-backend-femr.onrender.com/gestura/quizHistory?userId=${userStore.user._id}`)
       const data = await response.json()
       quizHistory.value = Array.isArray(data) ? data : []
       console.log('quiz history', data)
@@ -102,7 +102,7 @@ async function getQuizHistory() {
 
 async function getUserStats() {
     try{
-    const response = await fetch(`http://localhost:3000/gestura/userStats/${userStore.user._id}`)
+    const response = await fetch(`https://gestura-backend-femr.onrender.com/gestura/userStats/${userStore.user._id}`)
     const data = await response.json()
     
     const letters = data.modules?.['ASL Alphabet'] || []

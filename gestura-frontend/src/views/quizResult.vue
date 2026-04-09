@@ -68,7 +68,7 @@ console.log(userStore.user)
 onMounted(async () =>{
   console.log('userStore.user:', userStore.user)
    console.log('score:', score, 'total:', total, 'results:', results)
-  await fetch("http://localhost:3000/gestura/quizHistory", {
+  await fetch("https://gestura-backend-femr.onrender.com/gestura/quizHistory", {
       method: 'POST', 
       headers: {'Content-Type' : 'application/json'},
       body: JSON.stringify({

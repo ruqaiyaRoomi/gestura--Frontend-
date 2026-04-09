@@ -65,7 +65,7 @@ async function markDone() {
 
     isSaving.value = true
     try {
-        const response = await fetch('http://localhost:3000/gestura/userStats', {
+        const response = await fetch('https://gestura-backend-femr.onrender.com/gestura/userStats', {
 
             method: "POST",
             headers: {"Content-Type": "application/json"},

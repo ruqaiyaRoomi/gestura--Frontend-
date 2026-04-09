@@ -45,7 +45,7 @@ function togglePassword() {
 }
 
 function login() {
-    fetch("http://localhost:3000/gestura/login", {
+    fetch("https://gestura-backend-femr.onrender.com/gestura/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

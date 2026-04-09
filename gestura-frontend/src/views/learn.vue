@@ -91,7 +91,7 @@ async function userProgress(word) {
 
     try{
         const moduleName = word ? 'Common Words' : 'ASL Alphabet'
-        const response = await fetch('http://localhost:3000/gestura/userStats', {
+        const response = await fetch('https://gestura-backend-femr.onrender.com/gestura/userStats', {
 
             method: "POST",
             headers: {"Content-Type": "application/json"},

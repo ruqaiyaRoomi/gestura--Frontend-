@@ -123,7 +123,7 @@ const showEmailError =  computed (() => {
 async function signUp() {
     
     try{
-        const response = await fetch("http://localhost:3000/gestura/signup", {
+        const response = await fetch("https://gestura-backend-femr.onrender.com/gestura/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
