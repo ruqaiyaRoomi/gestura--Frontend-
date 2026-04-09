@@ -27,26 +27,22 @@
 <script setup>
     import {ref, onMounted} from 'vue'
     import { useRouter } from 'vue-router'
-
-    import slide1 from "@/images/Slide1.png"
-    import slide2 from "@/images/Slide2.png"
-    import slide3 from "@/images/Slide3.png"
     
     const router = useRouter()
     const currentIndex = ref(0)
 
     const slideshowInfo = [{
-        image : slide1,
+        image : "/assets/Slide1.png",
         heading: "Communication shouldn't feel impossible.",
         subheading: "Gestura helps bridge the gap between signers and non-sginers"
     },
 
-    {image : slide2,
+    {image : "/assets/slide2.png",
         heading: "Translate fingerspelling in real time.",
         subheading: "Use your camers to recognize ASL fingerspelling and convert it to text instantly."
     },
 
-    {image : slide3,
+    {image : "/assets/slide3.png",
         heading: "Practice.Improve.Repeat",
         subheading: "Use guided practice mode to learn and refine your ASL fingerspelling skills"
     }
