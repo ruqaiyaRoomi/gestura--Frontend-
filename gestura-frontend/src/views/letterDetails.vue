@@ -161,7 +161,7 @@ console.log("currentLetter:", currentLetter)
     display: flex;
     flex-direction: column;
     gap: 6px;
-    margin-top: 120px;
+    margin-top: 15px;
    }
 
    .tryTitle {
