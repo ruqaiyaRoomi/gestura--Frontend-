@@ -33,7 +33,7 @@
         <p class="sectionTitle">Recently Learned</p>
         <div class="recentGrid">
             <div class="recentCard" v-for="(recentlySigned, index) in userStats" :key="index">
-            <img :src="`/src/images/${recentlySigned.letter}.png`" />
+            <img :src="`/images/${recentlySigned.letter}.png`" />
             <p>{{ recentlySigned.letter }}</p>
             </div>
         </div>
