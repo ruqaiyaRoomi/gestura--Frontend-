@@ -1,24 +1,25 @@
 import {ref, onMounted, onUnmounted, isRef} from 'vue'
 
-
 export function practice(videoRef, targetLetter, detectionActive = ref(true)) {
 
-    const isMatch = ref(false)
-    const detectedLabel = ref(null)
-    const detectionConfidence = ref(0)
-    const noHandDetected = ref(false)
+    const isMatch = ref(false) // whether detected latter matches target
+    const detectedLabel = ref(null) // predicted letter from model
+    const detectionConfidence = ref(0) // confidence of prediction
+    const noHandDetected = ref(false)  // true if no hand is visibke
 
-    let interval = null
-    let cameraInstance = null
-    let handsInstance = null
+    let interval = null // interval for prediction call
+    let cameraInstance = null 
+    let handsInstance = null // MediaPipe Hands instance
 
-    let holdCount = 0
-    let lastSeenLabel = null
-    let letterLocked = false
-    let lastSent = null
+    let holdCount = 0 
+    let lastSeenLabel = null // last predicted lable
+    let letterLocked = false // prevents multiple triggers
+    let lastSent = null // prevents duplicate requests
 
+    // get target letter
     const getTarget = () => isRef(targetLetter) ? targetLetter.value : targetLetter
 
+    // reset detection state
    function resetDetection () {
         isMatch.value = false
         detectedLabel.value = null
@@ -30,15 +31,17 @@ export function practice(videoRef, targetLetter, detectionActive = ref(true)) {
 
     async function startDetection(){
         resetDetection()
-
+        // MediaPipe modules
         const {Hands} = await import('@mediapipe/hands')
         const {Camera} =  await import('@mediapipe/camera_utils')
 
+        // Initialize hand tracking
         handsInstance = new Hands({
         
             locateFile: (file) =>   `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`
         })
 
+        // detection settings
         handsInstance.setOptions({
             maxNumHands: 1,
             modelComplexity: 0,
@@ -47,11 +50,12 @@ export function practice(videoRef, targetLetter, detectionActive = ref(true)) {
         })
 
 
-        let latestLandmarks = null
-        let isLeft = false
-        let intervalStarted = false
-        let lastFrameTime = 0
+        let latestLandmarks = null // latest hand landmarks
+        let isLeft = false  // whether hand is left
+        let intervalStarted = false // ensures interval runs once
+        let lastFrameTime = 0 // throttle frames
 
+        // Called every time MediaPipe processes a frame
         handsInstance.onResults((results) => {
             if (
                 results.multiHandLandmarks?.length > 0 
@@ -62,9 +66,10 @@ export function practice(videoRef, targetLetter, detectionActive = ref(true)) {
                     noHandDetected.value = false
                     const hand = results.multiHandLandmarks[0]
                     isLeft = results.multiHandedness[0].label === 'Left'
+                    // flatten landmarks
                     latestLandmarks = hand.map(lm => [lm.x, lm.y, lm.z]).flat()
                     console.log('Landmarks captured:', latestLandmarks.length)
-
+                    // Start prediction loop once
                     if(!intervalStarted) {
                         intervalStarted = true
                         startInterval()
@@ -76,13 +81,12 @@ export function practice(videoRef, targetLetter, detectionActive = ref(true)) {
             }
 
         })
-
-        
-
+        // Initialize camera
         cameraInstance = new Camera (videoRef.value, {
             onFrame: async () => {
                 if (!handsInstance) return
                 const now = Date.now()
+                // Limit processing to 10fps
                 if (now - lastFrameTime < 100) return
                 lastFrameTime = now
                 await handsInstance.send({image: videoRef.value})
@@ -90,17 +94,18 @@ export function practice(videoRef, targetLetter, detectionActive = ref(true)) {
         })
 
         cameraInstance.start()
-
+    // Prediction loop - runs every 250ms
     function startInterval(){
             interval = setInterval(async () => {
             if(detectionActive && !detectionActive.value) return
-
+            // reset if no hand is detected
             if(!latestLandmarks) {
                 holdCount = 0
                 lastSeenLabel = null
                 return
             }
 
+            // Prevent duplicate requests
             const currentData = JSON.stringify(latestLandmarks)
             if(currentData === lastSent) return
             lastSent = currentData
@@ -117,6 +122,7 @@ export function practice(videoRef, targetLetter, detectionActive = ref(true)) {
                 
 
                 if(data.confidence >= 85) {
+                    //  // Same label seen again - increment hold count
                    if(data.label === lastSeenLabel) {
                        if(!letterLocked) holdCount++
                    } else {
@@ -124,7 +130,7 @@ export function practice(videoRef, targetLetter, detectionActive = ref(true)) {
                     lastSeenLabel = data.label
                     letterLocked = false
                    }
-
+                   // resgister letter only after 3 consistent predictions
                    if (holdCount >= 3 && !letterLocked) {
                         letterLocked = true
                         holdCount = 0
@@ -145,7 +151,6 @@ export function practice(videoRef, targetLetter, detectionActive = ref(true)) {
     }
         }
 
-
     function stopDetection () {
         if (interval) 
             {clearInterval(interval) 
@@ -162,8 +167,7 @@ export function practice(videoRef, targetLetter, detectionActive = ref(true)) {
         }
         resetDetection()
     }
-
-
+// Move to nect letter
     function nextLetter() {
        resetDetection()
     }
