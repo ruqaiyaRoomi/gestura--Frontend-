@@ -1,28 +1,33 @@
 <template>
   <div class="loginScreen">
     <div class="top">
+    <!-- Gestura logo and title page-->
     <img class="logo" src="/images/gestura.png">
     <h1>Login</h1>
   </div>
 
   <div class="form">
-    
+    <!--Email input field bound to reactive email ref-->
     <div class="input">
         <label for="">Email</label>
         <input type="email" placeholder="Enter Email" v-model="email">
     </div>
 
     <div class="input">
+        <!--Password input with toggle visibility functionality-->
         <label for="">Password</label>
         <div class="password">
+            <!-- Dynamically switches between text and password type based on showPassword-->
             <input :type="showPassword ? 'text' : 'password'" placeholder=" Enter Password" v-model="password"> 
+            <!-- Eye icon toggles password visibility on click-->
         <span class="eye" @click="togglePassword"><i :class="showPassword? 'fa-regular fa-eye' : 'fa-solid fa-eye-slash'"></i>
         </span>
         </div>
     </div>
   </div>
-
+<!-- Triggers login function on click -->
   <button v-on:click="login()">Login</button>
+  <!-- Navigation link to sign up page for new users-->
   <p class="bottomText">Don't have an Account? <a v-on:click="router.push('./signup')" class="link">Sign Up!</a></p>
   <img class="wave" src="/images/wav2.png">
   </div>
@@ -35,17 +40,25 @@ import { useRouter } from 'vue-router'
 import { useUserStore } from '../stores/user';
 const router = useRouter()
 
+// reactive ref for form inputs
 const email = ref("")
 const password = ref("")
-const userStore = useUserStore()
+
+// Acess the Pinia user store to persist autheticated user data
+const userStore = useUserStore() 
+
+// Controls whether password is visible or not
 const showPassword = ref(false)
 
+// Toggles the password visibilty state
 function togglePassword() {
     showPassword.value = !showPassword.value
 }
 
-function login() {
-    fetch("https://gestura-backend-femr.onrender.com/gestura/login", {
+async function login() {
+    // send POST request to backend login endpoint with user credentials
+    try{
+       const response = await fetch("https://gestura-backend-femr.onrender.com/gestura/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -56,16 +69,22 @@ function login() {
         
         }),
       })
-        .then((response) => response.json())
-        .then((data) => {
-          if (data.login) {
-            userStore.setUser(data)
-             router.push('/index')
-          } else {
-            alert("nopes")
-          }
-           
-    })
+      const data = await response.json()
+
+      if(data.login) {
+        // Store user data in Pinia store and redirect to home screen 
+        userStore.setUser(data)
+        router.push('/index')
+      } else {
+        //Notify user if credentials are incorrect
+        alert("Incorrect email or password")
+      }
+    } catch (err) {
+        // Handle network or server errors
+        console.error("Login error:", err)
+        alert("Somethign went wrong. Please try again")
+    }
+
 }
 
 </script>
