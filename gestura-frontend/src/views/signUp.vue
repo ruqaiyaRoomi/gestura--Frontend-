@@ -1,16 +1,19 @@
 <template>
   <div class="signUpScreen">
     <div class="top">
+        <!-- Gestura logo and page title -->
     <img class="logo" src="/images/gestura.png">
     <h1>Create an Account</h1>
   </div>
 
 
   <div class="form">
+    <!-- First and last name fields displayed side by side-->
     <div class="row">
         <div class="input">
                 <label for="">First Name</label>
                 <input type="text" placeholder="Enter First name" v-model="userInfo.firstName">
+                <!-- Error message shown if name validation fails-->
                 <span class="messages" v-if="showNameError">Please enter valid name</span> 
         </div>
 
@@ -22,29 +25,34 @@
     </div>
     
     <div class="input">
+        <!--Email input field with validaation error message-->
         <label for="">Email</label>
         <input type="email" placeholder="Enter Email" v-model="userInfo.email">
          <span class="messages" v-if="showEmailError">Please enter a valid email</span> 
     </div>
 
     <div class="input">
+        <!--Password input with strength validation error message-->
         <label for="">Password</label>
         <div class="password">
             <input type="password" placeholder=" Enter Password"  v-model="userInfo.password"> 
         <span class="eye"><i class="fa-regular fa-eye-slash"></i></span>
         </div>
+        <!-- show if password does not meet strength requirements-->
         <span class="messages" v-if="showPassError">Password must be 8-16 chars with uppercase, lowercase, number and special character</span>
     </div>
 
+    <!--Confirms password field to ensure password match-->
     <div class="input" >
         <label for=""> Confirm Password</label>
         <div class="password">
             <input type="password" placeholder=" Enter Password" v-model="confirmPass"> 
         </div>
+        <!-- Shown if confirm password does not matchh original password-->
          <span class="messages" v-if="showConfirmPassError">Passwords do not match</span>
     </div>
   </div>
-
+<!-- Sign Up button disabled until all form validation pass-->
   <button v-on:click="signUp()" :disabled="!isFormFilled" >Sign Up</button>
   <p class="bottomText">Already have an Account? <a  v-on:click="router.push('/login')" class="link">Sign Up!</a></p>
   <img class="wave" src="/images/wav2.png">
@@ -60,8 +68,8 @@ import { useRouter } from 'vue-router'
 import { useUserStore } from '../stores/user';
 const router = useRouter()
 
-const email = ref('')
 
+// reactive object holding all sign up form fields
 const userInfo = ref({
     firstName: "",
     lastName : "",
@@ -69,9 +77,11 @@ const userInfo = ref({
     password : "",   
 })
 
+// Seperate ref for confirm password field
 const confirmPass = ref("")
 const userStore = useUserStore()
 
+// Validates email format using regex
 const validateEmail = computed(()=> {
     let regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     let email = userInfo.value.email.trim();
@@ -79,6 +89,7 @@ const validateEmail = computed(()=> {
       return (regex.test(email));
 })
 
+// Validates first and last name format using regex
 const validateName = computed (() =>{
       let regex = /^[A-Za-z\s]+$/;
       let firstName = userInfo.value.firstName.trim();
@@ -86,7 +97,7 @@ const validateName = computed (() =>{
       return (regex.test(firstName, lastName) && firstName && lastName);
     })
 
-
+// Validates password strength
 const validatePass = computed (() => {
     let regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*-])(?!.*\s).{8,16}$/;
     let password = userInfo.value.password.trim()
@@ -94,14 +105,18 @@ const validatePass = computed (() => {
     return (regex.test(password))
 })
 
+
+// check that confirm password match the original password
 const  validateConfirmPass =  computed (() =>{
     return confirmPass.value === userInfo.value.password && confirmPass.value.length > 0
 })
 
+// sign up button is only enabled when all validations pass
 const isFormFilled = computed(() => {
     return validateEmail.value && validateName.value && validatePass.value && validateConfirmPass.value;
 })
 
+// error message visibility
 const showPassError =  computed(() => {
       return (
         userInfo.value.password.length > 0 && !validatePass.value
@@ -123,6 +138,7 @@ const showEmailError =  computed (() => {
 async function signUp() {
     
     try{
+        // send user details to the backend registration endpoint
         const response = await fetch("https://gestura-backend-femr.onrender.com/gestura/signup", {
         method: "POST",
         headers: {
@@ -141,10 +157,12 @@ async function signUp() {
     console.log('data', data)
     
     if(data.registration) {
+        // Store new user in Pinia and redirect to home screen
         userStore.setUser(data)
     
         router.push('/index')
     }else {
+        // Log error message if registration faills
         console.log( data.message)
     }
     }  
