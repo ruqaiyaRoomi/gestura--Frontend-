@@ -136,7 +136,6 @@ const showEmailError =  computed (() => {
 })
 
 async function signUp() {
-    
     try{
         // send user details to the backend registration endpoint
         const response = await fetch("https://gestura-backend-femr.onrender.com/gestura/signup", {
@@ -152,7 +151,6 @@ async function signUp() {
         
         }),
       })
-
       const data = await response.json()
     console.log('data', data)
     
@@ -165,12 +163,10 @@ async function signUp() {
         // Log error message if registration faills
         console.log( data.message)
     }
-    }  
-
+    } 
     catch(error) {
         console.error("sign up error")
     }
-
 }
 
 
