@@ -104,7 +104,6 @@ export function practice(videoRef, targetLetter, detectionActive = ref(true)) {
                 lastSeenLabel = null
                 return
             }
-
             // Prevent duplicate requests
             const currentData = JSON.stringify(latestLandmarks)
             if(currentData === lastSent) return
@@ -118,9 +117,7 @@ export function practice(videoRef, targetLetter, detectionActive = ref(true)) {
                 })
 
                 const data = await response.json()
-                console.log('prediction: ', data)
                 
-
                 if(data.confidence >= 85) {
                     //  // Same label seen again - increment hold count
                    if(data.label === lastSeenLabel) {
@@ -143,7 +140,6 @@ export function practice(videoRef, targetLetter, detectionActive = ref(true)) {
                 else {
                     holdCount = 0 
                 }
-                console.log('holdCount:', holdCount, 'label:', data.label, 'lastSeenLabel:', lastSeenLabel)
             } catch (err){
                 console.error('prediction error', err)
             }
