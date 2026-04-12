@@ -6,7 +6,9 @@
             <span class="title">Common Words</span>
             <span></span>
         </div>
+        <!-- List of commone words displayed as clickable cards -->
         <div class="cardContainer">
+            <!-- Loop through words array-->
             <div class="cards" v-for="word in words" :key="word.word" v-on:click="openWord(word.word)">
                 <p class="cardTitle">{{ word.word }}</p> 
                 <span><i class="fa-solid fa-arrow-right-long"></i></span>
@@ -15,16 +17,13 @@
     <NavBar/>
     </div>
 </template>
-
 <script setup>
-
 import {useRouter} from 'vue-router'
 import NavBar from '../components/navBar.vue';
-import header from '../components/header.vue';
 import Header from '../components/header.vue';
 
 const router  = useRouter()
-
+//Staic list of common words for ASL learning
 const words = [
     {word: 'Hello'},
     {word: 'Thank you'},
@@ -34,15 +33,11 @@ const words = [
     {word: 'No'},
     {word: 'Help'},
     {word: 'Please'}
-
-
 ]
-
+// Navigate to detailed view of seleccted word
 function openWord(word){
     router.push(`/commonWords/${word}`)
 }
-
-
 </script>
 
 <style scoped>
