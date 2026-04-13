@@ -10,7 +10,7 @@
         <div class="trophy">
             <i class="fa-solid fa-trophy"></i>
         </div>
-
+        
         <p class="score" >{{ score }}/{{ total }}</p>
 
         <div class="stats">
