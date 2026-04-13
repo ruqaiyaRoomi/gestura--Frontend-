@@ -102,7 +102,7 @@ async function getQuizHistory() {
 
 async function getUserStats() {
     try{
-    const response = await fetch(`gestura-backend-production.up.railway.app/gestura/userStats/${userStore.user._id}`)
+    const response = await fetch(`https://gestura-backend-production.up.railway.app/gestura/userStats/${userStore.user._id}`)
     const data = await response.json()
     
     const letters = data.modules?.['ASL Alphabet'] || []

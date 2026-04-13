@@ -110,7 +110,7 @@ export function practice(videoRef, targetLetter, detectionActive = ref(true)) {
             lastSent = currentData
 
             try {
-                const response = await fetch('https://gestura-backend-femr.onrender.com/gestura/predict', {
+                const response = await fetch('https://gestura-backend-production.up.railway.app/gestura/predict', {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'}, 
                     body: JSON.stringify({landmarks : latestLandmarks, is_left: isLeft})
