@@ -58,7 +58,7 @@ function togglePassword() {
 async function login() {
     // send POST request to backend login endpoint with user credentials
     try{
-       const response = await fetch("https://gestura-backend-femr.onrender.com/gestura/login", {
+       const response = await fetch("gestura-backend-production.up.railway.app/gestura/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

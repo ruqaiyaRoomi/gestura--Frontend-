@@ -80,7 +80,7 @@ async function getTranslationHistory() {
     if(!userStore.user?._id) return
 
     try{
-    const response = await fetch(`https://gestura-backend-femr.onrender.com/gestura/userStats/${userStore.user._id}`)
+    const response = await fetch(`gestura-backend-production.up.railway.app/gestura/userStats/${userStore.user._id}`)
     const data = await response.json()
 
     if (data.modules?.['ASL Alphabet']) {

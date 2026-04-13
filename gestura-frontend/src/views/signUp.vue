@@ -138,7 +138,7 @@ const showEmailError =  computed (() => {
 async function signUp() {
     try{
         // send user details to the backend registration endpoint
-        const response = await fetch("https://gestura-backend-femr.onrender.com/gestura/signup", {
+        const response = await fetch("gestura-backend-production.up.railway.app/gestura/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

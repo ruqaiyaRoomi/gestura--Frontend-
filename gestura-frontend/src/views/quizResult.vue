@@ -10,7 +10,7 @@
         <div class="trophy">
             <i class="fa-solid fa-trophy"></i>
         </div>
-        
+
         <p class="score" >{{ score }}/{{ total }}</p>
 
         <div class="stats">
@@ -68,7 +68,7 @@ console.log(userStore.user)
 onMounted(async () =>{
   console.log('userStore.user:', userStore.user)
    console.log('score:', score, 'total:', total, 'results:', results)
-  await fetch("https://gestura-backend-femr.onrender.com/gestura/quizHistory", {
+  await fetch("gestura-backend-production.up.railway.app/gestura/quizHistory", {
       method: 'POST', 
       headers: {'Content-Type' : 'application/json'},
       body: JSON.stringify({
