@@ -90,7 +90,7 @@ export function useGesture(videoRef) {
             }
             try {
                 // send landmarks to backend ML prediction endpoint
-                const response = await fetch('http://localhost:3000/gestura/predict', {
+                const response = await fetch('https://gestura-backend-femr.onrender.com/gestura/predict', {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'}, 
                     body: JSON.stringify({landmarks : latestLandmarks, is_left: isLeft})
