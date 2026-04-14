@@ -38,19 +38,22 @@
 </template>
 
 <script setup>
+//Import core vue reactivity and lifecycle hooks
 import {ref, onMounted, nextTick, onUnmounted, watch} from 'vue'
 import {useRouter , useRoute} from 'vue-router'
 
+// Import UI and data dependencies
 import NavBar from '../components/navBar.vue';
 import {alphabetData} from '../data/alphabetData.js';
 import { practice } from '../composables/practice.js';
 import { useUserStore } from '../stores/user.js';
 
-
+//Router instances for navigation control
 const router = useRouter()
 const route = useRoute()
 
 
+// Get selected letter from route parameter
 const letter = route.params.letter
 const currentLetter = alphabetData[letter]
 const videoRef = ref(null)
@@ -61,27 +64,35 @@ const userStore = useUserStore()
 const translationHistory = ref([])
 
 
-
+// Custom composable handling ML gesutre detection logic
 const {predictedText, noHandDetected,  startDetection, stopDetection, isMatch, detectedLabel, detectionConfidence} 
 = practice(videoRef, letter)
 
+// Watch for successful gesture match
 watch(isMatch, async (val) => {
     if(!val) return
     if(showCheck.value) return
     if( detectedLabel.value !== letter) return
     if(detectionConfidence.value < 85) return
 
+    // show success overlay
     showCheck.value = true
+
+    // Stop camera + detection logic
     stopDetection()
 
+
+    //Save progress to backend
     await markDone()
 
+    // Move to next letter after short delay
     setTimeout(() => {
         goNextLetter()
     }, 1000)
     
 })
 
+// save comlpeted letter progress to backend
 async function markDone() {
     if ( !userStore.user?._id) {
     alert('You need to be logged in!')
@@ -101,6 +112,7 @@ async function markDone() {
             
         })
         const result = await response.json()
+        // store locally if not already recorded
         if (letter && !translationHistory.value.includes(letter)) {
             translationHistory.value.unshift(letter)
         }
@@ -112,6 +124,7 @@ async function markDone() {
      }
 }
 
+// Navigate to next letter
 function goNextLetter() {
     const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
     const index = letters.indexOf(letter)
@@ -125,12 +138,13 @@ function goNextLetter() {
 
 }
 
-
+//Start camera + ML processes when leaving page
 onMounted( async () => {
   await nextTick()
   startDetection()
 })
 
+// Clean up camera + ML processes when leaving page
 onUnmounted(() => stopDetection())
 
 async function handleDone (){
