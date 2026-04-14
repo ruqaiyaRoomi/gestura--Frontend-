@@ -54,7 +54,7 @@
   </div>
 <!-- Sign Up button disabled until all form validation pass-->
   <button v-on:click="signUp()" :disabled="!isFormFilled" >Sign Up</button>
-  <p class="bottomText">Already have an Account? <a  v-on:click="router.push('/login')" class="link">Sign Up!</a></p>
+  <p class="bottomText">Already have an Account? <a  v-on:click="router.push('/login')" class="link">Login!</a></p>
   <img class="wave" src="/images/wav2.png">
   </div>
 
