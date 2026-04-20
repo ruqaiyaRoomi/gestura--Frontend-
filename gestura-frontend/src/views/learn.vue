@@ -25,7 +25,7 @@
             </div>
 
             <div class="progressContainer">
-                <p>A-Z</p>
+                <p class="sub">A-Z</p>
                 <div class="progressbar">
                     <div class="completed" :style="{width: progressPercent + '%'}"></div>
                 </div>
@@ -48,7 +48,7 @@
             </div>
 
             <div class="progressContainer">
-                <p>A-Z</p>
+                <p class="sub">A-Z</p>
                 <div class="progressbar">
                     <div class="completed" :style="{width: progressPercent + '%'}"></div>
                 </div>
@@ -288,6 +288,10 @@ onMounted(() => userProgress())
     margin-top: 13px;
     font-weight: 500;
     color: var(--text-primary);
+   }
+
+   .sub {
+    color: var(--text-dark);
    }
 
 
