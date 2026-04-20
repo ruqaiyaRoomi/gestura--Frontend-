@@ -10,18 +10,41 @@
     
 
     <div class="bodyContainer">
-        <div class="sectionLabel">Accessibility</div>
-        <div class="settingsLeft">
-            <div class="iconContainer">
-                <span class="icon"><i class="fa-solid fa-moon"></i></span>
+
+        <div class="sectionLabel">Account</div>
+        <div class="settingsCard">
+            <div class="settingsLeft">
+                <div class="iconContainer">
+                    <span class="icon"><i class="fa-solid fa-user"></i></span>
+                </div>
+                <span class="settingsText">Edit Profile</span>
             </div>
-            <span class="settingsText">Dark Mode</span>
+            <span class="arrow"><i class="fa-solid fa-arrow-right-long"></i></span>
         </div>
-        <label class="toggle">
-            <input type="checkbox" v-model="darkMode" @change="toggleDarkMode">
-            <span class="slider"></span>
-        </label>
-    </div>
+        
+
+        <div class="settingsCard" @click="confirmDelete">
+            <div class="settingsLeft">
+                <div class="iconContainer red"><span class="icon"><i class="fa-solid fa-trash"></i></span></div>
+                <span class="settingsText">Delete Account</span>
+            </div>
+            <span class="arrow"><i class="fa-solid fa-arrow-right-long"></i></span>
+        </div>
+
+    <div class="sectionLabel">Accessibility</div>
+        <div class="settingsCard">
+            <div class="settingsLeft">
+                <div class="iconContainer">
+                    <span class="icon"><i class="fa-solid fa-moon"></i></span>
+                </div>
+                <span class="settingsText">Dark Mode</span>
+            </div>
+            <label class="toggle">
+                <input type="checkbox" v-model="darkMode" @change="toggleDarkMode">
+                <span class="slider"></span>
+            </label>
+        </div>
+    
 
     <div class="settingsCard">
         <div class="settingsLeft">
@@ -36,8 +59,8 @@
 
     <button class="logoutBtn" @click="handleLogout">Logout <i class="fa-solid fa-right-from-bracket"></i>
     </button>
-
-    <div class="modalOverlay">
+</div>
+    <div class="modalOverlay" v-if="showDeleteModal">
         <div class="modal">
             <h2>Delete Account</h2>
             <p>Are you sure? This action cannot be undone.</p>
@@ -77,7 +100,7 @@ function confirmDelete() {
 
 async function handleDelete() {
     try {
-        await fetch(`https://gestura-backend-production.up.railway.app/gestura/userStats/${userStore.user._id}`, {
+        await fetch(`https://gestura-backend-production.up.railway.app/gestura/user/${userStore.user._id}`, {
             method:'DELETE'
         })
         
@@ -180,13 +203,26 @@ function handleLogout() {
 
 
 .toggle {
-    position: relative;
+   position: relative;
+   display: inline-block;
+   width: 48px;
+   height: 26px;
+}
+
+.toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     background-color: #ccc;
-    border-radius: 26px;
+    border-radius:26px ;
     transition: 0.3s;
 }
 
@@ -203,11 +239,11 @@ function handleLogout() {
 
 }
 
-input:checked .slider {
+input:checked + .slider {
     background-color: var(--accent) ;
 }
 
-input:checked .slider::before {
+input:checked + .slider::before {
     transform: translateX(22px);
 }
 
@@ -229,7 +265,7 @@ input:checked .slider::before {
     background: rgba(0, 0, 0,0.4);
     display: flex;
     justify-content: center;
-    align-items: cener;
+    align-items: center;
     z-index: 999;
 }
 
