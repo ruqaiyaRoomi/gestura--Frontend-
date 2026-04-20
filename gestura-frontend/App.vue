@@ -41,13 +41,13 @@ function onSplashDone() {
 
 .dark {
     --bg-primary: #1a1a1a;
-    --bg-card: #2a2a2a;
+    --bg-card: #242424;
     --text-primary: #e0e0e0;
     --text-secondary: #aaaaaa;
     --text-muted: #999;
-    --accent: #cccc;
-    --accent-shadow: rgba(233,150,39,0.2);
-    --shadow-card: rgba(0,0,0,0,0.3) 0px 4px 12px;
-    --shadow-small: 0 4px 10px rgba(0,0,0,0.2);
+    --accent: #e99627;
+    --accent-shadow: 0 4px 18px rgba(245,158,11,0.35);
+    --shadow-card: 0px 6px 20px rgba(0,0,0,0,0.5) ;
+    --shadow-small: 0 4px 12px rgba(0,0,0,0.4);
 }
 </style>
