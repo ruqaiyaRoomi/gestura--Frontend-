@@ -22,7 +22,7 @@ function onSplashDone() {
 
 <style>
 :root {
-    --bg-primary: #f7f74e8;
+    --bg-primary:  #F7F4E8;
     --bg-card: #f3f3f3;
     --text-primary: #5e5e5e;
     --text-secondary: #7a7a7a;

@@ -2,6 +2,7 @@
     <Header />
     <div class="settingsScreen">
         <div class="title">
+            <span class="back" @click="router.back()"><i class="fa-solid da-arrow-left"></i></span>
             <h1>Settings</h1>
             <p class="subheading">
                 Manage your account and preferences
@@ -125,6 +126,13 @@ function handleLogout() {
     display: flex;
     flex-direction: column;
     padding: 0px 20px 120px;
+}
+
+.back {
+    font-size: 20px;
+    color: var(--text-primary);
+    margin-bottom:10px ;
+    display: inline-block;
 }
 
 .title {
