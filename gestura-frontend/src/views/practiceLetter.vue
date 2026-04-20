@@ -170,7 +170,7 @@ async function handleDone (){
 <style scoped>
    
     .translate{
-        background-color: #f7f4e8;
+        background-color: var(--bg-primary);
         min-height: 100vh;
         display: flex;
         flex-direction: column;
@@ -187,13 +187,13 @@ async function handleDone (){
 
     .close {
         font-size: 20px;
-        color: #333;
+        color: var(--text-dark);
     }
 
     .title {
         font-size: 20px;
         font-weight: 700;
-        color: #333;
+        color: var(--text-dark);
     }
     .arrow {
         margin: 0 4px;
@@ -202,11 +202,11 @@ async function handleDone (){
     .cameraInput {
         position: relative;
         flex: 1;
-        border: 1.5px solid #333;
+        border: 1.5px solid var(--text-dark);
         border-radius: 18px;
         overflow: hidden;
         margin-bottom: 24px;
-        background-color: #f7f4e8;
+        background-color: var(--bg-primary);
 
         aspect-ratio: 3/4;
      
@@ -230,7 +230,7 @@ async function handleDone (){
         padding: 6px 12px;
         border-radius: 20px ;
         font-size: 15px;
-        color: #333;
+        color: var(--text-dark);
     }
 
     .practiceInfo {
@@ -244,13 +244,13 @@ async function handleDone (){
     .practiceTitle {
         font-size: 20px;
         font-weight: 700;
-        color: #333;
+        color: var(--text-dark);
         margin: 0 0 4px 0;
     }
 
     .practiceTip {
         font-size: 18px;
-        color: #666;
+        color: var(--text-muted);
         margin: 0;
     }
 
@@ -275,8 +275,8 @@ async function handleDone (){
 
     .btn-done {
     
-        background-color: #E99627;
-        color: white;
+        background-color: var(--accent);
+        color: var(--bg-card);
         border: none;
         box-shadow: 0 6px 10px rgba(0, 0, 0, 0.08);
         
@@ -284,8 +284,8 @@ async function handleDone (){
 
      .btn-retry {
         background-color: transparent;
-        color:  #E99627;
-        border: 2px solid #E99627;
+        color:  var(--accent);
+        border: 2px solid var(--accent);
       
     }
 
@@ -301,6 +301,23 @@ async function handleDone (){
         align-items: center;
         font-size: 60px;
         color: #4CAF50;
+    }
+
+    .fade-enter-active,
+    .fade-leave-active {
+        transition: opacity 0.3s ease;
+    }
+
+    .fade-enter-from,
+    .fade-leave.to {
+        opacity: 0;
+    }
+
+    @media (min-width: 768px) {
+        .translate{
+            max-width: 480px;
+            margin: 0 auto;
+        }
     }
 
 </style>

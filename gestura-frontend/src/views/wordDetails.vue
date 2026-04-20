@@ -80,7 +80,7 @@ async function markDone() {
 <style scoped>
 
 .wordDetails {
-    background: #f7f4e8;
+    background: var(--bg-primary);
     min-height: 100vh;
     padding: 20px 16px 100px;
     display: flex;
@@ -97,6 +97,11 @@ async function markDone() {
 
 .title{
     font-size: 25px;
+    color: var(--text-primary);
+}
+
+.back{
+    color: var(--text-primary);
 }
 
 .lettersContainer {
@@ -113,7 +118,7 @@ async function markDone() {
 }
 
 .letterCard{
-    background: white;
+    background: var(--bg-card);
     min-width: 190px;
     height: 250px;
     border-radius: 10px;
@@ -122,6 +127,7 @@ async function markDone() {
     align-items: center;
     justify-content: center;
     flex-shrink:0;
+    box-shadow: var(--shadow-small);
 }
 
 .letterCard img {
@@ -131,7 +137,7 @@ async function markDone() {
 .letterCard p {
     font-size: 20px;
     font-weight: 600;
-    color: #555;
+    color: var(--text-muted);
     text-align: center;
 }
 
@@ -147,13 +153,13 @@ async function markDone() {
 .mark {
     width: 100%;
     height: 56px;
-    background-color: #e99627;
-    color: white;
+    background-color: var(--accent);
+    color: var(--bg-card);
     border: none;
     border-radius: 14px;
     font-size: 16px;
     font-weight: 600;
-    box-shadow: 0 8px 18px rgba(233, 150, 39, 0.25);
+    box-shadow: 0 8px 18px var(--accent-shadow);
     transition: 0.2s ease;
 }
 
@@ -167,8 +173,8 @@ async function markDone() {
     width: 100%;
     height: 56px;
     background-color: transparent;
-    color: #e99627;
-    border: 2px solid #e99627;
+    color: var(--accent);
+    border: 2px solid var(--accent);
     border-radius: 14px;
     font-size: 16px;
     font-weight: 600;
@@ -177,7 +183,14 @@ async function markDone() {
 
 
 .ready:hover {
-     background-color: #e9962710;
+     background-color: var(--accent);
+}
+
+@media (min-width: 768px) {
+    .wordDetails {
+        max-width: 480px;
+        margin: 0 auto;
+    }
 }
 
 

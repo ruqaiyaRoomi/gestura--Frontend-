@@ -93,7 +93,7 @@ async function login() {
 <style scoped>
 .loginScreen {
     min-height: 100vh;
-    background-color: #f7f4e8;
+    background-color: var(--bg-primary);
     display: flex;
     flex-direction:column ;
     padding: 40px 24px 0;
@@ -118,6 +118,7 @@ async function login() {
     font-size: 28px;
     font-weight: 700;
     margin: 0;
+    color: var(--text-primary);
 }
 
 .form {
@@ -134,7 +135,7 @@ async function login() {
 }
 
 .input:focus {
-    outline: 2px solid #e99627;
+    outline: 2px solid var(--accent);
 }
 
 .password {
@@ -152,7 +153,7 @@ async function login() {
 .eye {
     position: absolute;
     right: 14px;
-    color: #666;
+    color: var(--text-muted);
     
 }
 
@@ -162,31 +163,32 @@ input {
     border-radius: 8px;
     padding: 0 14px;
     font-size: 15px ;
-    background-color: #f0f0f0;
-    
+    background-color: var(--bg-card);
+    color: var(--text-primary);
+    box-sizing: border-box;
 }
 
 input:focus {
     outline: none;
-    border-color: #e99627;
-    background-color: #fff;
+    border-color: var(--accent);
+    background-color: var(--bg-card);
 }
 
 label {
     font-size: 16px;
-    color: #555;
+    color: var(--text-muted);
 }
 
 button {
     width: 100%;
     height: 56px;
-    background-color: #e99627;
-    color: white;
+    background-color: var(--accent);
+    color: var(--bg-card);
     border: none;
     border-radius: 14px;
     font-size: 16px;
     font-weight: 600;
-    box-shadow: 0 8px 18px rgba(233, 150, 39, 0.25);
+    box-shadow: 0 8px 18px var(--accent-shadow);
     transition: 0.2s ease;
    }
    
@@ -199,7 +201,7 @@ button:hover {
 .bottomText {
     text-align: center;
     font-size: 14px;
-    color: #555;
+    color: var(--text-muted);
 }
 
 .link {
@@ -215,6 +217,17 @@ button:hover {
     
     left: 0;
     width: 100%;
+}
+
+@media (min-width: 768px) {
+    .loginScreen{
+        max-width: 480px;
+        margin: 0 auto;
+    }
+
+    .top{
+        margin-top: 100px;
+    }
 }
     
 </style>

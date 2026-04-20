@@ -232,7 +232,7 @@ function finish() {
 
 <style scoped>
    .quiz{
-     background: #f7f4e8;
+     background: var(--bg-primary);
         min-height: 100vh;
         padding: 16px 16px 100px;
         display: flex;
@@ -249,13 +249,14 @@ function finish() {
     .title {
         font-size: 18px;
         font-weight: 700;
+        color: var(--text-primary);
     }
 
     .progress {
         display: flex;
         justify-content: space-between;
         font-size: 13px;
-        color: #888;
+        color: var(--text-muted);
     }
 
     .progressBar {
@@ -268,7 +269,7 @@ function finish() {
 
     .fill {
         height: 100%;
-        background: #e99627 ;
+        background: var(--accent) ;
         border-radius: 10px;
         transition: width 0.3s ease;
     }
@@ -280,13 +281,13 @@ function finish() {
         display: flex;
         flex-direction: column;
         gap: 16px;
-        background: #f7f4e8;
+        background: var(--bg-primary);
     }
 
     .question {
         font-size: 18px;
         font-weight: 600;
-        color: #1a1a1a;
+        color: var(--text-primary);
         margin: 0;
     }
 
@@ -295,13 +296,13 @@ function finish() {
         aspect-ratio: 3/4;
         border-radius: 12px;
         overflow: hidden;
-        background-color: #eee;
+        background-color: var(--bg-card);
 
     }
 
     .skip {
         text-align: center;
-        color: #888;
+        color: var(--text-muted);
         font-size: 15px;
         margin-top: 8px;
     }
@@ -309,15 +310,15 @@ function finish() {
 
     .doneBtn {
         width: 100%;
-    height: 56px;
-    background-color: #e99627;
-    color: white;
-    border: none;
-    border-radius: 14px;
-    font-size: 16px;
-    font-weight: 600;
-    box-shadow: 0 8px 18px rgba(233, 150, 39, 0.25);
-    transition: 0.2s ease;
+        height: 56px;
+        background-color: var(--accent);
+        color: var(--bg-card);
+        border: none;
+        border-radius: 14px;
+        font-size: 16px;
+        font-weight: 600;
+        box-shadow: 0 8px 18px var(--accent-shadow);
+        transition: 0.2s ease;
     }
 
     .timerRow {
@@ -329,7 +330,7 @@ function finish() {
     .timer {
         font-size: 16px;
         font-weight: 700;
-        color: #e99627;
+        color: var(--accent);
         transition: color 0.3s;
     }
 
@@ -347,7 +348,7 @@ function finish() {
 
     .timerFill {
         height: 100%;
-        background: #e99627;
+        background: var(--accent);
         border-radius: 10px ;
         transition: width 1s linear, background 0.3s;
     }
@@ -379,7 +380,7 @@ function finish() {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        color: white;
+        color: var(--bg-card);
         z-index: 2;
         text-align: center;
     }
@@ -393,6 +394,18 @@ function finish() {
     .prepOverlay p {
         font-size: 16px;
         opacity: 0.9;
+    }
+
+    .back {
+        color: var(--text-primary);
+        font-size: 18px;
+    }
+
+    @media (min-width: 768px) {
+        .quiz {
+            max-width: 480px;
+            margin: 0 auto;
+        }
     }
 
 </style>

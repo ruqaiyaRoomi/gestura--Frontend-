@@ -52,6 +52,7 @@ const userStore = useUserStore()
 const route = useRoute();
 const router = useRouter();
 
+const isSaving = ref(false)
 const letter = route.params.letter
 const currentLetter = alphabetData[letter]
 import { triggerGuestOverlay } from '../stores/guest';
@@ -99,9 +100,9 @@ console.log("currentLetter:", currentLetter)
 
 <style scoped>
    .letterDetail {
-    background: #f7f4e8;
+    background: var( --bg-primary);
     min-height: 100vh;
-    padding: 20px 16px;
+    padding: 20px 16px 100px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -116,25 +117,25 @@ console.log("currentLetter:", currentLetter)
 
    .back{
     font-size: 20px;
-    color: #333;
+    color: var(--text-primary);
    }
 
    .title {
     font-size: 18px;
     font-weight: 700;
-    color: #4E4E4C;
+    color: var(--text-primary);
    }
 
    .card {
-    background: white;
+    background: var(--bg-card);
     border-radius: 20px;
     display: flex;
     flex-direction:column ;
     align-items: center;
     padding: 24px;
+    box-shadow: var(--shadow-card);
     
    }
-
 
    .letterImage{
     width: 180px;
@@ -145,13 +146,13 @@ console.log("currentLetter:", currentLetter)
    .letterLabel{
     font-size: 48px;
     font-weight: 700;
-    color: #4E4E4C;
+    color: var(--text-primary);
     margin: 12px 0 0;
    }
 
    .description {
     font-size: 18px;
-    color: #4E4E4C;
+    color: var(--text-primary);
     text-align: center;
     line-height: 1.6;
     margin: 0;
@@ -167,29 +168,52 @@ console.log("currentLetter:", currentLetter)
    .tryTitle {
     font-size: 18px;
     font-weight: 700;
-    color: #4E4E4C;
+    color: var(--text-primary);
     margin: 0;
    }
 
    .tip{
     font-size: 13px;
-    color: #4E4E4C;
+    color: var(--text-muted);
     margin: 0;
    }
 
    .tryIt button {
     width: 100%;
     height: 56px;
-    background-color: #e99627;
+    background-color: var(--accent);
     color: white;
     border: none;
     border-radius: 14px;
     font-size: 16px;
     font-weight: 600;
-    box-shadow: 0 8px 18px rgba(233, 150, 39, 0.25);
+    box-shadow: 0 8px 18px var(--accent-shadow);
     transition: 0.2s ease;
     margin-top: 20px;
     justify-content: center;
+   }
+
+   .markDoneButton {
+    background: transparent !important;
+    color: var(--accent);
+    border: 1.5px solid var(--accent) !important;
+    box-shadow: none !important;
+   }
+
+   @media (min-width: 768px) {
+        .letterDetail {
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        .letterImage {
+            width: 220px;
+            height: 220px;
+        }
+
+        .letterLabel {
+            font-size: 56px;
+        }
    }
 
 

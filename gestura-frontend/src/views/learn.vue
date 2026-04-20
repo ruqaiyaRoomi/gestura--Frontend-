@@ -124,7 +124,7 @@ onMounted(() => userProgress())
 
 <style scoped>
    .learn {
-    background: #f7f4e8;
+    background: var( --bg-primary);
     min-height: 100vh;
     padding: 20px 16px 100px;
    }
@@ -138,11 +138,12 @@ onMounted(() => userProgress())
     font-size: 28px;
     font-weight: 700;
     margin: 0;
+     color: var(--text-primary);
   
    }
 
    .subheading {
-    color: #666;
+    color: var(--text-muted);
     font-size: 14px;
    }
 
@@ -153,17 +154,17 @@ onMounted(() => userProgress())
    }
 
    .cardContainer {
-    background: #ffffff;
+    background: var(--bg-card);
     border-radius: 22px;
     padding: 18px;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    box-shadow: var(--shadow-card );
     
    }
 
    .imageContainer {
     width: 100%;
-    height: 200px;
-    background: #f2f2f2;
+    height: 180px;
+    background: var(--bg-primary);
    
     border-radius:16px ;
 
@@ -187,12 +188,13 @@ onMounted(() => userProgress())
     display: flex;
     flex-direction: column;
     gap: 4px;
+    margin-top: 14px;
   
    }
 
    .type {
     font-size: 12px;
-    color: #9a9a9a9a;
+    color: var(--text-muted);
    }
 
    .textblock {
@@ -204,17 +206,19 @@ onMounted(() => userProgress())
    .ASL {
     font-size: 18px;
     font-weight: 600;
+    color: var(--text-primary);
    }
 
    .aslBody span{
     font-size: 18px;
-    color: #888;
+    color: var(--text-muted);
    }
 
 
    .progressContainer {
     display: flex;
     flex-direction: column;
+    margin-top: 10px;
 
    }
 
@@ -229,22 +233,28 @@ onMounted(() => userProgress())
 
    .completed {
     height: 100%;
-    background: #e99627;
+    background: var(--accent);
    }
 
    .percentage {
     font-size: 12px;
-    color: #777;
+    color: var(--text-muted);
    }
 
+   .quiz {
+    margin-top: 24px;
+
+   }
 
    .quiz .dailyP {
-    font-size: 28px;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-primary);
    }
 
 
    .quizBlock{
-    background: white;
+    background: var(--bg-card);
     width: 100px;
     height:100%;
     padding: 20px;
@@ -252,10 +262,11 @@ onMounted(() => userProgress())
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: #e99627;
+    color: var(--accent);
     border-radius: 10px;
     margin-top: 20px ;
-    gap:2px;  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    gap:2px; 
+    box-shadow: var(--shadow-card );
    }
 
    .quizBlock i {
@@ -265,7 +276,7 @@ onMounted(() => userProgress())
    }
 
    .quizBlock span{
-    background: #f1f1f1;
+    background: var(--bg-primary);
     margin-top: 25px;
     padding: 20px;
     border-radius: 500px;
@@ -276,6 +287,22 @@ onMounted(() => userProgress())
     font-size: 20px;
     margin-top: 13px;
     font-weight: 500;
+    color: var(--text-primary);
    }
 
+
+@media (min-width: 768px) {
+    .learn {
+        max-width: 480px;
+        margin: 0 auto;
+    }
+
+    .imageContainer {
+        height: 220px;
+    }
+
+    .heading {
+        font-size: 32px;
+    }
+}
 </style>

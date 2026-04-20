@@ -116,7 +116,7 @@ onMounted(() => {
 <style scoped>
 .indexScreen{
     min-height: 100vh;
-    background-color: #f7f4e8;
+    background-color: var(--bg-primary);
     display: flex;
     flex-direction:column ;
     padding: 0px 20px 120px;
@@ -130,13 +130,13 @@ onMounted(() => {
     font-size: 30px;
     font-weight: 700;
     margin: 0;
-    color: #5E5E5E;
+    color: var(--text-primary);
 }
 
 .subheading {
     margin-top: 6px;
     font-size: 16px;
-    color: #7a7a7a;
+    color: var(--text-secondary);
 }
 
 .bodyContainer{
@@ -147,12 +147,12 @@ onMounted(() => {
 
 
 .cardContainer {
-    background-color:  #f3f3f3;
+    background-color: var(--bg-card);
     padding: 24px;
     border-radius: 22px;
     display: flex;
     flex-direction: column;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    box-shadow: var(--shadow-card);
 
 }
 
@@ -168,12 +168,12 @@ onMounted(() => {
 }
 
 .arrow {
-    color: #333;
+    color: var(--text-dark);
     font-size: 18px;
 }
 
 .iconContainer{
-    background-color: #e99627;
+    background-color: var(--accent);
     width: 50px;
     height: 50px;
     border-radius: 14px;
@@ -186,13 +186,13 @@ onMounted(() => {
 button {
     width: 100%;
     height: 56px;
-    background-color: #e99627;
+    background-color: var(--accent);
     color: white;
     border: none;
     border-radius: 14px;
     font-size: 16px;
     font-weight: 600;
-    box-shadow: 0 8px 18px rgba(233, 150, 39, 0.25);
+    box-shadow: var(--accent-shadow);
     transition: 0.2s ease;
     margin-top: 20px;
     justify-content: center;
@@ -212,11 +212,12 @@ button:hover {
     font-size: 18px;
     font-weight: 600;
     margin: 0 0 6px;
+    color: var(--text-primary);
 }
 
 .description {
     font-size: 15px;
-    color: #666;
+    color: var(--text-muted);
     margin: 0 0 20px;
 }
 
@@ -234,11 +235,12 @@ button:hover {
 .bottomHeader h1 {
     font-size: 18px;
     margin: 0;
+    color: var(--text-primary);
 }
 
 .bottomHeader span {
     font-size: 14px;
-    color:#666;
+    color: var(--text-muted);
 }
 
 .historyCard{
@@ -251,32 +253,44 @@ button:hover {
 }
 
 .card {
-    background: #f3f3f3;
+    background: var(--bg-card);
     padding: 16px 20px;
     border-radius: 16px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    box-shadow: var(--shadow-card);
     transition: transform 0.15s ease;
 }
 
 .card i {
-    color: #e99627;
+    color: var(--accent);
     font-size: 20px;
 }
 
 .card p {
     margin: 0;
     font-size: 14px;
-    color: #666;
+    color: var(--text-muted);
 }
 
 .card span:first-child {
-    color: #e99627;
+    color: var(--accent);
     font-size: 20px;
     margin-right: 12px;
     
+}
+
+@media (min-width: 768px) {
+    
+    .indexScreen {
+        max-width: 480px;
+        margin: 0 auto;
+    }
+
+    .welcome h1 {
+        font-size: 34px;
+    }
 }
 
 </style>

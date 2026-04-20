@@ -102,7 +102,7 @@ function done() {
 <style scoped>
    
     .translate{
-        background-color: #f7f4e8;
+        background-color: var(--bg-primary);
         min-height: 100vh;
         display: flex;
         flex-direction: column;
@@ -119,13 +119,13 @@ function done() {
 
     .close {
         font-size: 20px;
-        color: #333;
+        color: var(--text-dark);
     }
 
     .title {
         font-size: 20px;
         font-weight: 700;
-        color: #333;
+        color: var(--text-dark);
     }
     .arrow {
         margin: 0 4px;
@@ -134,11 +134,11 @@ function done() {
     .cameraInput {
         position: relative;
         flex: 1;
-        border: 1.5px solid #333;
+        border: 1.5px solid var(--text-dark);
         border-radius: 18px;
         overflow: hidden;
         margin-bottom: 24px;
-        background-color: #f7f4e8;
+        background-color: var(--bg-primary);
 
         aspect-ratio: 3/4;
      
@@ -162,7 +162,7 @@ function done() {
         padding: 6px 12px;
         border-radius: 20px ;
         font-size: 15px;
-        color: #333;
+        color: var(--text-dark);
     }
 
     .practiceInfo {
@@ -176,13 +176,13 @@ function done() {
     .practiceTitle {
         font-size: 20px;
         font-weight: 700;
-        color: #333;
+        color: var(--text-dark);
         margin: 0 0 4px 0;
     }
 
     .practiceTip {
         font-size: 18px;
-        color: #666;
+        color: var(--text-muted);
         margin: 0;
     }
 
@@ -207,8 +207,8 @@ function done() {
 
     .btn-done {
     
-        background-color: #E99627;
-        color: white;
+        background-color: var(--accent);
+        color: var(--bg-card);
         border: none;
         box-shadow: 0 6px 10px rgba(0, 0, 0, 0.08);
         
@@ -216,8 +216,8 @@ function done() {
 
      .btn-retry {
         background-color: transparent;
-        color:  #E99627;
-        border: 2px solid #E99627;
+        color:  var(--accent);
+        border: 2px solid var(--accent);
       
     }
 
@@ -226,7 +226,7 @@ function done() {
         top: 12px;
         right: 12px;
         background: rgba(0, 0, 0, 0.5);
-        color: white;
+        color: var(--bg-card);
         border-radius: 20px;
         font-size: 13px;
         padding: 4px 20px;     
@@ -235,7 +235,7 @@ function done() {
     .overlay {
         position: absolute;
         inset: 0;
-        background-color: #E99627;
+        background-color: var(--accent);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -244,7 +244,7 @@ function done() {
 
     .overlay i {
         font-size: 100px;
-        color: white;
+        color: var(--bg-card);
     }
 
     .fade-enter-active {
@@ -257,6 +257,13 @@ function done() {
 
     .fade-enter-from, .fade-leave-to {
         opacity: 0;
+    }
+
+    @media (min-width: 768px) {
+        .translate{
+            max-width: 480px;
+            margin: 0 auto;
+        }
     }
 
 

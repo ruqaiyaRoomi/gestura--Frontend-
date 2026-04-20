@@ -31,7 +31,7 @@ onMounted(() => {
         display: flex;
         align-items: center;
         justify-content : center;
-        background: #ffffff;
+        background: var(--bg-card);
         z-index: 9990;
         transition: opacity 0.6s ease
     }
@@ -46,7 +46,7 @@ onMounted(() => {
         width: 100px;
         height: 100px;
         border-radius: 50%;
-        background: #F7F4E8;
+        background: var(--bg-primary);
         animation: zoomFill 1.8s ease forwards;
     }
 
@@ -79,8 +79,8 @@ onMounted(() => {
     .name{
         font-family: 'Inter', sans-serif;
         font-size: 26px;
-        font-weight: semi bold;
-        color: #333;
+        font-weight: 600;
+        color: var(--text-primary);
         overflow: hidden;
         transform: translateY(20px);
         opacity: 0;
@@ -94,5 +94,26 @@ onMounted(() => {
 
     @keyframes fadeIn {
         to {opacity: 1;}
+    }
+
+
+    @media (min-width: 768px) {
+        .circle {
+            width: 120px;
+            height: 120px;
+        }
+
+        .logo {
+            width: 100px;
+            height: 100px;
+        }
+
+        .name {
+            font-size: 32px;
+        }
+
+        .content {
+            gap: 14px;
+        }
     }
 </style>

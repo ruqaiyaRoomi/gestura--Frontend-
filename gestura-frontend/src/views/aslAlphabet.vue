@@ -148,7 +148,7 @@ const alphabets = [{
 <style scoped>
    
 .aslAlphabet {
-    background: #f7f4e8;
+    background: var(--bg-primary);
     min-height: 100vh;
     padding: 16px;
 }
@@ -156,14 +156,14 @@ const alphabets = [{
 .search {
     display: flex;
     align-items: center;
-    background: #ffffff;
+    background: var(--bg-card);
     border-radius: 20px;
     padding: 10px 20px ;
     margin-bottom: 18px;
 }
 
 .search span {
-    color: #999;
+    color: var(--text-muted);
     margin-right: 8px;
 }
 
@@ -173,6 +173,7 @@ const alphabets = [{
     width: 100%;
     font-size: 14px;
     background: transparent;
+    color: var(--text-primary);
 }
 
 .grid{
@@ -182,10 +183,10 @@ const alphabets = [{
 }
 
 .card {
-    background: #FFFFFF;
+    background: var(--bg-card);
     border-radius: 16px;
     overflow: hidden;
-      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.08);
+      box-shadow: var(--shadow-small);
 }
 
 .imageContainer {
@@ -203,7 +204,7 @@ const alphabets = [{
 }
 
 .cardBody {
-    background: #f7f6f1;
+    background: var(--bg-primary);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -213,7 +214,36 @@ const alphabets = [{
 .name {
     font-size: 22px;
     font-weight: 600;
-    color: #555;
+    color: var(--text-primary);
+}
+
+
+@media (min-width: 380px) {
+    .grid{
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+    }
+}
+
+@media (min-width: 768px) {
+    .aslAlphabet {
+        max-width: 480px;
+        margin: 0 auto;
+        padding: 24px 20px 100px;
+    }
+
+    .grid{
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+
+    .imageContainer {
+        height: 140px;
+    }
+
+    .name {
+        font-size: 26px;
+    }
 }
 
 

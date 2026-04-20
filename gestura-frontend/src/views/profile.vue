@@ -127,7 +127,7 @@ async function getUserStats() {
 <style scoped>
    
 .profile {
-  background: #F7F4E8;
+  background: var(--bg-primary);
   min-height: 100vh;
   padding: 16px 20px 100px;
   display: flex;
@@ -152,12 +152,12 @@ async function getUserStats() {
   width: 110px;
   height: 110px;
   border-radius: 50%;
-  border: 3px solid #E99627;
+  border: 3px solid var(--accent);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 48px;
-  color: #555;
+  color: var(--text-muted);
   background: #fff;
 }
 
@@ -182,7 +182,7 @@ async function getUserStats() {
 }
 
 .progressCard {
-  background: white;
+  background: var(--bg-card);
   border-radius: 16px;
   padding: 20px;
   display: flex;
@@ -198,7 +198,7 @@ async function getUserStats() {
 .stat {
   font-size: 20px;
   font-weight: 700;
-  color: #E99627;
+  color: var(--accent);
 }
 
 .recentGrid {
@@ -221,7 +221,7 @@ async function getUserStats() {
   flex-shrink: 0;
   scroll-snap-align: start;
 
-  background: white;
+  background: var(--bg-card);
   border-radius: 16px;
   padding: 20px;
   display: flex;
@@ -240,12 +240,12 @@ async function getUserStats() {
 .recentCard p {
   font-size: 28px;
   font-weight: 700;
-  color: #1a1a1a;
+  color: var(--text-primary);
   margin: 8px 0 0;
 }
 
 .quizCard {
-  background: white;
+  background: var(--bg-card);
   border-radius: 16px;
   padding: 16px 20px;
   display: flex;
@@ -263,7 +263,7 @@ async function getUserStats() {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #888;
+  color: var(--text-muted);
   font-size: 18px;
 }
 
@@ -271,12 +271,12 @@ async function getUserStats() {
   flex: 1;
   font-size: 15px;
   font-weight: 500;
-  color: #1a1a1a;
+  color: var(--text-primary);
 }
 
 .quizScore {
   font-size: 14px;
-  color: #888;
+  color: var(--text-muted);
 }
 
 </style>

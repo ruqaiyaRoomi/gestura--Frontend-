@@ -70,7 +70,7 @@
     .onboarding {
         min-height: 100vh;
         width: 100%;
-        background-color: #f7f4e8;
+        background-color: var(--bg-primary);
         display: flex;
         flex-direction: column ;
         overflow: hidden;
@@ -84,7 +84,13 @@
         align-items: center;
         justify-content: center;
         text-align: center;
+        padding: 0 24px;
+        box-sizing: border-box;
+    }
 
+    .slideShow {
+        width: 100%;
+        max-width: 420px;
     }
 
     .SlideShowBody {
@@ -100,19 +106,21 @@
     img {
         height: 380px;
         border-radius: 40%;
+        max-width: 100%;
+        object-fit: contain;
     
     }
 
     button {
         width: 100%;
         height: 56px;
-        background-color: #e99627;
-        color: white;
+        background-color: var(--accent);
+        color: var(--bg-card);
         border: none;
         border-radius: 14px;
         font-size: 16px;
         font-weight: 600;
-        box-shadow: 0 8px 18px rgba(233, 150, 39, 0.25);
+        box-shadow: 0 8px 18px var(--accent-shadow);
         transition: 0.2s ease;
     }
     button:hover {
@@ -130,12 +138,15 @@
     .heading {
         font-size: 20px;
         margin-bottom: 0px;
+        color: var(--text-primary);
+        font-weight: 600;
     }
 
     .subheading{
-        font-size: 18px;
+        font-size: 15px;
         max-width: 350px;
         margin-bottom: 0px;
+        color: var(--text-muted);
        
     }
 
@@ -150,13 +161,27 @@
         width: 5px;
         height: 5px;
         border-radius: 50%;
-        background-color: rgb(201, 200, 200);
+        background-color: #ccc;
         transition: all 0.3s ease;
     }
 
     .dot.active {
-        background-color: rgb(159, 157, 157);
+        background-color: var(--accent);
         transform: scale(1.2);    
+    }
+
+    @media (min-width:768px) {
+        img {
+            height: 360px;
+        }
+
+        .heading {
+            font-size: 22px;
+        }
+
+        .subheading {
+            font-size: 16px;
+        }
     }
 
 </style>

@@ -16,7 +16,7 @@
         <div class="stats">
             <div class="statCard">
                 <p class="statLabel">Time Taken</p>
-                <p class="satValue" >{{ time }}</p>
+                <p class="statValue" >{{ time }}</p>
             </div>
             <div class="statCard">
                 <p class="statLabel">Accuracy</p>
@@ -89,7 +89,7 @@ console.log(userStore.user)
 <style scoped>
 
 .result {
-  background: #f7f4e8;
+  background: var(--bg-primary);
   min-height: 100vh;
   padding: 16px 16px 100px;
   display: flex;
@@ -106,6 +106,12 @@ console.log(userStore.user)
 .title {
   font-size: 18px;
   font-weight: 700;
+  color: var(--text-primary);
+}
+
+.back {
+  color: var(--text-primary);
+  font-size:18px ;
 }
 
 .trophy {
@@ -117,14 +123,14 @@ console.log(userStore.user)
   align-items: center;
   justify-content: center;
   font-size: 48px;
-  color: #e99627;
+  color: var(--accent);
   align-self: center;
 }
 
 .score {
   font-size: 42px;
   font-weight: 700;
-  color: #1a1a1a;
+  color: var(--text-primary);
   text-align: center;
   margin: 0;
 }
@@ -136,7 +142,7 @@ console.log(userStore.user)
 }
 
 .statCard {
-  background: white;
+  background: var(--bg-card);
   border-radius: 14px;
   padding: 16px;
   text-align: center;
@@ -145,14 +151,14 @@ console.log(userStore.user)
 
 .statLabel {
   font-size: 13px;
-  color: #888;
+  color: var(--text-muted);
   margin: 0 0 4px;
 }
 
 .statValue {
   font-size: 18px;
   font-weight: 700;
-  color: #e99627;
+  color: var(--accent);
   margin: 0;
 }
 
@@ -160,6 +166,7 @@ console.log(userStore.user)
   font-size: 18px;
   font-weight: 700;
   margin: 0;
+  color: var(--text-primary);
 }
 
 .reviewList {
@@ -214,14 +221,22 @@ console.log(userStore.user)
 .doneBtn {
         width: 100%;
     height: 56px;
-    background-color: #e99627;
-    color: white;
+    background-color: var(--accent);
+    color: var(--bg-card);
     border: none;
     border-radius: 14px;
     font-size: 16px;
     font-weight: 600;
-    box-shadow: 0 8px 18px rgba(233, 150, 39, 0.25);
+    box-shadow: 0 8px 18px var(--accent-shadow);
     transition: 0.2s ease;
     }
+
+  @media (min-width: 768px) {
+    .result{
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    
+  }
 
 </style>

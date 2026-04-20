@@ -48,9 +48,9 @@
         display: flex;
         justify-content: space-around;
         align-items: center;
-        background: #F7F4E8;
+        background: var(--bg-primary);
         padding: 12px 0;
-        border-top: 1px solid #ddd;
+        border-top: 1px solid var(--text-muted);
         z-index: 1000;   
         box-shadow: 0 -3px 10px rgba(0, 0, 0 , 0.08);
         
@@ -67,7 +67,7 @@
     }
 
    .nav-item button.active {
-        color: #f59e0b !important;
+        color: var(--text-primary) !important;
         transform: translateY(-1px) !important;
 
     }
@@ -78,8 +78,25 @@
         flex-direction: column;
         align-items: center;
         font-size: 12px;
-        color: #4E4E4C;
+        color: var(--text-muted);
         background-color: transparent;
         border: none;
+    }
+
+    @media (min-width: 768px) {
+        .navbar {
+            max-width: 480px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+
+        .nav-item i {
+            font-size: 24px;
+        }
+
+        .nav-item button {
+            font-size: 13px;
+        }
     }
 </style>

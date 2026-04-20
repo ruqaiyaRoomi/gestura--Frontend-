@@ -28,7 +28,7 @@ onMounted(() => {
         justify-content: space-between;
         align-items: center;
         padding: 16px 20px;
-        background-color: #F7F4E8;
+        background-color: var(--bg-primary);
       
     }
 
@@ -40,6 +40,21 @@ onMounted(() => {
     .fa-solid fa-gear {
         height: 50px;
         width: 50px;
+        color: var(--text-primary);
+    }
+
+
+    @media (min-width: 768px) {
+        .header {
+            padding: 20px 40px;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        .image img {
+            height: 60px;
+            width: 60px;
+        }
     }
 
 </style>

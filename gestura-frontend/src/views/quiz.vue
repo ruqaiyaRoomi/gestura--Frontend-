@@ -51,7 +51,7 @@ const selected = ref(5)
 <style scoped>
 
     .quiz {
-        background: #f7f4e8;
+        background: var(--bg-primary);
         min-height: 100vh;
         padding: 20px 16px 100px;
         display: flex;
@@ -63,12 +63,15 @@ const selected = ref(5)
     font-size: 20px;
     margin-top: 10px;
     margin-bottom: 24px;
+    color: var(--text-primary);
 
    }
 
    .back {
     margin-left: 5px;
     margin-right: 8px;
+    color: var(--text-primary);
+    font-size: 18px;
    }
 
    .textBlock {
@@ -83,10 +86,12 @@ const selected = ref(5)
     font-size: 25px;
     text-align: center;
     margin-bottom: 0;
+    color: var(--text-primary);
    }
 
    .textBlock .subheading {
     font-size: 15px;
+    color: var(--text-muted);
    }
 
    .questions{
@@ -106,7 +111,8 @@ const selected = ref(5)
      align-items: center;
      padding: 4px;
      box-sizing: border-box;
-     box-shadow: none;
+     background: var(--bg-card);
+    box-shadow: var(--shadow-small); 
 
    }
 
@@ -114,7 +120,7 @@ const selected = ref(5)
     position: absolute;
     width: calc(33.33% - 3px);
     height: calc(100% -8px);
-    background-color: #e99627;
+    background-color: var(--accent);
     border-radius: 10px;
     transition: transform 0.3s ease; 
     left: 4;
@@ -127,29 +133,30 @@ const selected = ref(5)
    border: none;
    height: 100%;
    width: 33.33%;
-   background-color: none;
-   color: #5e5e5e;
+   background-color: transparent;
+   color: var(--text-muted);
    font-weight: 600;
    font-size: 15px;
    transition: 0.3s ease;
+   box-shadow: none;
 
    }
 
    .noQuestions button.active {
-    background: #e99627;
-    color: white;
+    background: var(--accent);
+    color: var(--bg-card);
    }
 
    .startQuiz {
         width: 100%;
         height: 56px;
-        background-color: #e99627;
-        color: white;
+        background-color: var(--accent);
+        color: var(--bg-card);
         border: none;
         border-radius: 14px;
         font-size: 16px;
         font-weight: 600;
-        box-shadow: 0 8px 18px rgba(233, 150, 39, 0.25);
+        box-shadow: 0 8px 18px var(--accent-shadow);
         transition: 0.2s ease;
 
    }
@@ -157,10 +164,17 @@ const selected = ref(5)
    .questions .questionTitle {
         text-align: center;
         font-size:20px ;
+        color: var(--text-primary);
    }
 
    .image{
     text-align: center;
+   }
+   @media (min-width: 768px) {
+        .quiz {
+            max-width: 480px;
+            margin: 0 auto;
+        }
    }
 
 

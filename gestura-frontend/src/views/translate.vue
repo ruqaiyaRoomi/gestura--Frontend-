@@ -95,7 +95,7 @@ function retry(){
 <style scoped>
    
     .translate{
-        background-color: #f7f4e8;
+        background-color: var(--bg-primary);
         min-height: 100vh;
         display: flex;
         flex-direction: column;
@@ -112,13 +112,13 @@ function retry(){
 
     .close {
         font-size: 20px;
-        color: #333;
+        color: var(--text-dark);
     }
 
     .title {
         font-size: 20px;
         font-weight: 700;
-        color: #333;
+        color: var(--text-dark);
     }
     .arrow {
         margin: 0 4px;
@@ -126,11 +126,11 @@ function retry(){
 
     .cameraInput {
         flex: 1;
-        border: 1.5px solid #333;
+        border: 1.5px solid var(--text-dark);
         border-radius: 18px;
         overflow: hidden;
         margin-bottom: 24px;
-        background-color: #f7f4e8;
+        background-color: var(--bg-primary);
         position: relative;
         aspect-ratio: 3/4;
      
@@ -164,8 +164,8 @@ function retry(){
 
     .btn-done {
     
-        background-color: #E99627;
-        color: white;
+        background-color: var(--accent);
+        color: var(--bg-card);
         border: none;
         box-shadow: 0 6px 10px rgba(0, 0, 0, 0.08);
         
@@ -173,8 +173,8 @@ function retry(){
 
      .btn-retry {
         background-color: transparent;
-        color:  #E99627;
-        border: 2px solid #E99627;
+        color: var(--accent);
+        border: 2px solid var(--accent);
       
     }
 
@@ -183,7 +183,7 @@ function retry(){
         bottom: 0;
         left: 0;
         right:0 ;
-        background-color: #e9952765;
+        background-color: rgba(233, 150, 39, 0.4);
         border-radius:18px ;
         padding: 24px;
         margin: 16px;
@@ -195,7 +195,7 @@ function retry(){
     }
 
     .predicted.frozen {
-        background-color: rgba(233, 149, 39, 0.432);
+        background-color: rgba(233, 150, 39, 0.5);
         font-weight: 900;
         font-size:34px ;
         letter-spacing: 5px;
@@ -218,6 +218,11 @@ function retry(){
         transform: scaleX(-1);
     }
 
-
+    @media (min-width: 768px) {
+        .translate {
+            max-width: 480px;
+            margin: 0 auto;
+        }
+    }
 
 </style>
