@@ -67,7 +67,7 @@
     }
 
    .nav-item button.active {
-        color: var(--text-primary) !important;
+        color: var(--accent) !important;
         transform: translateY(-1px) !important;
 
     }

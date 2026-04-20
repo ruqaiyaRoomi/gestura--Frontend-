@@ -40,7 +40,7 @@ onMounted(() => {
     .fa-solid fa-gear {
         height: 50px;
         width: 50px;
-        color: var(--text-primary);
+        color: var(--text-dark);
     }
 
 
