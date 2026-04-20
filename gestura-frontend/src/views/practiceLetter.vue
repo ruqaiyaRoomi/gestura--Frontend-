@@ -81,7 +81,6 @@ watch(isMatch, async (val) => {
     // Stop camera + detection logic
     stopDetection()
 
-
     //Save progress to backend
     await markDone()
 
