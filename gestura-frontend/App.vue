@@ -23,17 +23,19 @@ function onSplashDone() {
 <style>
 :root {
     --bg-primary:  #F7F4E8;
-    --bg-card: #f3f3f3;
+    --bg-secondary: #f1f1f1;
+    --bg-card: #ffff;
     --text-primary: #5e5e5e;
     --text-secondary: #7a7a7a;
     --text-muted: #666;
     --accent: #e99627;
-    --accent-shadow: rgba(233,150,39,0.25);
-    --shadow-card: rgba(0,0,0,0,0.1) 0px 4px 12px;
+    --accent-shadow: 0 4px 14px rgba(233,150,39,0.25);
+    --shadow-card:  0px 4px 12px rgba(0,0,0,0,0.1);
     --shadow-small: 0 4px 10px rgba(0,0,0,0.05);
     --radius-card: 22px;
     --radius-button: 14px;
     --radius-icon: 14px;
+    --text-dark: #333;
 
 }
 
