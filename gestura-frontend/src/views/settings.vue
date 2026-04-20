@@ -2,7 +2,7 @@
     <Header />
     <div class="settingsScreen">
         <div class="title">
-            <span class="back" @click="router.back()"><i class="fa-solid da-arrow-left"></i></span>
+            <span class="back" @click="router.back()"><i class="fa-solid fa-arrow-left"></i></span>
             <h1>Settings</h1>
             <p class="subheading">
                 Manage your account and preferences
