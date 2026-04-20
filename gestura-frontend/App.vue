@@ -49,5 +49,6 @@ function onSplashDone() {
     --accent-shadow: 0 4px 18px rgba(245,158,11,0.35);
     --shadow-card: 0px 6px 20px rgba(0,0,0,0,0.5) ;
     --shadow-small: 0 4px 12px rgba(0,0,0,0.4);
+    --text-dark: #e5e5e5;
 }
 </style>
