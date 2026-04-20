@@ -17,6 +17,7 @@ import WordDetailsPractice from "./src/views/wordDetailsPractice.vue";
 import Quiz from "./src/views/quiz.vue";
 import QuizQuestion from "./src/views/quizQuestion.vue";
 import QuizResult from "./src/views/quizResult.vue";
+import settings from "./src/views/settings.vue";
 
 
 const routes = [
@@ -24,6 +25,7 @@ const routes = [
     {path: '/onboarding', component: onboarding},
     {path: '/login', component: login},
     {path: '/signup', component: signUp},
+    {path: '/settings', component: settings},
     {path: '/index', component: index},
     {path: '/profile', component: profile},
     {path: '/learn', component: learn},

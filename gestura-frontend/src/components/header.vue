@@ -1,13 +1,16 @@
 <template>
     <div class="header">
        <div class="image"> <img  src="/images/gestura.png"/> </div>
-        <span><i class="fa-solid fa-gear"></i></span>
+        <span @click="router.push('/settings')"><i class="fa-solid fa-gear"></i></span>
     </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import {onMounted } from "vue";
+import { useRouter } from 'vue-router';
 
+
+const router = useRouter()
 const emit = defineEmits(['done'])
 
 
