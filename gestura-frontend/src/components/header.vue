@@ -42,17 +42,22 @@ onMounted(() => {
         color: var(--text-dark);
     }
 
+    .header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+
 
     @media (min-width: 768px) {
         .header {
             padding: 20px 40px;
-            max-width: 480px;
-            margin: 0 auto;
+            max-width: 100%;
         }
 
         .image img {
-            height: 60px;
-            width: 60px;
+            height: 50px;
+            width: auto;
         }
     }
 
