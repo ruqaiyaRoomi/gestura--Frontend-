@@ -20,8 +20,9 @@ import QuizResult from "./src/views/quizResult.vue";
 import settings from "./src/views/settings.vue";
 
 
-const routes = [
-    {path: '/LoginSignUp', component: LoginSignUp},
+const routes = createRouter( {
+    history: createWebHistory(),
+    routes: [{path: '/LoginSignUp', component: LoginSignUp},
     {path: '/onboarding', component: onboarding},
     {path: '/login', component: login},
     {path: '/signup', component: signUp},
@@ -39,9 +40,11 @@ const routes = [
     {path: '/quiz', component: Quiz},
     {path: '/quizQuestion/:total', component: QuizQuestion},
     {path: '/quizResult', component: QuizResult}
-
-    
-]
+],
+    scrollBehavior() {
+        return {top: 0}
+    }
+})
 
 export default createRouter({
     history: createWebHistory(),
