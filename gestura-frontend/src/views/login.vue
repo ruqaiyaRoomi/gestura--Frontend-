@@ -1,5 +1,6 @@
 <template>
   <div class="loginScreen">
+    <div class="content">
     <div class="top">
     <!-- Gestura logo and title page-->
     <img class="logo" src="/images/gestura.png">
@@ -29,6 +30,7 @@
   <button v-on:click="login()">Login</button>
   <!-- Navigation link to sign up page for new users-->
   <p class="bottomText">Don't have an Account? <a v-on:click="router.push('/signup')" class="link">Sign Up!</a></p>
+    </div>
   <img class="wave" src="/images/wav2.png">
   </div>
 
@@ -96,8 +98,16 @@ async function login() {
     background-color: var(--bg-primary);
     display: flex;
     flex-direction:column ;
-    padding: 40px 24px 0;
-    position: relative;
+}
+
+.content {
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 24px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .top {
@@ -129,6 +139,7 @@ async function login() {
 }
 
 .input {
+    width: 100%;
     display: flex;
     flex-direction:column ;
     gap: 10px;
@@ -166,6 +177,7 @@ input {
     background-color: var(--bg-card);
     color: var(--text-primary);
     box-sizing: border-box;
+    width: 100%;
 }
 
 input:focus {
@@ -214,7 +226,6 @@ button:hover {
     width: 100%;
     display: block;
     margin-top: auto;
-    max-height: 200px;
     
 }
 

@@ -229,21 +229,20 @@ async function signUp() {
 
 .row {
     display: flex;
-    gap: 10px;
+    flex: 1;
+    gap: 12px;
+    flex-wrap: wrap;
 
 }
 
 .row input {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 150px;
+    flex: 1;
+    min-width: 0;
 }
 
 .input {
-    display: flex;
-    flex-direction:column ;
-    gap: 10px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .input:focus {
