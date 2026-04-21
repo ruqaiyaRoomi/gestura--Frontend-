@@ -211,11 +211,11 @@ button:hover {
 }
 
 .wave {
-    position: relative;
-    bottom: 0;
     width: 100%;
+    display: block;
+    margin-top: auto;
     max-height: 200px;
-    object-fit: cover;
+    
 }
 
 @media (min-width: 768px) {

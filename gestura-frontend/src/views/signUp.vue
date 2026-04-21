@@ -188,7 +188,6 @@ async function signUp() {
     display: flex;
     flex-direction:column ;
     padding: 40px 24px 0;
-    position: relative;
 }
 
 .top {
@@ -321,12 +320,10 @@ button:disabled {
 }
 
 .wave {
-    position: relative;
-    bottom: 0;
+
     width: 100%;
-    left: 0;
     display: block;
-    margin-top: 40px;
+    margin-top: auto;
 }
 
 .messages {

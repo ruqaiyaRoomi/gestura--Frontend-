@@ -29,7 +29,11 @@ onMounted(() => {
         align-items: center;
         padding: 16px 20px;
         background-color: var(--bg-primary);
-        width: 100%;
+        width: 100w;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+      
     }
 
    .image img{
@@ -42,11 +46,7 @@ onMounted(() => {
         color: var(--text-dark);
     }
 
-    .header {
-        position: sticky;
-        top: 0;
-        z-index: 10;
-    }
+
 
 
     @media (min-width: 768px) {
