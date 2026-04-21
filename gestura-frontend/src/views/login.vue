@@ -102,6 +102,7 @@ async function login() {
 
 .content {
     width: 100%;
+    min-height: 100vh;
     max-width: 520px;
     margin: 0 auto;
     padding: 24px;
@@ -178,6 +179,7 @@ input {
     color: var(--text-primary);
     box-sizing: border-box;
     width: 100%;
+    min-width: 0;
 }
 
 input:focus {
