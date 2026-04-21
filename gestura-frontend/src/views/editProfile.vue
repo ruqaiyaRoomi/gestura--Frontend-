@@ -78,8 +78,7 @@ const isFormFilled = computed(() => {
 async function saveChanges() {
   try {
     // send user details to the backend registration endpoint
-    const response = await fetch(
-      "https://gestura-backend-production.up.railway.app/gestura/updateProfile",
+    const response = await fetch(`https://gestura-backend-production.up.railway.app/gestura/user/${userStore.user._id}`,
       {
         method: "PUT",
         headers: {
@@ -94,7 +93,7 @@ async function saveChanges() {
     );
     const data = await response.json();
 
-    if (data.Updated) {
+    if (data.updated) {
       userStore.setUser({
         ...userStore.user,
         firstName: firstName.value,
