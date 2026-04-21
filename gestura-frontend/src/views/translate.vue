@@ -3,7 +3,7 @@
     <div class="translate">
     <header>
         <span class="close"  v-on:click="exit"><i class="fa-solid fa-xmark"></i></span>
-        <span>Sign <span class="arrow"><i class="fa-solid fa-arrow-right-long"></i></span> Text</span>
+        <span class="subheading">Sign <span class="arrow"><i class="fa-solid fa-arrow-right-long"></i></span> Text</span>
         <span></span>
     </header>
 
@@ -111,6 +111,11 @@ function retry(){
         justify-content: space-between;
         align-items: center;
         margin-bottom: 16px;
+    }
+
+    .subheading {
+        color: var(--text-primary);
+        font-size: 18px;
     }
 
     .close {

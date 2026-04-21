@@ -38,7 +38,7 @@ onMounted (() => {
 :root {
     --bg-primary:  #F7F4E8;
     --bg-secondary: #f1f1f1;
-    --bg-card: #ffff;
+    --bg-card: #fff;
     --text-primary: #5e5e5e;
     --text-secondary: #7a7a7a;
     --text-muted: #666;
@@ -71,9 +71,17 @@ html,body {
     margin: 0;
     padding: 0;
     scroll-behavior: smooth;
+   
 }
 
 * {
     box-sizing: border-box;
+    font-family: 'Inter';
+}
+
+
+#app {
+    width: 100%;
+    min-height: 100vh;
 }
 </style>

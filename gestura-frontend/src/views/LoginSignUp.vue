@@ -118,7 +118,7 @@ function continueAsGuest(){
    .title{
     font-size: 26px;
     font-weight: 700;
-    color: var(--text-dark);
+    color: var(--text-primary);
     text-align: center;
    }
 

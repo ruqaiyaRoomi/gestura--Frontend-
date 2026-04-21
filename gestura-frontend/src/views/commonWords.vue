@@ -110,7 +110,7 @@ onMounted(() => {
     align-items: center;
     background: var(--bg-card);
     width: 100%;
-    padding: 16px 18px;
+    padding: 20px 10px;
     border-radius: 14px;
     transition: transform 0.15s ease;
     box-shadow: 0 4px 10px rgba(0,0,0,0.06);

@@ -136,12 +136,15 @@ async function getUserStats() {
   font-weight: 700;
   text-align: center;
   margin: 0 0 16px;
+  color: var(--text-primary);
 }
 
 .top {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+  text-align: center;
 }
 
 .avatar {
@@ -154,20 +157,26 @@ async function getUserStats() {
   justify-content: center;
   font-size: 48px;
   color: var(--text-muted);
-  background: #fff;
+  background: var(--bg-card);
+}
+
+.profileImg{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .name {
   font-size: 18px;
   font-weight: 600;
   margin: 12px 0 0;
-  color: #1a1a1a;
+  color: var(--text-primary);
 }
 
 .sectionTitle {
   font-size: 17px;
   font-weight: 700;
-  color: #1a1a1a;
+  color: var(--text-primary);
   margin: 0 0 12px;
 }
 

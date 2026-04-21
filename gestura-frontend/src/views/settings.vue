@@ -182,6 +182,11 @@ onMounted (() => {
     gap: 12px;
 }
 
+.subheading {
+    color: var(--text-muted);
+    font-size: 16px;
+}
+
 .sectionLabel {
     font-size: 13px;
     font-weight: 600;

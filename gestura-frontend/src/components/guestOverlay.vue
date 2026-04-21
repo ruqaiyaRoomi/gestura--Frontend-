@@ -71,7 +71,7 @@ function goToLogin() {
     width: 100%;
     height: 50px;
     background-color: var(--accent);
-    color: white;
+    color: var(--text-primary);
     border: none;
     border-radius: var(--radius-card);
     font-size: 16px;
@@ -88,7 +88,7 @@ function goToLogin() {
 
 .modal .closeBtn {
     background-color: var(--bg-secondary);
-    color: var(--text-primary);
+    color: var(--text-muted);
     box-shadow: none;
 }
 

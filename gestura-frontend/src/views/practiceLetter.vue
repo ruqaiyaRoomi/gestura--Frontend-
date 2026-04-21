@@ -3,7 +3,7 @@
     <div class="translate">
     <header>
         <span class="close"  v-on:click="router.back()"><i class="fa-solid fa-xmark"></i></span>
-        <span>Practice</span>
+        <span class="heading">Practice</span>
         <span></span>
     </header>
 
@@ -67,7 +67,7 @@ const translationHistory = ref([])
 
 
 // Custom composable handling ML gesutre detection logic
-const {noHandDetected,  startDetection, stopDetection, isMatch, detectedLabel, detectionConfidence} 
+const {startDetection, stopDetection, isMatch, detectedLabel, detectionConfidence} 
 = practice(videoRef, letter)
 
 // Watch for successful gesture match
@@ -185,6 +185,11 @@ async function handleDone (){
         justify-content: space-between;
         align-items: center;
         margin-bottom: 16px;
+    }
+
+    .heading {
+        color: var(--text-primary);
+        font-size: 18px;
     }
 
     .close {

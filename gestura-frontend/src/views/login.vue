@@ -27,7 +27,7 @@
     </div>
   </div>
 <!-- Triggers login function on click -->
-  <button v-on:click="login()">Login</button>
+  <button v-on:click="login()" :disabled="!isFormFilled">Login</button>
   <!-- Navigation link to sign up page for new users-->
   <p class="bottomText">Don't have an Account? <a v-on:click="router.push('/signup')" class="link">Sign Up!</a></p>
     </div>
@@ -49,7 +49,7 @@
 </template>
 
 <script setup>
-import { ref} from 'vue';
+import { computed, ref} from 'vue';
 import { useRouter } from 'vue-router'
 import { useUserStore } from '../stores/user';
 const router = useRouter()
@@ -58,6 +58,7 @@ const router = useRouter()
 const email = ref("")
 const password = ref("")
 const showErrorModal = ref(false)
+
 
 // Acess the Pinia user store to persist autheticated user data
 const userStore = useUserStore() 
@@ -69,6 +70,10 @@ const showPassword = ref(false)
 function togglePassword() {
     showPassword.value = !showPassword.value
 }
+
+const isFormFilled = computed(() =>{
+    return email.value.trim().length > 0 && password.value.trim().length > 0
+})
 
 async function login() {
     // send POST request to backend login endpoint with user credentials
@@ -195,6 +200,7 @@ input {
     box-sizing: border-box;
     width: 100%;
     min-width: 0;
+   
 }
 
 input:focus {
@@ -227,6 +233,10 @@ button:hover {
    }
 
 
+button:disabled {
+    opacity: 0.5;
+    transform: none;
+}
 .bottomText {
     text-align: center;
     font-size: 14px;
@@ -243,7 +253,9 @@ button:hover {
     width: 100%;
     display: block;
     margin-top: auto;
-    
+    position: absolute;
+    bottom: 0;
+    left: 0;
 }
 
 .modalOverlay {

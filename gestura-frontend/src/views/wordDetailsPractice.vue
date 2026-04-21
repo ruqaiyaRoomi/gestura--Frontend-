@@ -3,7 +3,7 @@
     <div class="translate">
     <header>
         <span class="close"  v-on:click="router.push(`/commonWords/${word}`)"><i class="fa-solid fa-xmark"></i></span>
-        <span>Sign Letter {{ currentLetter }}</span>
+        <span class="heading">Sign Letter {{ currentLetter }}</span>
         <span></span>
     </header>
 
@@ -150,6 +150,11 @@ async function markDone() {
         justify-content: space-between;
         align-items: center;
         margin-bottom: 16px;
+    }
+
+    .heading {
+        color: var(--text-primary);
+        font-size: 18px;
     }
 
     .close {
