@@ -31,54 +31,58 @@ function goToLogin() {
 
 <style scoped>
 .overlay{
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.5);
+     position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
 
 }
 
 .modal {
-    background: var(--bg-card);
-    padding: 28px 22px;
-    border-radius: var(--radius-card);
-    width: 90%;
-    max-width: 360px;
-    text-align: center;
-    box-shadow: var(--shadow-card);
+     background: var(--bg-card);
+  padding: 28px 22px;
+  border-radius: var(--radius-card);
+  width: 90%;
+  max-width: 360px;
+  text-align: center;
+  box-shadow: var(--shadow-card);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
 }
 
 .modal .heading {
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin-bottom: 10px ;
+     font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
 }
 
 .modal .description {
-    font-size:15px ;
-    color: var(--text-muted);
-    margin-bottom: 22px;
+    font-size: 15px;
+  color: var(--text-muted);
+  margin: 0;
 }
 
 
 .modal button {
-    width: 100%;
-    height: 50px;
-    background-color: var(--accent);
-    color: var(--text-primary);
-    border: none;
-    border-radius: var(--radius-card);
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom:12px ;
-    box-shadow: var(--accent-shadow);
-    transition: 0.2s ease;
+   width: 100%;
+  height: 50px;
+  background-color: var(--accent);
+  color: white;
+  border: none;
+  border-radius: var(--radius-card);
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  box-shadow: var(--accent-shadow);
+  transition: 0.2s ease;
 }
 
 .modal button:hover {
