@@ -20,33 +20,32 @@ import QuizResult from "./src/views/quizResult.vue";
 import settings from "./src/views/settings.vue";
 
 
-const routes = createRouter( {
+const router = createRouter( {
     history: createWebHistory(),
-    routes: [{path: '/LoginSignUp', component: LoginSignUp},
-    {path: '/onboarding', component: onboarding},
-    {path: '/login', component: login},
-    {path: '/signup', component: signUp},
-    {path: '/settings', component: settings},
-    {path: '/index', component: index},
-    {path: '/profile', component: profile},
-    {path: '/learn', component: learn},
-    {path: '/translate', component: translate},
-    {path: '/aslAlphabet', component: AslAlphabet},
-    {path: '/aslAlphabet/:letter', component: LetterDetails},
-    {path: '/practice/:letter', component: PracticeLetter},
-    {path: '/commonWords', component: CommonWords},
-    {path: '/commonWords/:word', component: WordDetails},
-    {path: '/wordDetailsPractice/:word/:index', component: WordDetailsPractice},
-    {path: '/quiz', component: Quiz},
-    {path: '/quizQuestion/:total', component: QuizQuestion},
-    {path: '/quizResult', component: QuizResult}
-],
     scrollBehavior() {
         return {top: 0}
-    }
+    },
+    
+    routes: [
+        {path: '/LoginSignUp', component: LoginSignUp},
+        {path: '/onboarding', component: onboarding},
+        {path: '/login', component: login},
+        {path: '/signup', component: signUp},
+        {path: '/settings', component: settings},
+        {path: '/index', component: index},
+        {path: '/profile', component: profile},
+        {path: '/learn', component: learn},
+        {path: '/translate', component: translate},
+        {path: '/aslAlphabet', component: AslAlphabet},
+        {path: '/aslAlphabet/:letter', component: LetterDetails},
+        {path: '/practice/:letter', component: PracticeLetter},
+        {path: '/commonWords', component: CommonWords},
+        {path: '/commonWords/:word', component: WordDetails},
+        {path: '/wordDetailsPractice/:word/:index', component: WordDetailsPractice},
+        {path: '/quiz', component: Quiz},
+        {path: '/quizQuestion/:total', component: QuizQuestion},
+        {path: '/quizResult', component: QuizResult}
+]
 })
 
-export default createRouter({
-    history: createWebHistory(),
-    routes
-})
+export default router
