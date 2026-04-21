@@ -264,7 +264,6 @@ button:hover {
     justify-content: space-between;
     box-shadow: var(--shadow-card);
     transition: transform 0.15s ease;
-    gap: 10px;
 }
 
 .card i {
