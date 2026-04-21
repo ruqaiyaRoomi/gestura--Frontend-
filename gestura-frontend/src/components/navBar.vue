@@ -21,7 +21,7 @@
       
     </div>
     <div class="nav-item">
-        <button v-on:click="router.push('/profile')" :class="{active: route.path === '/profile'}">
+        <button v-on:click="profileView" :class="{active: route.path === '/profile'}">
         <i class="fa-solid fa-user"></i>
         <p class="label">Profile</p>
         </button>
@@ -33,8 +33,18 @@
 
 <script setup>
     import { useRouter, useRoute } from 'vue-router'
+    import { triggerGuestOverlay } from '../stores/guest';
     const router = useRouter()
     const route = useRoute()
+
+
+function profileView(){ 
+    if (!userStore.user?._id) {
+        triggerGuestOverlay()
+        return
+    }
+    router.push('/index')
+}
 
 
 </script>

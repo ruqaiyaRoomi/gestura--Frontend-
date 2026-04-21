@@ -141,6 +141,7 @@ onMounted(() => userProgress())
    }
 
    .subheading {
+    margin-top: 10px;
     color: var(--text-muted);
     font-size: 14px;
    }

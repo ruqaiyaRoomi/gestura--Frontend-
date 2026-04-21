@@ -211,7 +211,7 @@ button:hover {
 }
 
 .wave {
-    position: absolute;
+    position: relative;
     bottom: 0;
     width: 100%;
     max-height: 200px;

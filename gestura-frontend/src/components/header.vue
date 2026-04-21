@@ -29,17 +29,16 @@ onMounted(() => {
         align-items: center;
         padding: 16px 20px;
         background-color: var(--bg-primary);
-      
+        width: 100%;
     }
 
    .image img{
-    height: 50px;
+    height: 40px;
     width: auto;
    }
 
     .fa-gear {
-        height: 50px;
-        width: 50px;
+        font-size: 22px;
         color: var(--text-dark);
     }
 
