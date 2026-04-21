@@ -38,7 +38,7 @@ const videoRef = ref(null)
 
 const frozen = ref(false)
 const snapShot = ref(null)
-const predictedText = ref('')
+
 
 
 const {predictedText, startDetection, stopDetection} = useGesture(videoRef)
