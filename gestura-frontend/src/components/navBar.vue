@@ -44,8 +44,10 @@ function profileView(){
     if (!userStore.user?._id) {
         triggerGuestOverlay()
         return
+    } else {
+         router.push('/profile')
     }
-    router.push('/index')
+   
 }
 
 

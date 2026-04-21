@@ -2,7 +2,7 @@
 
     <div class="translate">
     <header>
-        <span class="close"  v-on:click="router.back()"><i class="fa-solid fa-xmark"></i></span>
+        <span class="close"  v-on:click="router.push(`/commonWords/${word}`)"><i class="fa-solid fa-xmark"></i></span>
         <span>Sign Letter {{ currentLetter }}</span>
         <span></span>
     </header>
@@ -22,8 +22,8 @@
     </div>
 
     <div class="actions">
-        <button class="btn-done" v-on:click="done">
-            <span><i class="fa-solid fa-check"></i></span>{{ index === letters.length - 1? 'Done' : 'Next' }}</button>
+        <button class="btn-done" @click="handleNext">
+            <span><i class="fa-solid fa-check"></i></span>Next</button>
         <button class="btn-retry" @click="retry"><span><i class="fa-solid fa-arrow-rotate-right"></i></span> Retry</button>
     </div>
     <NavBar />
@@ -33,18 +33,21 @@
 </template>
 
 <script setup>
-import {ref, onMounted, watch, nextTick, onUnmounted} from 'vue'
+import {ref, onMounted, watch, nextTick, onUnmounted, markRaw} from 'vue'
 import {useRouter , useRoute} from 'vue-router'
 import { practice } from '../composables/practice.js';
 import NavBar from '../components/navBar.vue';
 import { useUserStore } from '../stores/user.js';
+import CommonWords from './commonWords.vue';
 
 
 const router = useRouter()
 const route = useRoute()
 
+const userStore = useUserStore()
+
 const word = route.params.word
-const letters = (word || '').replace(/\s/g,'').split("")
+const letters = (word || '').toUpperCase().replace(/\s/g,'').split("")
 const index = ref(0)
 
 const currentLetter = ref(letters[0])
@@ -81,18 +84,12 @@ watch(isMatch ,(val) => {
             currentLetter.value = letters[index.value]
             nextLetter()
         } else{
-            done()
+            handleNext()
         }
     }, 400);
 })
 
-
-function done() {
-    stopDetection()
-    router.push(`/commonWords/${word}`)
-    
-}
-
+ 
 function retry() {
     index.value = 0
     currentLetter.value = letters[0]
@@ -100,6 +97,40 @@ function retry() {
     nextLetter()
     startDetection()
 }
+
+async function handleNext(){
+    if(index.value < letters.length - 1) {
+        index.value++
+        currentLetter.value = letters[index.value]
+        showCheck.value = false
+        nextLetter()
+    } else {
+        stopDetection()
+        await markDone()
+        router.push(`/commonWords`)
+    }
+}
+
+async function markDone() {
+    if ( !userStore.user?._id) 
+    return
+    try {
+        const response = await fetch('https://gestura-backend-production.up.railway.app/gestura/userStats', {
+
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({ 
+                userId: userStore.user._id,
+                module: 'Common Words',
+                letter: word
+            }),
+            
+        })
+    }  catch (err) {
+        console.error('Error saving word')
+     } 
+}
+
 
 </script>
 

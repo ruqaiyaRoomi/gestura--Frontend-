@@ -236,7 +236,7 @@ async function getUserStats() {
 .recentCard p {
   font-size: 28px;
   font-weight: 700;
-  color: #1a1a1a;
+  color: var(--text-primary);
   margin: 8px 0 0;
 }
 

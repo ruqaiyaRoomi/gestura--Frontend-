@@ -79,6 +79,7 @@ import { ref , onMounted, watch} from 'vue';
 import { useRouter } from 'vue-router';
 import Header from '../components/header.vue';
 import { useUserStore } from '../stores/user';
+import { triggerGuestOverlay } from '../stores/guest';
 
 
 const router = useRouter()
@@ -116,6 +117,10 @@ async function handleDelete() {
 }
 
 function handleLogout() {
+    if(!userStore.user?._id) {
+        triggerGuestOverlay()
+        return
+    }
     userStore.logout()
     router.push('/login')
 }

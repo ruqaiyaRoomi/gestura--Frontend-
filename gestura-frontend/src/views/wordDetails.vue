@@ -18,7 +18,7 @@
 
         <div class="buttons">
             <button class="mark" v-on:click="markDone">Mark as Done</button>
-            <button class="ready" v-on:click="router.push(`/wordDetailsPractice/${word.toUpperCase()}/0`)">Ready to Practice?</button>
+            <button class="ready" v-on:click="router.push(`/wordDetailsPractice/${word}/0`)">Ready to Practice?</button>
         </div>
 
     </div>
@@ -34,13 +34,14 @@ import { ref } from 'vue';
 
 const route = useRoute();
 const router = useRouter();
-
+const isSaving = ref(false)
 
 const word = route.params.word  || ''
 const letters = word.toUpperCase().replace(/\s/g,'').split("")
 
 const userStore = useUserStore()
 const isDone = ref(false)
+
 
 
 async function markDone() {

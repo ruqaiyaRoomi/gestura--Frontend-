@@ -6,7 +6,7 @@
 </template>
 
 <script setup>
-import {provide, ref} from 'vue'
+import {provide, ref, onMounted} from 'vue'
 import { useRouter } from 'vue-router';
 import splashScreen from './src/components/splashScreen.vue'
 import GuestOverlay from './src/components/guestOverlay.vue';
@@ -18,6 +18,20 @@ function onSplashDone() {
     screen.value = 'done'
     router.push('/onboarding')
 }
+
+onMounted (() => {
+    const savedTheme = localStorage.getItem('darkMode')
+    if (savedTheme === 'true') {
+
+        document.documentElement.classList.add('dark')
+    } 
+    const changedFont = localStorage.getItem('largeText')
+
+    if(changedFont === 'true') {
+       
+        document.documentElement.classList.add('largeText')
+    } 
+})
 </script>
 
 <style>

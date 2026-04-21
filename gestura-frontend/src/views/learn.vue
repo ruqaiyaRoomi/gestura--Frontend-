@@ -27,9 +27,9 @@
             <div class="progressContainer">
                 <p class="sub">A-Z</p>
                 <div class="progressbar">
-                    <div class="completed" :style="{width: progressPercent + '%'}"></div>
+                    <div class="completed" :style="{width: aslProgressPercent + '%'}"></div>
                 </div>
-                <p class="percentage">{{ progressPercent }}% Completed</p>
+                <p class="percentage">{{ aslProgressPercent }}% Completed</p>
             </div>
         </div>
 
@@ -50,10 +50,10 @@
             <div class="progressContainer">
                 <p class="sub">A-Z</p>
                 <div class="progressbar">
-                    <div class="completed" :style="{width: progressPercent + '%'}"></div>
+                    <div class="completed" :style="{width: wordsProgressPercent + '%'}"></div>
                 </div>
                 
-                <p class="percentage">{{ progressPercent }}% Completed</p>
+                <p class="percentage">{{ wordsProgressPercent }}% Completed</p>
             </div>
         </div>
     </div>
@@ -81,36 +81,24 @@ import { useUserStore } from '../stores/user';
 const router  = useRouter()
 const userStore = useUserStore()
 
-const totalLetters =  ref(26)
-const completedLetters =  ref(0)
+
 const progressPercent = ref(0)
 
+const aslProgressPercent = ref(0)
+const wordsProgressPercent = ref(0)
+
 async function userProgress(word) {
-    word = word || null;
     if(!userStore.user?._id) return
 
     try{
-        const moduleName = word ? 'Common Words' : 'ASL Alphabet'
-        const response = await fetch('https://gestura-backend-production.up.railway.app/gestura/userStats', {
-
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({ 
-                userId: userStore.user._id,
-                module: moduleName,
-                letter: null || word
-            }),
-            
-        })
+        const response = await fetch(`https://gestura-backend-production.up.railway.app/gestura/userStats/${userStore.user._id}`)
         const data = await response.json()
 
-        if(word) {
-            totalLetters.value = word? word.replace(/\s/g, '').length : 26
-        }
-        
+        const aslCompleted = data.modules?.['ASL Alphabet']?.length || 0
+        aslProgressPercent.value = Math.round((aslCompleted / 26) * 100)
 
-        completedLetters.value = data.completedLetters?.length || 0
-        progressPercent.value = Math.round((completedLetters.value / totalLetters.value) * 100)
+        const wordsCompleted = data.modules?.['Common Words']?.length || 0
+        wordsProgressPercent.value = Math.round((wordsCompleted / 8) *100)
     } catch (err) {
         console.error("Error fetching user progress:", err)
     }
@@ -233,6 +221,9 @@ onMounted(() => userProgress())
    .completed {
     height: 100%;
     background: var(--accent);
+    border-radius:10px ;
+    transition: width 0.3s ease;
+    min-width: 4px;
    }
 
    .percentage {
@@ -254,7 +245,7 @@ onMounted(() => userProgress())
 
    .quizBlock{
     background: var(--bg-card);
-    width: 100px;
+    width: 150px;
     height: auto;
     padding: 20px;
     display: flex;

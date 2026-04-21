@@ -231,36 +231,30 @@ async function signUp() {
 
 .row {
     display: flex;
-    flex: 1;
     gap: 12px;
     flex-wrap: wrap;
 
 }
 
-.row input {
-    flex: 1;
-    min-width: 0;
-}
-
 .row .input {
     flex: 1;
     min-width: 0;
-}
+    width: 0;
 
-.row .input input {
-    width: 100%;
 }
 
 .input {
-    width: 100%;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    gap: 8;
+    gap: 8px;
+    
 }
 
 .input:focus {
     outline: 2px solid var(--accent);
+
+ 
 }
 
 .password {

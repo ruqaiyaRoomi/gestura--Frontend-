@@ -11,6 +11,9 @@ export const useUserStore = defineStore('user',  () => {
     // Stores recently signed ASL letters for quick access display
     const recentlySigned = ref([])
     
+    // Stores common words 
+    const commonWords = ref([])
+    
     // sets data after successful login or signup
     function setUser(userData) {
         user.value = userData

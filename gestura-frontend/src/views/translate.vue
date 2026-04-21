@@ -89,7 +89,7 @@ function retry(){
     frozen.value = false
     predictedText.value = ''
     const ctx = snapShot.value?.getContext('2d')
-    ctx?.clearRecht(0,0,snapShot.value.width, snapShot.value.handleDone)
+    ctx?.clearRect(0,0,snapShot.value.width, snapShot.value.handleDone)
     startDetection()
 }
 

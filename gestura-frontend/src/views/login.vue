@@ -33,18 +33,18 @@
     </div>
   <img class="wave" src="/images/wav2.png">
 
-    <div class="modalOverlay" v-if="showErrorModal">
+  </div>
+
+   <div class="modalOverlay" v-if="showErrorModal">
         <div class="modal">
             <div class="modalIcon">
                 <i class="fa-solid fa-circle-exclamation"></i>
             </div>
-        </div>
-        <h2>Incorrect Credentials</h2>
+            <h2>Incorrect Credentials</h2>
         <p>The email or password you entered is incorrect. Please try again.</p>
-        <button class="classTryAgain" @click="showErrorModal = false">Try Again</button>
+         <button class="TryAgainBtn" @click="showErrorModal = false">Try Again</button>
+        </div>
     </div>
-
-  </div>
 
 </template>
 
@@ -249,28 +249,34 @@ button:hover {
 .modalOverlay {
     position: fixed;
     inset: 0;
-    background-color: rgba(0,0,0,0.4);
+    background: rgba(0, 0, 0, 0.5);
+
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     z-index: 999;
 }
 
 .modal {
-    background: var(--bg-card);
-    padding: 28px 24px;
-    border-radius: 22px;
-    width: 85%;
+   background: var(--bg-card);
+    padding: 28px 22px;
+    border-radius: var(--radius-card);
+    width: 90%;
     max-width: 360px;
     text-align: center;
+    box-shadow: var(--shadow-card);
+
+    display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
 }
 
 .modalIcon {
     font-size: 48px;
     color: #e05c5c;
+   font-weight: 700;
+    
 }
 
 .modal h2 {
@@ -282,21 +288,22 @@ button:hover {
 
 .modal p {
     font-size: 15px;
-    columns: var(--text-muted);
+    color: var(--text-muted);
     margin: 0;
 }
 
 .tryAgainBtn {
     width: 100%;
-    height: 48px;
-    background: var(--accent);
+    height: 50px;
+    background-color: var(--accent);
     color: white;
     border: none;
-    border-radius: 12px;
-    font-size: 15px ;
+    border-radius: var(--radius-card);
+    font-size: 16px;
     font-weight: 600;
-    margin-top: 10px;
-    box-shadow: 0 8ox 18px var(--accent-shadow);
+    margin-bottom:12px ;
+    box-shadow: var(--accent-shadow);
+    transition: 0.2s ease;
 }
 
 @media (min-width: 768px) {

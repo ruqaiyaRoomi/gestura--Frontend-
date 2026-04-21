@@ -45,7 +45,7 @@
             <div class="historyCard">
                 <div class="card" v-for="(item, index) in translationHistory.slice(0,5)" :key="index" @click="handleViewAll">
                     <span><i class="fa-solid fa-clock-rotate-left"></i></span> 
-                    <div class="text">
+                    <div class="cardInfo">
                        <p class="letter"> {{ item.letter }} </p> 
                     <p class="module">{{ item.moduleName }}</p>
                     </div>
@@ -91,6 +91,8 @@ async function getTranslationHistory() {
             moduleName: 'ASL Alphabet'
         }))
     }
+    
+    
 } catch (err) {
     console.error('Error fetching translation history', err)
 }
@@ -260,13 +262,36 @@ button:hover {
 
 .card {
     background: var(--bg-card);
-    padding: 16px 20px;
+    padding: 14px 20px;
     border-radius: 16px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     box-shadow: var(--shadow-card);
     transition: transform 0.15s ease;
+    gap: 12px;
+}
+
+.cardInfo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    
+}
+
+.letter {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    padding-right: 70px;
+}
+
+.module {
+    font-size: 13px;
+    color: var(--text-muted);
+  
+    
 }
 
 .card i {

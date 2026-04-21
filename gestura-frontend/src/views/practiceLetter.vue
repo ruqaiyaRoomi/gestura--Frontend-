@@ -19,13 +19,15 @@
             <p class="practiceTitle">Practice Letter {{ letter }}</p>
             <p class="practiceTip">Tip {{currentLetter.tip }}</p>
         </div>
-    </div>
 
-    <Transition name="fade">
+         <Transition name="fade">
         <div class="overlay" v-if="showCheck">
             <i class="fa-solid fa-circle-check"></i>
         </div>
-    </Transition>
+        </Transition>
+    </div>
+
+
 
     <div class="actions">
         <button class="btn-done" v-on:click="handleDone"><span><i class="fa-solid fa-check"></i></span> Done</button>
