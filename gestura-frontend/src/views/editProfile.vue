@@ -79,15 +79,14 @@ async function saveChanges() {
   try {
     // send user details to the backend registration endpoint
     const response = await fetch(
-      "https://gestura-backend-production.up.railway.app/gestura/signup",
+      "https://gestura-backend-production.up.railway.app/gestura/updateProfile",
       {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          firstName: firstName,
-          value,
+          firstName: firstName.value,
           lastName: lastName.value,
           email: email.value,
         }),
