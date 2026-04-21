@@ -27,9 +27,7 @@
             <!-- Eye icon toggles password visibility on click-->
             <span class="eye" @click="togglePassword"
               ><i
-                :class="
-                  showPassword ? 'fa-regular fa-eye' : 'fa-solid fa-eye-slash'
-                "
+                :class="showPassword ? 'fa-regular fa-eye' : 'fa-solid fa-eye-slash'"
               ></i>
             </span>
           </div>

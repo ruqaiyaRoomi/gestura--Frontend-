@@ -17,7 +17,7 @@
 
         <div class="practiceInfo">
             <p class="practiceTitle">Practice Letter {{ letter }}</p>
-            <p class="practiceTip">Tip {{currentLetter.tip }}</p>
+            <p class="practiceTip">Tip: {{currentLetter.tip }}</p>
         </div>
 
          <Transition name="fade">
@@ -66,7 +66,7 @@ const userStore = useUserStore()
 const translationHistory = ref([])
 
 
-// Custom composable handling ML gesutre detection logic
+// Custom composable handling ML gesture detection logic
 const {startDetection, stopDetection, isMatch, detectedLabel, detectionConfidence} 
 = practice(videoRef, letter)
 
@@ -93,7 +93,7 @@ watch(isMatch, async (val) => {
     
 })
 
-// save comlpeted letter progress to backend
+// Save  completedletter progress to backend
 async function markDone() {
     if ( !userStore.user?._id) {
     alert('You need to be logged in!')
@@ -113,7 +113,7 @@ async function markDone() {
             
         })
         const result = await response.json()
-        // store locally if not already recorded
+        // Store locally if not already recorded
         if (letter && !translationHistory.value.includes(letter)) {
             translationHistory.value.unshift(letter)
         }
@@ -316,7 +316,7 @@ async function handleDone (){
     }
 
     .fade-enter-from,
-    .fade-leave.to {
+    .fade-leave-to {
         opacity: 0;
     }
 

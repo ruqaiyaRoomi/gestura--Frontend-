@@ -8,92 +8,54 @@
       </div>
 
       <div class="form">
-        <!-- First and last name fields displayed side by side-->
+        <!-- First and last Name fields displayed side by side-->
         <div class="row">
           <div class="input">
             <label for="">First Name</label>
-            <input
-              type="text"
-              placeholder="Enter First name"
-              v-model="userInfo.firstName"
-            />
+            <input type="text" placeholder="Enter First name" v-model="userInfo.firstName"/>
             <!-- Error message shown if name validation fails-->
-            <span class="messages" v-if="showNameError"
-              >Please enter valid name</span
-            >
+            <span class="messages" v-if="showNameError">Please enter valid name</span>
           </div>
 
           <div class="input">
             <label for="">Last Name</label>
-            <input
-              type="text"
-              placeholder="Enter First name"
-              v-model="userInfo.lastName"
-            />
-            <span class="messages" v-if="showNameError"
-              >Please enter valid name</span
-            >
+            <input type="text" placeholder="Enter First name" v-model="userInfo.lastName"/>
+            <span class="messages" v-if="showNameError">Please enter valid name</span>
           </div>
         </div>
-
+        
         <div class="input">
-          <!--Email input field with validaation error message-->
+          <!--Email input field with  validation error message-->
           <label for="">Email</label>
-          <input
-            type="email"
-            placeholder="Enter Email"
-            v-model="userInfo.email"
-          />
-          <span class="messages" v-if="showEmailError"
-            >Please enter a valid email</span
-          >
+          <input type="email" placeholder="Enter Email" v-model="userInfo.email"/>
+          <span class="messages" v-if="showEmailError">Please enter a valid email</span>
         </div>
 
         <div class="input">
           <!--Password input with strength validation error message-->
           <label for="">Password</label>
           <div class="password">
-            <input
-              :type="showPassword ? 'text' : 'password'"
-              placeholder="Enter Password"
-              v-model="userInfo.password"
-            />
-            <span class="eye" @click="togglePassword"
-              ><i
-                :class="
-                  showPassword ? 'fa-regular fa-eye' : 'fa-solid fa-eye-slash'
-                "
-              ></i
-            ></span>
+            <input :type="showPassword ? 'text' : 'password'" placeholder="Enter Password" v-model="userInfo.password"/>
+            <span class="eye" @click="togglePassword">
+                <i :class="showPassword ? 'fa-regular fa-eye' : 'fa-solid fa-eye-slash'"></i></span>
           </div>
           <!-- show if password does not meet strength requirements-->
-          <span class="messages" v-if="showPassError"
-            >Password must be 8-16 chars with uppercase, lowercase, number and
-            special character</span
-          >
+          <span class="messages" v-if="showPassError">Password must be 8-16 chars with uppercase, lowercase, number and special character</span>
         </div>
 
-        <!--Confirms password field to ensure password match-->
+        <!--Confirms password field to ensure password matches-->
         <div class="input">
           <label for=""> Confirm Password</label>
           <div class="password">
-            <input
-              type="password"
-              placeholder=" Enter Password"
-              v-model="confirmPass"
-            />
+            <input type="password" placeholder=" Enter Password" v-model="confirmPass"/>
           </div>
-          <!-- Shown if confirm password does not matchh original password-->
-          <span class="messages" v-if="showConfirmPassError"
-            >Passwords do not match</span
-          >
+          <!-- Shown if confirm password does not match original password-->
+          <span class="messages" v-if="showConfirmPassError">Passwords do not match</span>
         </div>
       </div>
       <!-- Sign Up button disabled until all form validation pass-->
       <button v-on:click="signUp()" :disabled="!isFormFilled">Sign Up</button>
-      <p class="bottomText">
-        Already have an Account?
-        <a v-on:click="router.push('/login')" class="link">Login!</a>
+      <p class="bottomText"> Already have an Account? <a v-on:click="router.push('/login')" class="link">Login!</a>
       </p>
     </div>
     <img class="wave" src="/images/wav2.png" />
@@ -119,7 +81,7 @@ function togglePassword() {
   showPassword.value = !showPassword.value;
 }
 
-// Seperate ref for confirm password field
+// Separate ref for confirm password field
 const confirmPass = ref("");
 const userStore = useUserStore();
 
@@ -214,7 +176,7 @@ async function signUp() {
 
       router.push("/index");
     } else {
-      // Log error message if registration faills
+      // Log error message if registration fails
       console.log(data.message);
     }
   } catch (error) {
