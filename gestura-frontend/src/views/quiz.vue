@@ -119,7 +119,7 @@ const selected = ref(5)
    .slider {
     position: absolute;
     width: calc(33.33% - 3px);
-    height: calc(100% -8px);
+    height: calc(100% - 8px);
     background-color: var(--accent);
     border-radius: 10px;
     transition: transform 0.3s ease; 
