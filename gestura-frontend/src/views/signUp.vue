@@ -189,6 +189,7 @@ async function signUp() {
     background-color: var(--bg-primary);
     display: flex;
     flex-direction:column ;
+    overflow: hidden;
 }
 
 .content {
@@ -197,6 +198,7 @@ async function signUp() {
     margin: 0 auto;
     padding: 24px;
     flex: 1;
+    box-sizing: border-box;
 }
 
 .top {
@@ -289,6 +291,8 @@ input {
     background-color: var(--bg-card);
     color: var(--text-primary);
     box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
     
 }
 

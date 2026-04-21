@@ -172,9 +172,6 @@ function continueAsGuest(){
     transition: 0.2s ease;
    }
 
-   .login:hover {
-    background-color: var(--accent);
-   }
 
    .guest {
     margin: 0;

@@ -199,6 +199,9 @@ button {
     margin-top: 20px;
     justify-content: center;
     display: flex;
+    align-items: center;
+    gap: 8px;
+    
    }
    
 button:hover {
