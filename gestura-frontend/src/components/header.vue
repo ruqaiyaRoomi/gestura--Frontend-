@@ -16,8 +16,8 @@ const emit = defineEmits(['done'])
 
 onMounted(() => {
     setTimeout(() => {
-        setTimeout(() => emit('done'), 600)
-    }, 3000);
+    emit('done')} ,3600)
+    
 })
 
 </script>
@@ -34,10 +34,10 @@ onMounted(() => {
 
    .image img{
     height: 50px;
-    width: 50px;
+    width: auto;
    }
 
-    .fa-solid fa-gear {
+    .fa-gear {
         height: 50px;
         width: 50px;
         color: var(--text-dark);

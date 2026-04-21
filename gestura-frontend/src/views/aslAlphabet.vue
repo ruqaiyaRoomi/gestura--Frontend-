@@ -3,13 +3,13 @@
     <div class="aslAlphabet">
         <div class="search">
             <span><i class="fa-solid fa-magnifying-glass"></i></span>
-             <input type="search" name="" id="" placeholder="Search">
+             <input type="search" placeholder="Search">
         </div>
        
         <div class="grid">
             <div class="card" v-for="letter in alphabets" :key="letter.alphabet" v-on:click="router.push(`/aslAlphabet/${letter.alphabet}`)">
                 <div class="imageContainer">
-                    <img :src="letter.image">
+                    <img :src="letter.image" :alt="letter.alphabet">
                 </div>
                 <div class="cardBody">
                     <p class="name">{{ letter.alphabet }}</p>
@@ -150,7 +150,7 @@ const alphabets = [{
 .aslAlphabet {
     background: var(--bg-primary);
     min-height: 100vh;
-    padding: 16px;
+    padding: 16px 16px 100px;
 }
 
 .search {
@@ -193,14 +193,15 @@ const alphabets = [{
     height: 110px;
 
     display: flex;
-    justify-self: center;
+    justify-content: center;
     align-items: center;
     padding: 18px;
 }
 
 .imageContainer img {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: contain;
 }
 
 .cardBody {
@@ -218,12 +219,6 @@ const alphabets = [{
 }
 
 
-@media (min-width: 380px) {
-    .grid{
-        grid-template-columns: repeat(2, 1fr);
-        gap: 18px;
-    }
-}
 
 @media (min-width: 768px) {
     .aslAlphabet {

@@ -10,13 +10,13 @@
         <div class="cardContainer">
             <!-- Loop through words array-->
             <div class="cards" v-for="word in words" :key="word.word" v-on:click="openWord(word.word)" :class="{ completed: completedWords.includes(word.word)}">
-                <p class="cardTitle">{{ word.word }}</p> 
-                <span><i class="fa-solid fa-arrow-right-long"></i></span>
-            </div>
-
-            <div class="cardLeft">
-                <span class="completedDot" v-if="completedWords.includes(word.word)"><i class="fa-solid fa-check"></i></span>
-                <p class="cardTitle">{{ word.word }}</p>
+                <div class="cardLeft">
+                    <span class="completedDot" v-if="completedWords.includes(word.word)"><i class="fa-solid fa-check"></i></span>
+                    <p class="cardTitle">{{ word.word }}</p>
+                </div>
+                <span class="arrow">
+                        <i class="fa-solid fa-arrow-right-long"></i>
+                 </span>
             </div>
         </div>
     <NavBar/>
@@ -33,7 +33,7 @@ const router  = useRouter()
 const userStore = useUserStore()
 const completedWords = ref([])
 
-//Staic list of common words for ASL learning
+// Staic list of common words for ASL learning
 const words = [
     {word: 'Hello'},
     {word: 'Thank you'},
@@ -46,10 +46,10 @@ const words = [
 ]
 
 
-async function CompletedWords(params) {
+async function fetchCompletedWords() {
     if(!userStore.user?._id) return
     try {
-        const response = await fecth(`https://gestura-backend-production.up.railway.app/gestura/userStats/${userStore.user._id}`)
+        const response = await fetch(`https://gestura-backend-production.up.railway.app/gestura/userStats/${userStore.user._id}`)
         const data = await response.json()
         
         if (data.modules?.['Common Words']) {
@@ -62,13 +62,13 @@ async function CompletedWords(params) {
 
 
 
-// Navigate to detailed view of seleccted word
+// Navigate to detailed view of selected word
 function openWord(word){
     router.push(`/commonWords/${word}`)
 }
 
 onMounted(() => {
-    completedWords()
+    fetchCompletedWords()
 })
 </script>
 
@@ -112,8 +112,8 @@ onMounted(() => {
     width: 100%;
     padding: 16px 18px;
     border-radius: 14px;
-    transition: transform 0,15s ease;
-    box-shadow: rgba(0,0,0,0.06);
+    transition: transform 0.15s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.06);
     box-sizing: border-box;
    }
 
@@ -126,13 +126,13 @@ onMounted(() => {
     border: 1.5px solid var(--accent);
    }
 
-   .cardLefy {
+   .cardLeft {
     display: flex;
     align-items: center;
     gap: 10px;
    }
 
-   .completeDot {
+   .completedDot {
     color: var(--accent);
     font-size: 14px;
    }
@@ -146,7 +146,9 @@ onMounted(() => {
 
    .arrow {
     color: var(--text-muted);
-    font-size: 14px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
    }
 
    .cards.completed .arrow {
@@ -159,6 +161,10 @@ onMounted(() => {
 
    .cards i {
     margin-right: 15px;
+   }
+
+   .cards:active{
+    transform:  scale(0.98);
    }
    
    @media (min-width: 768px) {

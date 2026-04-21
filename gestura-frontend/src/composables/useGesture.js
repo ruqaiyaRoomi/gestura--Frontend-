@@ -3,7 +3,6 @@ import {ref, onMounted, onUnmounted} from 'vue'
 export function useGesture(videoRef) {
     // Store the accumulated translated text output
     const predictedText = ref('')
-    const isDetecting = ref(false)
     const noHandDetected = ref(false)
 
     let interval = null
@@ -20,7 +19,7 @@ export function useGesture(videoRef) {
             locateFile: (file) =>   `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`
         })
 
-        // Confiure detection settings
+        // Configure detection settings
         handsInstance.setOptions({
             maxNumHands: 1,  // only detect one hand at a time
             modelComplexity: 1, // full model complexity for accuracy
@@ -36,18 +35,16 @@ export function useGesture(videoRef) {
         handsInstance.onResults((results) => {
             if (results.multiHandLandmarks?.length > 0 
                 && results.multiHandedness?.length > 0 
-                && results.multiHandedness[0].score > 0.8 )   // Only accept high confidence detections
+                && results.multiHandedness[0].score > 0.8 )   // Only accept high-confidence detections
                 {
 
                 noHandDetected.value = false
                 const hand = results.multiHandLandmarks[0]
 
-                // Check if Hand detected is left for x-axis mirroring
+                // Check if detected hand is left for x-axis mirroring
                 isLeft = results.multiHandedness[0].label === 'Left'
-                // Flatten 21 landmarks (x,y, z) into a single array of 63 value
+                // Flatten 21 landmarks (x, y, z) into a single array of 63 values
                 latestLandmarks = hand.map(lm => [lm.x, lm.y, lm.z]).flat()
-                console.log('Landmarks captured:', latestLandmarks.length)
-                
                 // Start prediction interval only once landmarks are available
                 if(!intervalStarted) {
                     intervalStarted = true
@@ -61,7 +58,7 @@ export function useGesture(videoRef) {
             }
 
         })
-        // Hold count variables for gesture consiitency validation
+        // Hold count variables for gesture consistency validation
         let holdCount = 0
         let lastSeenLabel = null
         let letterLocked = false
@@ -70,7 +67,7 @@ export function useGesture(videoRef) {
         cameraInstance = new Camera (videoRef.value, {
             onFrame: async () => {
                 const now = Date.now()
-                if (now - lastFrameTime < 100) return // skip frame if too soon
+                if (now - lastFrameTime < 100) return // Skip frame if called too soon (throttling)
                 lastFrameTime = now
                 await handsInstance.send({image: videoRef.value})
             }
@@ -79,6 +76,7 @@ export function useGesture(videoRef) {
         cameraInstance.start()
 
     function startInterval(){
+        if(interval) return
         //Poll for predictions every 200ms
             interval = setInterval(async () => {
             if(!latestLandmarks) {
@@ -96,8 +94,7 @@ export function useGesture(videoRef) {
                     body: JSON.stringify({landmarks : latestLandmarks, is_left: isLeft})
                 })
                 const data = await response.json()
-                console.log('prediction: ', data)
-            
+    
                 if(data.confidence >= 85) {
                    if(data.label === lastSeenLabel) {
                     // Same label seen again - increment hold count
@@ -108,7 +105,7 @@ export function useGesture(videoRef) {
                     lastSeenLabel = data.label
                     letterLocked = false
                    }
-                   // resgister letter only after 2 consistent predictions
+                   // register letter only after 2 consistent predictions
                    if (holdCount >= 2 && !letterLocked) {
                         letterLocked = true
                         holdCount = 0
@@ -127,12 +124,10 @@ export function useGesture(videoRef) {
         }
 
     function startDetection() {
-        isDetecting.value = true
         extractLandmarks()
     }
 
     function stopDetection () {
-        isDetecting.value = false
         //Clear prediction interval
         if (interval) 
             {clearInterval(interval) 

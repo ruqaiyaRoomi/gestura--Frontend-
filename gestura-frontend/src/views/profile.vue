@@ -64,11 +64,7 @@ import Header from '../components/header.vue';
 import { useUserStore } from '../stores/user';
 import { useRoute, useRouter } from 'vue-router';
 
-const recentLetters = ['O', 'J']
 const userStore = useUserStore();
-const router = useRouter();
-const route = useRoute();
-
 const quizHistory = ref([])
 const userStats = ref([])
 
@@ -90,7 +86,7 @@ onMounted(async () =>{
 async function getQuizHistory() {
    try{
 
-      const response = await fetch(`gestura-backend-production.up.railway.app/gestura/quizHistory?userId=${userStore.user._id}`)
+      const response = await fetch(`https://gestura-backend-production.up.railway.app/gestura/quizHistory?userId=${userStore.user._id}`)
       const data = await response.json()
       quizHistory.value = Array.isArray(data) ? data : []
       console.log('quiz history', data)
@@ -208,7 +204,7 @@ async function getUserStats() {
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   align-items: center;
-
+  padding-right: 10px;
   
 }
 

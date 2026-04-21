@@ -38,13 +38,13 @@ const router = useRouter()
 const showGuestMessage = ref(false)
 
 function continueAsGuest(){
-    localStorage.setItem('isGuest', 'true')
+    localStorage.setItem('isGuest', JSON.stringify(true))
     
     showGuestMessage.value = true
 
     setTimeout(() => {
         router.push('/index')
-    })
+    }, 1500)
 }
 
 
@@ -173,7 +173,7 @@ function continueAsGuest(){
    }
 
    .login:hover {
-    background-color: var(--accent)10;
+    background-color: var(--accent);
    }
 
    .guest {

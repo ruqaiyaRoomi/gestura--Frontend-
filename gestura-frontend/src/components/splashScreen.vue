@@ -31,13 +31,14 @@ onMounted(() => {
         display: flex;
         align-items: center;
         justify-content : center;
+
         background: var(--bg-card);
         z-index: 9990;
-        transition: opacity 0.6s ease
+        transition: opacity 0.5s ease
     }
 
     .splash.hide {
-        opacity :0;
+        opacity: 0;
         pointer-events: none;
     }
 
@@ -47,7 +48,8 @@ onMounted(() => {
         height: 100px;
         border-radius: 50%;
         background: var(--bg-primary);
-        animation: zoomFill 1.8s ease forwards;
+
+        animation: zoomFill 1.4s ease forwards;
     }
 
     @keyframes zoomFill {
@@ -61,35 +63,41 @@ onMounted(() => {
         align-items: center;
         gap: 10px;
         opacity: 0;
-        animation: fadeIn 1.3s ease 1s forwards;
+        animation: fadeIn 1s ease 1.6s forwards;
     }
 
     .logo {
         width: 80px;
         height: 80px;
-        transform: translateY(20px);
-        animation: slideLeft 1.5s ease 1s forwards;
+        
+        animation: logoIn 1s ease 1.7s forwards;
     }
 
-    @keyframes slideLeft {
-        0% {transform: translateX(0); }
-        100% {transform: translateY(-5px);}
+    @keyframes logoIn {
+        0% {
+            transform: translateY(10px); 
+            opacity: 0;
+        }
+        100% {
+            transform: translateY(0);
+            opacity: 1;
+        }
     }
 
     .name{
-        font-family: 'Inter', sans-serif;
         font-size: 26px;
         font-weight: 600;
         color: var(--text-primary);
-        overflow: hidden;
-        transform: translateY(20px);
+        
+
+
         opacity: 0;
-        animation: slideInText 1.5s ease 1.1s forwards;
+        animation: textIn 1s ease 1.8s forwards;
         }
 
-    @keyframes slideInText {
-        0% {transform: translateX(0); opacity: 0}
-        100% {transform: translateY(-5px); opacity: 1}
+    @keyframes textIn {
+        0% {transform: translateY(10px); opacity: 0}
+        100% {transform: translateY(0); opacity: 1}
     }
 
     @keyframes fadeIn {

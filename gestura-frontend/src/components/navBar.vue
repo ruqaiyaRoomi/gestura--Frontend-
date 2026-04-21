@@ -45,14 +45,18 @@
         bottom: 0;
         left: 0;
         width: 100%;
+
         display: flex;
         justify-content: space-around;
         align-items: center;
+        
         background: var(--bg-primary);
-        padding: 12px 0;
+        padding: 10px 0;
+
         border-top: 1px solid var(--text-muted);
         z-index: 1000;   
-        box-shadow: 0 -3px 10px rgba(0, 0, 0 , 0.08);
+
+        box-shadow: 0 -3px 12px rgba(0, 0, 0 , 0.08);
         
     }
 
@@ -74,13 +78,15 @@
 
     .nav-item button {
         text-decoration: none;
-         display: flex;
+        display: flex;
         flex-direction: column;
         align-items: center;
         font-size: 12px;
         color: var(--text-muted);
+
         background-color: transparent;
         border: none;
+        transition: 0.2s ease;
     }
 
     @media (min-width: 768px) {
@@ -88,11 +94,12 @@
             max-width: 480px;
             left: 50%;
             transform: translateX(-50%);
+            border-radius: 16px 16px 0 0;
         }
 
 
         .nav-item i {
-            font-size: 24px;
+            font-size: 22px;
         }
 
         .nav-item button {

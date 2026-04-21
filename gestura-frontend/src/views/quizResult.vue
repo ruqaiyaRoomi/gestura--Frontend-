@@ -44,7 +44,7 @@
 
 <script setup>
 
-import { ref , onMounted } from 'vue';
+import { onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import Header from '../components/header.vue';
 import NavBar from '../components/navBar.vue';
@@ -55,19 +55,18 @@ const router = useRouter();
 const route = useRoute();
 const userStore = useUserStore();
 
-const score = parseInt(route.query.score)
-const total = parseInt(route.query.total)
+const score = parseInt(route.query.score) || 0
+const total = parseInt(route.query.total) || 0
 const time = route.query.time
-const accuracy =  Math.round((score/total) * 100)
+const accuracy = total ? Math.round((score/total) * 100) : 0
 const results = JSON.parse(route.query.results || '[]') 
 
 
-console.log(userStore.user)
+
 
 
 onMounted(async () =>{
-  console.log('userStore.user:', userStore.user)
-   console.log('score:', score, 'total:', total, 'results:', results)
+  if(!userStore.user?._id) return
   await fetch("https://gestura-backend-production.up.railway.app/gestura/quizHistory", {
       method: 'POST', 
       headers: {'Content-Type' : 'application/json'},

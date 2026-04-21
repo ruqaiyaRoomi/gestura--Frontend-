@@ -74,9 +74,7 @@ const results = ref([])
 const startTime = Date.now()
 const correctCount = ref(0)
 
-console.log('total:', total)
-console.log('shuffle:', shuffle)
-console.log('currentLetter: ', currentLetter.value)
+
 
 const showCheck = ref(false)
 const timeLimit = 10
@@ -92,8 +90,8 @@ const {isMatch, detectedLabel, startDetection, stopDetection, nextLetter, detect
 
 onMounted (async () => {
     await nextTick()
-    startDetection()
     startPrepCountdown()
+    startDetection()
 })
 
 onUnmounted(() =>{
@@ -119,11 +117,11 @@ function startPrepCountdown() {
     isReady.value = false
     detectionActive.value = false
     prepTime.value = 3
-    const prepIntreval = setInterval(() => {
+    const prepInterval = setInterval(() => {
         prepTime.value--
 
         if(prepTime.value <= 0) {
-            clearInterval(prepIntreval)
+            clearInterval(prepInterval)
             isReady.value = true
             detectionActive.value = true
             startCountDown()

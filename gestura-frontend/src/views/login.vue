@@ -18,7 +18,7 @@
         <label for="">Password</label>
         <div class="password">
             <!-- Dynamically switches between text and password type based on showPassword-->
-            <input :type="showPassword ? 'text' : 'password'" placeholder=" Enter Password" v-model="password"> 
+            <input :type="showPassword ? 'text' : 'password'" placeholder="Enter Password" v-model="password"> 
             <!-- Eye icon toggles password visibility on click-->
         <span class="eye" @click="togglePassword"><i :class="showPassword? 'fa-regular fa-eye' : 'fa-solid fa-eye-slash'"></i>
         </span>
@@ -28,7 +28,7 @@
 <!-- Triggers login function on click -->
   <button v-on:click="login()">Login</button>
   <!-- Navigation link to sign up page for new users-->
-  <p class="bottomText">Don't have an Account? <a v-on:click="router.push('./signup')" class="link">Sign Up!</a></p>
+  <p class="bottomText">Don't have an Account? <a v-on:click="router.push('/signup')" class="link">Sign Up!</a></p>
   <img class="wave" src="/images/wav2.png">
   </div>
 
@@ -82,7 +82,7 @@ async function login() {
     } catch (err) {
         // Handle network or server errors
         console.error("Login error:", err)
-        alert("Somethign went wrong. Please try again")
+        alert("Something went wrong. Please try again")
     }
 
 }
@@ -207,16 +207,15 @@ button:hover {
 .link {
     font-weight: 600;
     text-decoration: underline;
-    color: #2c2c2c;
+    color: var(--text-dark);
 }
 
 .wave {
     position: absolute;
     bottom: 0;
     width: 100%;
-    
-    left: 0;
-    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
 }
 
 @media (min-width: 768px) {

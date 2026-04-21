@@ -35,8 +35,8 @@
         <!--Password input with strength validation error message-->
         <label for="">Password</label>
         <div class="password">
-            <input type="password" placeholder=" Enter Password"  v-model="userInfo.password"> 
-        <span class="eye"><i class="fa-regular fa-eye-slash"></i></span>
+            <input :type="showPassword ? 'text' : 'password'" placeholder="Enter Password" v-model="userInfo.password"> 
+        <span class="eye" @click="togglePassword"><i :class="showPassword? 'fa-regular fa-eye' : 'fa-solid fa-eye-slash'"></i></span>
         </div>
         <!-- show if password does not meet strength requirements-->
         <span class="messages" v-if="showPassError">Password must be 8-16 chars with uppercase, lowercase, number and special character</span>
@@ -67,7 +67,7 @@ import { ref, computed } from 'vue';
 import { useRouter } from 'vue-router'
 import { useUserStore } from '../stores/user';
 const router = useRouter()
-
+const showPassword = ref(false)
 
 // reactive object holding all sign up form fields
 const userInfo = ref({
@@ -77,9 +77,14 @@ const userInfo = ref({
     password : "",   
 })
 
+function togglePassword() {
+    showPassword.value = !showPassword.value
+}
+
 // Seperate ref for confirm password field
 const confirmPass = ref("")
 const userStore = useUserStore()
+
 
 // Validates email format using regex
 const validateEmail = computed(()=> {
@@ -94,7 +99,7 @@ const validateName = computed (() =>{
       let regex = /^[A-Za-z\s]+$/;
       let firstName = userInfo.value.firstName.trim();
       let lastName = userInfo.value.lastName.trim();
-      return (regex.test(firstName, lastName) && firstName && lastName);
+      return (regex.test(firstName) && regex.test(lastName) && firstName && lastName);
     })
 
 // Validates password strength
@@ -128,7 +133,7 @@ const showConfirmPassError =  computed(() => {
 })
 
 const showNameError = computed (()  =>{
-      return (userInfo.value.lastName.length || userInfo.value.firstName.length > 0) && !validateName.value;
+      return (userInfo.value.lastName.length > 0|| userInfo.value.firstName.length > 0) && !validateName.value;
 })
 
 const showEmailError =  computed (() => {
@@ -165,7 +170,7 @@ async function signUp() {
     }
     } 
     catch(error) {
-        console.error("sign up error")
+        console.error("sign up error", error)
     }
 }
 

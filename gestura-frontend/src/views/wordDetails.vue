@@ -36,11 +36,10 @@ const route = useRoute();
 const router = useRouter();
 
 
-const word = route.params.word 
+const word = route.params.word  || ''
 const letters = word.toUpperCase().replace(/\s/g,'').split("")
 
 const userStore = useUserStore()
-const isSaving = ref(false)
 const isDone = ref(false)
 
 
@@ -113,7 +112,7 @@ async function markDone() {
     scrollbar-width: none;
 }
 
-.letterCard::-webkit-scrollbar {
+.lettersContainer::-webkit-scrollbar {
     display: none;
 }
 

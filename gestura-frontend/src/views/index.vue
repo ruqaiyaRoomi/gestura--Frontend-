@@ -45,8 +45,10 @@
             <div class="historyCard">
                 <div class="card" v-for="(item, index) in translationHistory.slice(0,5)" :key="index" @click="handleViewAll">
                     <span><i class="fa-solid fa-clock-rotate-left"></i></span> 
-                    {{ item.letter }}
-                    <p>{{ item.moduleName }}</p>
+                    <div class="text">
+                       <p class="letter"> {{ item.letter }} </p> 
+                    <p class="module">{{ item.moduleName }}</p>
+                    </div>
                     <span class="arrow"><i class="fa-solid fa-arrow-right-long"></i></span>
 
                 </div>
@@ -119,7 +121,7 @@ onMounted(() => {
     background-color: var(--bg-primary);
     display: flex;
     flex-direction:column ;
-    padding: 0px 20px 120px;
+    padding: 0px 20px 90px;
 }
 
 .welcome {
@@ -196,6 +198,7 @@ button {
     transition: 0.2s ease;
     margin-top: 20px;
     justify-content: center;
+    display: flex;
    }
    
 button:hover {
@@ -261,6 +264,7 @@ button:hover {
     justify-content: space-between;
     box-shadow: var(--shadow-card);
     transition: transform 0.15s ease;
+    gap: 10px;
 }
 
 .card i {

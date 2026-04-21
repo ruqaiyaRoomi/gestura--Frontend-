@@ -24,7 +24,7 @@
     <div class="actions">
         <button class="btn-done" v-on:click="done">
             <span><i class="fa-solid fa-check"></i></span>{{ index === letters.length - 1? 'Done' : 'Next' }}</button>
-        <button class="btn-retry"><span><i class="fa-solid fa-arrow-rotate-right"></i></span> Retry</button>
+        <button class="btn-retry" @click="retry"><span><i class="fa-solid fa-arrow-rotate-right"></i></span> Retry</button>
     </div>
     <NavBar />
     </div>
@@ -44,18 +44,13 @@ const router = useRouter()
 const route = useRoute()
 
 const word = route.params.word
-const letters = word.replace(/\s/g,'').split("")
+const letters = (word || '').replace(/\s/g,'').split("")
 const index = ref(0)
 
 const currentLetter = ref(letters[0])
 
-
 const videoRef = ref(null)
 const showCheck = ref(false)
-
-const userStore = useUserStore()
-const isSaving = ref(false)
-const isDone = ref(false)
 
 const { startDetection, stopDetection, isMatch, detectionConfidence, nextLetter, detectedLabel} 
 = practice(videoRef, currentLetter)
@@ -65,6 +60,9 @@ onMounted( async () => {
     startDetection()
 })
 
+onUnmounted(() => {
+    stopDetection()
+})
 
 watch(isMatch ,(val) => {
     if(!val) return
@@ -95,7 +93,13 @@ function done() {
     
 }
 
-
+function retry() {
+    index.value = 0
+    currentLetter.value = letters[0]
+    showCheck.value = false
+    nextLetter()
+    startDetection()
+}
 
 </script>
 

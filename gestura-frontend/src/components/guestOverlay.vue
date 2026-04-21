@@ -32,64 +32,64 @@ function goToLogin() {
 <style scoped>
 .overlay{
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0;
     background: rgba(0, 0, 0, 0.5);
 
     display: flex;
     align-items: center;
     justify-content: center;
 
+    z-index: 1000;
+
 }
 
 .modal {
-    background: #f3f3f3;
-    padding: 30px 24px;
-    border-radius: 22px;
+    background: var(--bg-card);
+    padding: 28px 22px;
+    border-radius: var(--radius-card);
     width: 90%;
     max-width: 360px;
     text-align: center;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    box-shadow: var(--shadow-card);
 }
 
 .modal .heading {
     font-size: 20px;
     font-weight: 700;
-    color: #5E5E5E;
-    margin-bottom: 12px ;
+    color: var(--text-primary);
+    margin-bottom: 10px ;
 }
 
 .modal .description {
     font-size:15px ;
-    color: #666;
-    margin-bottom: 24px;
+    color: var(--text-muted);
+    margin-bottom: 22px;
 }
 
 
 .modal button {
     width: 100%;
     height: 50px;
-    background-color: #e99627;
+    background-color: var(--accent);
     color: white;
     border: none;
-    border-radius: 14px;
+    border-radius: var(--radius-card);
     font-size: 16px;
     font-weight: 600;
     margin-bottom:12px ;
-    box-shadow: 0 8px 18px rgba(233, 150, 39, 0.25);
-    transition: 0.2s;
+    box-shadow: var(--accent-shadow);
+    transition: 0.2s ease;
 }
 
 .modal button:hover {
-    transform: translate(-1px);
+    transform: translateY(-1px);
     opacity: 0.9;
 }
 
 .modal .closeBtn {
-    background-color: #ccc;
-    color: #333;
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    box-shadow: none;
 }
 
 </style>

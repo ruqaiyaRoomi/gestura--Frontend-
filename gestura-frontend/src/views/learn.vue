@@ -105,11 +105,9 @@ async function userProgress(word) {
         const data = await response.json()
 
         if(word) {
-            totalLetters.value = word.replace(/\s/g, '')
+            totalLetters.value = word? word.replace(/\s/g, '').length : 26
         }
-        else {
-            totalLetters.value = 26
-        }
+        
 
         completedLetters.value = data.completedLetters?.length || 0
         progressPercent.value = Math.round((completedLetters.value / totalLetters.value) * 100)
@@ -256,7 +254,7 @@ onMounted(() => userProgress())
    .quizBlock{
     background: var(--bg-card);
     width: 100px;
-    height:100%;
+    height: auto;
     padding: 20px;
     display: flex;
     flex-direction: column;

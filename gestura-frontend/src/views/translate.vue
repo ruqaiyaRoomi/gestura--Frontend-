@@ -38,9 +38,10 @@ const videoRef = ref(null)
 
 const frozen = ref(false)
 const snapShot = ref(null)
+const predictedText = ref('')
 
 
-const {predictedText, noHandDetected,  startDetection, stopDetection} = useGesture(videoRef)
+const {predictedText, startDetection, stopDetection} = useGesture(videoRef)
 
 onMounted( async () => {
     await nextTick()
@@ -87,6 +88,8 @@ function exit() {
 function retry(){
     frozen.value = false
     predictedText.value = ''
+    const ctx = snapShot.value?.getContext('2d')
+    ctx?.clearRecht(0,0,snapShot.value.width, snapShot.value.handleDone)
     startDetection()
 }
 
@@ -201,10 +204,6 @@ function retry(){
         letter-spacing: 5px;
     }
 
-    .translatedText {
-        font-size: 30px;
-        letter-spacing: 5px;
-    }
 
     .cameraInput canvas.snapshot {
         position: absolute;

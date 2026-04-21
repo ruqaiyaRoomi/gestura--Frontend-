@@ -6,7 +6,7 @@ import { ref } from "vue";
 export const useUserStore = defineStore('user',  () => {
     // Stores the currently authenticated user object (null if not logged in)
     const user = ref(null)
-    // Stores full sue activity history
+    // Stores full user activity history
     const history = ref([])
     // Stores recently signed ASL letters for quick access display
     const recentlySigned = ref([])
@@ -15,7 +15,7 @@ export const useUserStore = defineStore('user',  () => {
     function setUser(userData) {
         user.value = userData
     }
-    // Resets the authenication state across the application
+    // Resets the authentication state across the application
     function logout() {
         user.value = null
     }

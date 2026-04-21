@@ -29,7 +29,7 @@
 
     <div class="actions">
         <button class="btn-done" v-on:click="handleDone"><span><i class="fa-solid fa-check"></i></span> Done</button>
-        <button class="btn-retry"><span><i class="fa-solid fa-arrow-rotate-right"></i></span> Retry</button>
+        <button class="btn-retry" @click="startDetection"><span><i class="fa-solid fa-arrow-rotate-right"></i></span> Retry</button>
     </div>
     <NavBar />
     </div>
@@ -55,7 +55,7 @@ const route = useRoute()
 
 // Get selected letter from route parameter
 const letter = route.params.letter
-const currentLetter = alphabetData[letter]
+const currentLetter = alphabetData[letter] || { tip: ''}
 const videoRef = ref(null)
 const showCheck = ref(false)
 const isSaving = ref(false)
@@ -65,7 +65,7 @@ const translationHistory = ref([])
 
 
 // Custom composable handling ML gesutre detection logic
-const {predictedText, noHandDetected,  startDetection, stopDetection, isMatch, detectedLabel, detectionConfidence} 
+const {noHandDetected,  startDetection, stopDetection, isMatch, detectedLabel, detectionConfidence} 
 = practice(videoRef, letter)
 
 // Watch for successful gesture match
@@ -128,7 +128,7 @@ function goNextLetter() {
     const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
     const index = letters.indexOf(letter)
 
-    if(index < letter.length - 1) {
+    if(index < letters.length - 1) {
         const next = letters[index + 1]
         router.push(`/aslAlphabet/${next}`)
     } else {
@@ -137,7 +137,7 @@ function goNextLetter() {
 
 }
 
-//Start camera + ML processes when leaving page
+//Start camera + ML processes when component mounts
 onMounted( async () => {
   await nextTick()
   startDetection()

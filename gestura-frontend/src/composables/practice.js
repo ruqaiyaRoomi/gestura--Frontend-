@@ -1,4 +1,4 @@
-import {ref, onMounted, onUnmounted, isRef} from 'vue'
+import {ref, onUnmounted, isRef} from 'vue'
 
 export function practice(videoRef, targetLetter, detectionActive = ref(true)) {
 
@@ -16,6 +16,13 @@ export function practice(videoRef, targetLetter, detectionActive = ref(true)) {
     let letterLocked = false // prevents multiple triggers
     let lastSent = null // prevents duplicate requests
 
+    let latestLandmarks = null // latest hand landmarks
+    let isLeft = false  // whether hand is left
+    let intervalStarted = false // ensures interval runs once
+    let lastFrameTime = 0 // throttle frames
+    
+    
+
     // get target letter
     const getTarget = () => isRef(targetLetter) ? targetLetter.value : targetLetter
 
@@ -30,6 +37,7 @@ export function practice(videoRef, targetLetter, detectionActive = ref(true)) {
     } 
 
     async function startDetection(){
+        if (cameraInstance || handsInstance) return
         resetDetection()
         // MediaPipe modules
         const {Hands} = await import('@mediapipe/hands')
@@ -50,10 +58,7 @@ export function practice(videoRef, targetLetter, detectionActive = ref(true)) {
         })
 
 
-        let latestLandmarks = null // latest hand landmarks
-        let isLeft = false  // whether hand is left
-        let intervalStarted = false // ensures interval runs once
-        let lastFrameTime = 0 // throttle frames
+        
 
         // Called every time MediaPipe processes a frame
         handsInstance.onResults((results) => {
@@ -68,7 +73,6 @@ export function practice(videoRef, targetLetter, detectionActive = ref(true)) {
                     isLeft = results.multiHandedness[0].label === 'Left'
                     // flatten landmarks
                     latestLandmarks = hand.map(lm => [lm.x, lm.y, lm.z]).flat()
-                    console.log('Landmarks captured:', latestLandmarks.length)
                     // Start prediction loop once
                     if(!intervalStarted) {
                         intervalStarted = true

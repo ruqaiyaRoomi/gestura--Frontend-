@@ -75,9 +75,9 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref , onMounted, watch} from 'vue';
 import { useRouter } from 'vue-router';
-import Header from '/src/components/header.vue';
+import Header from '../components/header.vue';
 import { useUserStore } from '../stores/user';
 
 
@@ -89,6 +89,7 @@ const largeText = ref(false)
 
 function toggleDarkMode( ) {
     document.documentElement.classList.toggle('dark', darkMode.value)
+    localStorage.setItem('darkMode', darkMode.value)
 }
 
 function toggleFontSize() {
@@ -108,7 +109,7 @@ async function handleDelete() {
         userStore.logout()
         router.push('/login')
     } catch (err) {
-        console.error('Error deleting account', ref)
+        console.error('Error deleting account', err)
     }
 
 }
@@ -117,6 +118,18 @@ function handleLogout() {
     userStore.logout()
     router.push('/login')
 }
+
+onMounted (() => {
+    const savedTheme = localStorage.getItem('darkMode')
+
+    if (savedTheme === 'true') {
+        darkMode.value = true
+        document.documentElement.classList.add('dark')
+    } else {
+        darkMode.value = false
+        document.documentElement.classList.remove('dark')
+    }
+})
 </script>
 
 <style scoped>

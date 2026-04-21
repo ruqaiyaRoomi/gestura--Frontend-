@@ -10,11 +10,11 @@
         <div class="body">
             
         <div class="image">
-            <img src="/images/quiz.png" alt="">
+            <img src="/images/quiz.png" alt="quiz illustration">
         </div>
 
         <div class="textBlock">
-            <p class="blockTitle">Finger-spelling Quiz</p>
+            <p class="blockTitle">Fingerspelling Quiz</p>
             <p class="subheading">Sign the correct Alphabet</p>
         </div>
 
@@ -123,7 +123,7 @@ const selected = ref(5)
     background-color: var(--accent);
     border-radius: 10px;
     transition: transform 0.3s ease; 
-    left: 4;
+    left: 4px;
    }
 
    .noQuestions button {

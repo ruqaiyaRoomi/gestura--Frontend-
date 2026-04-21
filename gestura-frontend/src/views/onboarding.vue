@@ -34,16 +34,16 @@
     const slideshowInfo = [{
         image : "/images/Slide1.png",
         heading: "Communication shouldn't feel impossible.",
-        subheading: "Gestura helps bridge the gap between signers and non-sginers"
+        subheading: "Gestura helps bridge the gap between signers and non-signers"
     },
 
     {image : "/images/slide2.png",
         heading: "Translate fingerspelling in real time.",
-        subheading: "Use your camers to recognize ASL fingerspelling and convert it to text instantly."
+        subheading: "Use your cameras to recognize ASL fingerspelling and convert it to text instantly."
     },
 
     {image : "/images/slide3.png",
-        heading: "Practice.Improve.Repeat",
+        heading: "Practice. Improve. Repeat",
         subheading: "Use guided practice mode to learn and refine your ASL fingerspelling skills"
     }
 ]
