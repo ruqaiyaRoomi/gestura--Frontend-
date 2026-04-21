@@ -98,6 +98,7 @@ async function login() {
     background-color: var(--bg-primary);
     display: flex;
     flex-direction:column ;
+    overflow: hidden;
 }
 
 .content {
@@ -109,6 +110,7 @@ async function login() {
     flex: 1;
     display: flex;
     flex-direction: column;
+    box-sizing: border-box;
 }
 
 .top {

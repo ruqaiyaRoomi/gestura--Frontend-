@@ -240,9 +240,21 @@ async function signUp() {
     min-width: 0;
 }
 
+.row .input {
+    flex: 1;
+    min-width: 0;
+}
+
+.row .input input {
+    width: 100%;
+}
+
 .input {
     width: 100%;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 8;
 }
 
 .input:focus {
