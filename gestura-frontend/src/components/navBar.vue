@@ -34,8 +34,10 @@
 <script setup>
     import { useRouter, useRoute } from 'vue-router'
     import { triggerGuestOverlay } from '../stores/guest';
+    import { useUserStore } from "../stores/user";
     const router = useRouter()
     const route = useRoute()
+    const userStore = useUserStore()
 
 
 function profileView(){ 
