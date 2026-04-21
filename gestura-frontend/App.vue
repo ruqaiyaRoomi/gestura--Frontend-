@@ -40,15 +40,15 @@ function onSplashDone() {
 }
 
 .dark {
-    --bg-primary: #1a1a1a;
-    --bg-card: #242424;
-    --text-primary: #e0e0e0;
-    --text-secondary: #aaaaaa;
-    --text-muted: #999;
+    --bg-primary: #1c1917;
+    --bg-card: #292524;
+    --text-primary: #e8e3d9;
+    --text-secondary: #b8b0a4;
+    --text-muted: #9c9389;
     --accent: #e99627;
-    --accent-shadow: 0 4px 18px rgba(245,158,11,0.35);
-    --shadow-card: 0px 6px 20px rgba(0,0,0,0,0.5) ;
-    --shadow-small: 0 4px 12px rgba(0,0,0,0.4);
-    --text-dark: #e5e5e5;
+    --accent-shadow: 0 4px 18px rgba(245,158,11,0.3);
+    --shadow-card: 0px 6px 20px rgba(0,0,0,0,0.3) ;
+    --shadow-small: 0 4px 12px rgba(0,0,0,0.2);
+    --text-dark: #e8e2d9;
 }
 </style>

@@ -94,6 +94,7 @@ function toggleDarkMode( ) {
 
 function toggleFontSize() {
     document.documentElement.style.fontSize = largeText.value ? '18px' : '16px'
+    localStorage.setItem('largeText', largeText.value)
 }
 
 function confirmDelete() {
@@ -128,6 +129,16 @@ onMounted (() => {
     } else {
         darkMode.value = false
         document.documentElement.classList.remove('dark')
+    }
+
+    const changedFont = localStorage.getItem('largeText')
+
+    if(changedFont === 'true') {
+        largeText.value = true
+        document.documentElement.classList.add('largeText')
+    } else {
+        largeText.value = false
+        document.documentElement.classList.remove('largeText')
     }
 })
 </script>

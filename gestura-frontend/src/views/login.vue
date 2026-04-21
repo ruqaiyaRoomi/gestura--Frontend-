@@ -32,6 +32,18 @@
   <p class="bottomText">Don't have an Account? <a v-on:click="router.push('/signup')" class="link">Sign Up!</a></p>
     </div>
   <img class="wave" src="/images/wav2.png">
+
+    <div class="modalOverlay" v-if="showErrorModal">
+        <div class="modal">
+            <div class="modalIcon">
+                <i class="fa-solid fa-circle-exclamation"></i>
+            </div>
+        </div>
+        <h2>Incorrect Credentials</h2>
+        <p>The email or password you entered is incorrect. Please try again.</p>
+        <button class="classTryAgain" @click="showErrorModal = false">Try Again</button>
+    </div>
+
   </div>
 
 </template>
@@ -45,6 +57,7 @@ const router = useRouter()
 // reactive ref for form inputs
 const email = ref("")
 const password = ref("")
+const showErrorModal = ref(false)
 
 // Acess the Pinia user store to persist autheticated user data
 const userStore = useUserStore() 
@@ -79,12 +92,12 @@ async function login() {
         router.push('/index')
       } else {
         //Notify user if credentials are incorrect
-        alert("Incorrect email or password")
+        showErrorModal.value = true
       }
     } catch (err) {
         // Handle network or server errors
         console.error("Login error:", err)
-        alert("Something went wrong. Please try again")
+        showErrorModal.value = true
     }
 
 }
@@ -231,6 +244,59 @@ button:hover {
     display: block;
     margin-top: auto;
     
+}
+
+.modalOverlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0,0,0,0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.modal {
+    background: var(--bg-card);
+    padding: 28px 24px;
+    border-radius: 22px;
+    width: 85%;
+    max-width: 360px;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.modalIcon {
+    font-size: 48px;
+    color: #e05c5c;
+}
+
+.modal h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.modal p {
+    font-size: 15px;
+    columns: var(--text-muted);
+    margin: 0;
+}
+
+.tryAgainBtn {
+    width: 100%;
+    height: 48px;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 15px ;
+    font-weight: 600;
+    margin-top: 10px;
+    box-shadow: 0 8ox 18px var(--accent-shadow);
 }
 
 @media (min-width: 768px) {
