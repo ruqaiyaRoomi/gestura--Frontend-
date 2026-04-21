@@ -1,5 +1,6 @@
 <template>
   <div class="signUpScreen">
+    <div class="content">
     <div class="top">
         <!-- Gestura logo and page title -->
     <img class="logo" src="/images/gestura.png">
@@ -55,6 +56,7 @@
 <!-- Sign Up button disabled until all form validation pass-->
   <button v-on:click="signUp()" :disabled="!isFormFilled" >Sign Up</button>
   <p class="bottomText">Already have an Account? <a  v-on:click="router.push('/login')" class="link">Login!</a></p>
+    </div>
   <img class="wave" src="/images/wav2.png">
   </div>
 
@@ -187,7 +189,14 @@ async function signUp() {
     background-color: var(--bg-primary);
     display: flex;
     flex-direction:column ;
-    padding: 40px 24px 0;
+}
+
+.content {
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 24px;
+    flex: 1;
 }
 
 .top {
