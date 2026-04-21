@@ -13,14 +13,14 @@
     <div class="bodyContainer">
 
         <div class="sectionLabel">Account</div>
-        <div class="settingsCard">
+        <div class="settingsCard" @click="router.push('/editProfile')">
             <div class="settingsLeft">
                 <div class="iconContainer">
-                    <span class="icon"><i class="fa-solid fa-user"></i></span>
+                    <span class="icon" @click="router.push('/editProfile')"><i class="fa-solid fa-user"></i></span>
                 </div>
                 <span class="settingsText">Edit Profile</span>
             </div>
-            <span class="arrow"><i class="fa-solid fa-arrow-right-long"></i></span>
+            <span class="arrow" @click="router.push('/editProfile')"><i class="fa-solid fa-arrow-right-long"></i></span>
         </div>
         
 

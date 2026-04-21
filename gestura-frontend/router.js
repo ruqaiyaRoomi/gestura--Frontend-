@@ -18,6 +18,7 @@ import Quiz from "./src/views/quiz.vue";
 import QuizQuestion from "./src/views/quizQuestion.vue";
 import QuizResult from "./src/views/quizResult.vue";
 import settings from "./src/views/settings.vue";
+import editProfile from "./src/views/editProfile.vue";
 
 
 const router = createRouter( {
@@ -44,7 +45,8 @@ const router = createRouter( {
         {path: '/wordDetailsPractice/:word/:index', component: WordDetailsPractice},
         {path: '/quiz', component: Quiz},
         {path: '/quizQuestion/:total', component: QuizQuestion},
-        {path: '/quizResult', component: QuizResult}
+        {path: '/quizResult', component: QuizResult},
+        {path: '/editProfile', component: editProfile}
 ]
 })
 
