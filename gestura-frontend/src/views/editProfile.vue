@@ -38,7 +38,7 @@
       </button>
     </div>
 
-    <div class="modalOverlay" v-if="showSucessModal">
+    <div class="modalOverlay" v-if="showSuccessModal">
       <div class="modal">
         <div class="modalIcon">
           <i class="fa-solid fa-circle-check"></i>
