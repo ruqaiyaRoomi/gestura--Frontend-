@@ -6,7 +6,7 @@
             <span class="title">Quiz</span>
             <span></span>
         </div>
-
+        <!-- Progress indicator -->
         <div class="progress">
             <span>Question {{ current }} of  {{ total }}</span>
             <span>{{ Math.round((current/total) * 100) }}% Complete</span>
@@ -15,25 +15,29 @@
         <div class="progressBar">
             <div class="fill" :style="{width: `${(current / total) * 100}%`}"></div>
         </div>
-
+        <!-- Question and camera  -->
         <div  class="questionBox">
             <div class="timerRow">
                  <span class="question">{{ current }}. Sign the Letter  {{ currentLetter }}</span>
                  <span class="timer" :class="{urgent: timeLeft <=3}">{{ timeLeft }}s</span>
             </div>
 
+            <!-- time bar -->
             <div class="timeBar">
                 <div class="timerFill" :style="{width: `${(timeLeft / timeLimit) * 100}%`}"></div>
             </div>
 
+            <!-- camera feed -->
             <div class="cameraArea">
             <div class="cameraWrapper">
                 <video ref="videoRef" autoplay playsinline></video>
+                <!-- correct answers only -->
                     <Transition name="fade">
                         <div class="overlay" v-if="showCheck">
                             <i class="fa-solid fa-circle-check"></i>
                         </div>
                     </Transition>
+                <!-- Countdown before each question -->
                 <div  v-if="!isReady" class="prepOverlay">
                     <p>Get Ready...</p>
                     <h1>{{ prepTime }}</h1>
@@ -42,10 +46,8 @@
                 
             </div>
         </div>
-
-
-
-       <div class="bottomActions">
+        <!-- Progress indicator -->
+       <div class="buttonActions">
          <p class="skip" v-on:click="skip">Skip</p>
          <button class="doneBtn" @click="correct">✓ Submit</button>
        </div>

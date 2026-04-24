@@ -1,11 +1,13 @@
 <template>
   <Header />
   <div class="aslAlphabet">
+    <!-- Search Bar -->
     <div class="search">
       <span><i class="fa-solid fa-magnifying-glass"></i></span>
       <input type="search" placeholder="Search" />
     </div>
 
+    <!-- grid of all 26 ASL letter cards -->
     <div class="grid">
       <div
         class="card"
@@ -29,9 +31,19 @@
 import { useRouter } from "vue-router";
 import NavBar from "../components/navBar.vue";
 import Header from "../components/header.vue";
+import { computed } from "vue";
 
 const router = useRouter();
 
+const searchQuery = ref('');
+const filteredAlphabets = computed (() => {
+  if(!searchQuery.value) return alphabets
+    return alphabets.filter(letter => 
+      letter.alphabet.toLocaleLowerCase().includes(searchQuery.value.toLocaleLowerCase())
+    )
+})
+
+// static data for all 26 ASL fingerspelling letters with their reference images
 const alphabets = [
   {
     alphabet: "A",

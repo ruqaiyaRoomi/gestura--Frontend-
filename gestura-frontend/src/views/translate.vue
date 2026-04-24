@@ -35,12 +35,11 @@ import { useGesture } from '../composables/useGesture';
 const router = useRouter()
 const videoRef = ref(null)
 
-
+// UI state: freezes camera + switches to snapshot view
 const frozen = ref(false)
 const snapShot = ref(null)
 
-
-
+// ML gesture detection hook
 const {predictedText, startDetection, stopDetection} = useGesture(videoRef)
 
 onMounted( async () => {
@@ -54,7 +53,7 @@ onUnmounted(() => {
     window.removeEventListener('beforeunload', stopDetection)
 })
 
-
+// Captures current video frame into canvas for static preview
 function captureFrame() {
     const video = videoRef.value
     const canvas = snapShot.value
@@ -71,20 +70,23 @@ function captureFrame() {
     ctx.drawImage(video, 0,0, canvas.width, canvas.height)
 }
 
+
+// locks current prediction and freezes camera feed
 function handleDone (){
     frozen.value = true
     captureFrame()
     stopDetection()
- 
-    
-   
+
 }
 
+// Exit screen safely and stop ML processing
 function exit() {
     stopDetection()
     router.back()
 }
 
+
+// Reset everything and restart detection loop
 function retry(){
     frozen.value = false
     predictedText.value = ''

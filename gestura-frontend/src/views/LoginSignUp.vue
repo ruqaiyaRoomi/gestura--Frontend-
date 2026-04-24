@@ -31,17 +31,22 @@
 </template>
 
 <script setup>
+// imports
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
 const showGuestMessage = ref(false);
 
+// handles guest login flow
 function continueAsGuest() {
+  // stores guest flag locally
   localStorage.setItem("isGuest", JSON.stringify(true));
 
+  // trigger feedback state
   showGuestMessage.value = true;
 
+  // redirect after delay
   setTimeout(() => {
     router.push("/index");
   }, 1500);

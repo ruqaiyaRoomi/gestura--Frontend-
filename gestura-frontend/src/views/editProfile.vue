@@ -62,11 +62,14 @@ import { useRoute, useRouter } from "vue-router";
 const router = useRouter();
 const userStore = useUserStore();
 
+// Reactive from state
 const firstName = ref(userStore.user?.firstName || "");
 const lastName = ref(userStore.user?.lastName || "");
 const email = ref(userStore.user?.email || "");
 const showSuccessModal = ref(false);
 
+
+// Ensures all fields are filled before enabling submit
 const isFormFilled = computed(() => {
   return (
     email.value.trim().length > 0 &&
@@ -75,9 +78,11 @@ const isFormFilled = computed(() => {
   );
 });
 
+
+// sends updated data to backend and update store
 async function saveChanges() {
   try {
-    // send user details to the backend registration endpoint
+  
     const response = await fetch(`https://gestura-backend-production.up.railway.app/gestura/user/${userStore.user._id}`,
       {
         method: "PUT",
@@ -106,7 +111,7 @@ async function saveChanges() {
     console.error("Error updating profile", error);
   }
 }
-
+// Closes modal and redirects to profile page
 function handleDone() {
   showSuccessModal.value = false;
   router.push("/profile");

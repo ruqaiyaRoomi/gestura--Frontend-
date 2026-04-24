@@ -2,7 +2,7 @@
     <Header />
 
     <div class="profile">
-    
+    <!-- User info section -->
         <div class="top">
         <p class="pageTitle">Profile</p>
         <div class="profileImg">
@@ -13,7 +13,7 @@
         </div>
         </div>
 
-
+      <!-- User stats section -->
         <div class="section">
         <p class="sectionTitle">Learning Progress</p>
         <div class="progressCards">
@@ -28,7 +28,7 @@
         </div>
         </div>
 
-
+        <!-- history section -->
         <div class="section">
         <p class="sectionTitle">Recently Learned</p>
         <div class="recentGrid">
@@ -57,20 +57,23 @@
 </template>
 
 <script setup>
-
+// imports
 import NavBar from '../components/navBar.vue';
 import { ref , onMounted } from 'vue';
 import Header from '../components/header.vue';
 import { useUserStore } from '../stores/user';
-import { useRoute, useRouter } from 'vue-router';
+
 
 const userStore = useUserStore();
+// reactive data stores
 const quizHistory = ref([])
 const userStats = ref([])
+
 
 const completedLetters = ref(0)
 const totalLetters = 26
 
+// fetch data on mount
 
 onMounted(async () =>{
   if(!userStore.user?._id) {
@@ -83,6 +86,7 @@ onMounted(async () =>{
   
 })
 
+// fetch quiz history for user
 async function getQuizHistory() {
    try{
 
@@ -96,14 +100,17 @@ async function getQuizHistory() {
   }
 }
 
+// fetch ASL progress + recent letters
 async function getUserStats() {
     try{
     const response = await fetch(`https://gestura-backend-production.up.railway.app/gestura/userStats/${userStore.user._id}`)
     const data = await response.json()
     
     const letters = data.modules?.['ASL Alphabet'] || []
+    // Total progress count
     completedLetters.value = letters.length
 
+    // Recent 5 letters
     if (data.modules?.['ASL Alphabet']) {
         userStats.value = [...data.modules['ASL Alphabet']].slice(-5).reverse().map(letter =>({
             letter,

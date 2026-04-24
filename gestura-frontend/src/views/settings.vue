@@ -11,7 +11,7 @@
     
 
     <div class="bodyContainer">
-
+        <!-- Account Section -->
         <div class="sectionLabel">Account</div>
         <div class="settingsCard" @click="router.push('/editProfile')">
             <div class="settingsLeft">
@@ -23,7 +23,7 @@
             <span class="arrow" @click="router.push('/editProfile')"><i class="fa-solid fa-arrow-right-long"></i></span>
         </div>
         
-
+           <!-- delete account -->
         <div class="settingsCard" @click="confirmDelete">
             <div class="settingsLeft">
                 <div class="iconContainer red"><span class="icon"><i class="fa-solid fa-trash"></i></span></div>
@@ -31,8 +31,10 @@
             </div>
             <span class="arrow"><i class="fa-solid fa-arrow-right-long"></i></span>
         </div>
-
+           <!-- Accessibility Section -->
     <div class="sectionLabel">Accessibility</div>
+
+       <!-- Dark Mode -->
         <div class="settingsCard">
             <div class="settingsLeft">
                 <div class="iconContainer">
@@ -46,7 +48,7 @@
             </label>
         </div>
     
-
+           <!-- Large Text -->
     <div class="settingsCard">
         <div class="settingsLeft">
             <div class="iconContainer"><span class="icon"><i class="fa-solid fa-text-height"></i></span></div>
@@ -61,6 +63,7 @@
     <button class="logoutBtn" @click="handleLogout">Logout <i class="fa-solid fa-right-from-bracket"></i>
     </button>
 </div>
+<!-- Confirm delete modal -->
     <div class="modalOverlay" v-if="showDeleteModal">
         <div class="modal">
             <h2>Delete Account</h2>
@@ -84,24 +87,31 @@ import { triggerGuestOverlay } from '../stores/guest';
 
 const router = useRouter()
 const userStore = useUserStore()
+// UI
 const showDeleteModal = ref(false)
 const darkMode = ref(false)
 const largeText = ref(false)
 
+
+// Theme toggle
 function toggleDarkMode( ) {
     document.documentElement.classList.toggle('dark', darkMode.value)
     localStorage.setItem('darkMode', darkMode.value)
 }
 
+// font size toggle
 function toggleFontSize() {
     document.documentElement.style.fontSize = largeText.value ? '18px' : '16px'
     localStorage.setItem('largeText', largeText.value)
 }
 
+// Delete modal trigger
 function confirmDelete() {
     showDeleteModal.value = true
 }
 
+
+// Delete account
 async function handleDelete() {
     try {
         await fetch(`https://gestura-backend-production.up.railway.app/gestura/user/${userStore.user._id}`, {
@@ -116,6 +126,8 @@ async function handleDelete() {
 
 }
 
+
+// Logout flow
 function handleLogout() {
     if(!userStore.user?._id) {
         triggerGuestOverlay()
@@ -125,6 +137,7 @@ function handleLogout() {
     router.push('/login')
 }
 
+// load saved preferences
 onMounted (() => {
     const savedTheme = localStorage.getItem('darkMode')
 

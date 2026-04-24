@@ -1,14 +1,15 @@
 <template>
      <Header />
-
+<!-- navigation -->
    <div class="indexScreen">
+    <!-- welcome section -->
      <div class="welcome">
         <h1>Welcome back!</h1>
         <p class="subheading">Ready to communicate?</p>
      </div>
 
      <div class="bodyContainer">
-
+        <!-- translation feature card -->
         <div class="cardContainer">
             <div class="cardHeader">
                 <div class="iconContainer"><span class="icon"><i class="fa-solid fa-video"></i></span></div>
@@ -22,7 +23,7 @@
 
             <button v-on:click="router.push('/translate')">Open Camera <span><i class="fa-solid fa-camera"></i></span> </button>
         </div>
-
+        <!-- learn feature card -->
         <div class="cardContainer">
             <div class="cardHeader">
                 <div class="iconContainer"><span class="icon"><i class="fa-solid fa-hands-asl-interpreting"></i></span> </div>
@@ -36,12 +37,13 @@
 
             <button  v-on:click="router.push('/learn')">Start Learning <span><i class="fa-solid fa-pen"></i></span> </button>
         </div>
-
+        <!-- Recently translated -->
         <div class="bottomContainer">
             <div class="bottomHeader">
                 <h1>Recently Translated</h1>
                 <span @click="handleViewAll">view all</span>
             </div>
+            <!-- display last 5 cards -->
             <div class="historyCard">
                 <div class="card" v-for="(item, index) in translationHistory.slice(0,5)" :key="index" @click="handleViewAll">
                     <span><i class="fa-solid fa-clock-rotate-left"></i></span> 
@@ -54,9 +56,6 @@
                 </div>
             </div>
         </div>
-
-
-        
      </div>
       <NavBar :currentPage="screen"
             @index="currentPage='index'"
@@ -67,17 +66,27 @@
 </template>
 
 <script setup>
+// Router 
 import { useRouter } from 'vue-router'
 const router = useRouter()
+
+// Components
 import NavBar from '../components/navBar.vue';
 import Header from '/src/components/header.vue';
+
+// Guest mode and user state
 import { triggerGuestOverlay } from '../stores/guest';
 import { useUserStore } from '../stores/user.js';
+
+// Vue utilities
 import { onMounted, ref } from 'vue';
+
 const userStore = useUserStore()
+
 
 const translationHistory = ref([])
 
+// Fetch user translation history from backend
 async function getTranslationHistory() {
     if(!userStore.user?._id) return
 
@@ -85,6 +94,7 @@ async function getTranslationHistory() {
     const response = await fetch(`https://gestura-backend-production.up.railway.app/gestura/userStats/${userStore.user._id}`)
     const data = await response.json()
 
+    // extract the last 5 ASL Alphabet translations
     if (data.modules?.['ASL Alphabet']) {
         translationHistory.value = [...data.modules['ASL Alphabet']].slice(-5).reverse().map(letter =>({
             letter,
@@ -99,7 +109,7 @@ async function getTranslationHistory() {
     
 } 
 
-
+// handles "View All"
 function handleViewAll(){ 
     if (!userStore.user?._id) {
         triggerGuestOverlay()
@@ -109,6 +119,7 @@ function handleViewAll(){
 }
 
 
+// Fetch data when component loads
 onMounted(() => {
     getTranslationHistory()
 })

@@ -6,20 +6,20 @@
         <span class="heading">Practice</span>
         <span></span>
     </header>
-
+    <!-- Camera and Guidance-->
     <div class="cameraInput">
         <video ref="videoRef" autoplay playsinline></video>
-
+        <!-- User instruction -->
         <div class="tip">
             <i class="fa-solid fa-circle-info"></i>
             <span>Place your hand in the center of the screen</span>
         </div>
-
+        <!-- Current practice letter info -->
         <div class="practiceInfo">
             <p class="practiceTitle">Practice Letter {{ letter }}</p>
             <p class="practiceTip">Tip: {{currentLetter.tip }}</p>
         </div>
-
+        <!-- Success feedback overlay -->
          <Transition name="fade">
         <div class="overlay" v-if="showCheck">
             <i class="fa-solid fa-circle-check"></i>
@@ -27,8 +27,7 @@
         </Transition>
     </div>
 
-
-
+    <!-- Action Buttons -->
     <div class="actions">
         <button class="btn-done" v-on:click="handleDone"><span><i class="fa-solid fa-check"></i></span> Done</button>
         <button class="btn-retry" @click="startDetection"><span><i class="fa-solid fa-arrow-rotate-right"></i></span> Retry</button>
@@ -93,7 +92,7 @@ watch(isMatch, async (val) => {
     
 })
 
-// Save  completedletter progress to backend
+// Save completed letter progress to backend
 async function markDone() {
     if ( !userStore.user?._id) {
     alert('You need to be logged in!')

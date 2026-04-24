@@ -1,25 +1,25 @@
 <template>
+    <!-- Only render if valid letter exist -->
     <div v-if="currentLetter">
-
-  
     <Header/>
+    <!-- letter detail screen -->
     <div class="letterDetail">
         <div class="header">
             <span class="back" v-on:click="router.back()"><i class="fa-solid fa-xmark"></i></span>
             <span class="title">ASL Alphabet</span>
             <span></span>
         </div>
-
+        <!-- Letter display -->
         <div class="card">
             <img :src="currentLetter.image" alt="" class="letterImage">
             <p class="letterLabel">{{letter}}</p>
         </div>
-
+        <!-- Description -->
         <p class="description">
             {{ currentLetter.description }}
         </p>
 
-
+        <!-- Practice -->
         <div class="tryIt">
             <p class="tryTitle">Try it yourself</p>
             <p class="tip"> {{ currentLetter.tip }}</p>
@@ -27,7 +27,7 @@
                 Open Camera <i class="fa-solid fa-camera"></i>
             </button>
 
-            <button class="markDoneButton" @click="markDone">Mark as Done</button>
+            <button class="markDoneButton" @click="markDone" :disabled="isSaving">Mark as Done</button>
         </div>
     </div>
 
@@ -41,27 +41,30 @@
 </template>
 
 <script setup>
+// imports
 import { useRoute, useRouter } from 'vue-router';
 import Header from '../components/header.vue';
 import NavBar from '../components/navBar.vue';
 import {alphabetData} from '../data/alphabetData.js';
 import { useUserStore } from '../stores/user.js';
-import { ref, watch } from 'vue';
+import { ref } from 'vue';
 
 const userStore = useUserStore()
 const route = useRoute();
 const router = useRouter();
 
+
+// Track API request state 
 const isSaving = ref(false)
-const letter = route.params.letter
-const currentLetter = alphabetData[letter]
-import { triggerGuestOverlay } from '../stores/guest';
+// Get letter from route and map to dataset
+const letter = computed(() => route.params.letter)
+const currentLetter = computed(() => alphabetData[letter.value])
 
 
 
+// Save progress for current letter
 async function markDone() {
     if ( !userStore.user?._id) {
-        triggerGuestOverlay()
     return; }
 
     isSaving.value = true
@@ -78,13 +81,12 @@ async function markDone() {
             
         })
          const data = await response.json()
+        // error handling
      if( data.saved) {
-        alert(`Letter ${letter} marked as done` )
-     } else {
-        alert('Could not save progress') }
+        console.log(`Letter ${letter} marked as done` )
+     }
     }  catch (err) {
         console.error('Error saving letter')
-        alert('Error saving progress')
      } finally {
         isSaving.value = false;
      }

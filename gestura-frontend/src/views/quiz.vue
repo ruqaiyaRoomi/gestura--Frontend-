@@ -12,21 +12,24 @@
         <div class="image">
             <img src="/images/quiz.png" alt="quiz illustration">
         </div>
-
+        <!-- Quiz description -->
         <div class="textBlock">
             <p class="blockTitle">Fingerspelling Quiz</p>
             <p class="subheading">Sign the correct Alphabet</p>
         </div>
 
+        <!-- Question selector -->
         <div class="questions">
             <p class="questionTitle">Number of Questions</p>
+    
             <div class="noQuestions">
+                <!-- sliding selector indicator -->
                 <div class="slider" :style="{transform: `translateX(${[5,10,15].indexOf(selected) * 100}%)`}"></div>
                 <button :class="{active: selected === 5}" v-on:click="selected = 5">5</button>
                 <button :class="{active: selected === 10}" v-on:click="selected= 10">10</button>
                 <button :class="{active: selected === 15}" v-on:click="selected = 15">15</button>
             </div>
-
+            <!-- start quiz -->
             <button class="startQuiz" v-on:click="router.push(`/quizQuestion/${selected}`)">
                 Start Quiz
             </button>

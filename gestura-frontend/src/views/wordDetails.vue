@@ -34,21 +34,27 @@ import { ref } from 'vue';
 
 const route = useRoute();
 const router = useRouter();
+// Prevents duplicate API calls for marking completion
 const isSaving = ref(false)
 
+// Word passed via route param 
 const word = route.params.word  || ''
+// split word into letters for ASL display cards
 const letters = word.toUpperCase().replace(/\s/g,'').split("")
 
 const userStore = useUserStore()
+
+// Prevent multiple "mark as done" submissions
 const isDone = ref(false)
 
-
-
+// Marks word as completed in backend user stats
 async function markDone() {
+    // prevent action if user is not authenticated
     if ( !userStore.user?._id) {
     alert('You need to be logged in!')
     return; }
 
+    // prevent duplicate saves for the same word
     if (isDone.value) return
 
     isSaving.value = true

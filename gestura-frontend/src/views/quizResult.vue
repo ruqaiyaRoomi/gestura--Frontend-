@@ -6,13 +6,13 @@
             <span class="title">Quiz</span>
             <span></span>
         </div>
-
+        <!-- Score -->
         <div class="trophy">
             <i class="fa-solid fa-trophy"></i>
         </div>
 
         <p class="score" >{{ score }}/{{ total }}</p>
-
+        <!-- Stats -->
         <div class="stats">
             <div class="statCard">
                 <p class="statLabel">Time Taken</p>
@@ -23,7 +23,7 @@
                 <p class="statValue" >{{ accuracy }}</p>
             </div>
         </div>
-
+        <!-- review section -->
         <p class="reviewTitle">Review</p>
 
         <div class="reviewList">
@@ -34,7 +34,7 @@
                 </div>
                 <i :class="item.correct ? 'fa-solid fa-circle-check' : 'fa-solid fa-circle-xmark'"></i>
             </div>
-
+            <!-- exit -->
             <button class="doneBtn" v-on:click="router.push('/learn')">Done</button>
 
     </div>
@@ -55,16 +55,18 @@ const router = useRouter();
 const route = useRoute();
 const userStore = useUserStore();
 
+// route based quiz results
 const score = parseInt(route.query.score) || 0
 const total = parseInt(route.query.total) || 0
 const time = route.query.time
+
+// derived metric
 const accuracy = total ? Math.round((score/total) * 100) : 0
+
+
 const results = JSON.parse(route.query.results || '[]') 
 
-
-
-
-
+// save quiz attempt on mount
 onMounted(async () =>{
   if(!userStore.user?._id) return
   await fetch("https://gestura-backend-production.up.railway.app/gestura/quizHistory", {

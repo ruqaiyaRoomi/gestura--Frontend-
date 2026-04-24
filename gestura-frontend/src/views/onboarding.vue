@@ -1,7 +1,9 @@
 <template>
 <div class="onboarding">
+    <!-- Slide Container -->
     <div class="slideShowContainer">
        <div class="slideShow">
+        <!-- current slide content-->
         <div class="SlideShowBody">
             <div class="img"><img v-bind:src="slideshowInfo[currentIndex].image"/></div>
             <div class="text">
@@ -9,7 +11,7 @@
             <p class="subheading">{{slideshowInfo[currentIndex].subheading}}</p>
             </div>
         </div>
-
+        <!-- navigation dots-->
         <div class="dots">
             <span v-for="(slide, index) in slideshowInfo" :key='index' :class="['dot', {active: index === currentIndex}]"></span>
 
@@ -29,8 +31,10 @@
     import { useRouter } from 'vue-router'
     
     const router = useRouter()
+    // tracks current slide index
     const currentIndex = ref(0)
 
+    // slide content
     const slideshowInfo = [{
         image : "/images/Slide1.png",
         heading: "Communication shouldn't feel impossible.",
@@ -48,6 +52,7 @@
     }
 ]
 
+// skip onboarding is already completed
     onMounted(() =>{
         const hasSeenOnboarding = localStorage.getItem('onboardingSeen')
 
@@ -55,11 +60,13 @@
             router.push('/LoginSignUp')
         }
     })
-    
+
+    // Handles slide progression
     function next() {
     if(currentIndex.value < slideshowInfo.length - 1) {
         currentIndex.value++
     } else {
+        // Mark onboarding completed
         localStorage.setItem('onboardingSeen', 'true')
         router.push('/LoginSignUp')
     }

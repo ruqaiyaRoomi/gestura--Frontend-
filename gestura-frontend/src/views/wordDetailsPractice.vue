@@ -33,12 +33,11 @@
 </template>
 
 <script setup>
-import {ref, onMounted, watch, nextTick, onUnmounted, markRaw} from 'vue'
+import {ref, onMounted, watch, nextTick, onUnmounted} from 'vue'
 import {useRouter , useRoute} from 'vue-router'
 import { practice } from '../composables/practice.js';
 import NavBar from '../components/navBar.vue';
 import { useUserStore } from '../stores/user.js';
-import CommonWords from './commonWords.vue';
 
 
 const router = useRouter()
@@ -58,26 +57,29 @@ const showCheck = ref(false)
 const { startDetection, stopDetection, isMatch, detectionConfidence, nextLetter, detectedLabel} 
 = practice(videoRef, currentLetter)
 
+// start detection once camera is ready
 onMounted( async () => {
     await nextTick()
     startDetection()
 })
+// Clean ML loop when leaving page
 
 onUnmounted(() => {
     stopDetection()
 })
-
+// Detect correct sign match and validate confidence threshold
 watch(isMatch ,(val) => {
     if(!val) return
     if(showCheck.value) return
+    // prevent duplicate triggers or wrong letter matches
     if(detectedLabel.value !== currentLetter.value) return
     if(detectionConfidence.value < 85) return
-    
+    // Show success feedback before moving to next letter
     showCheck.value = true
     
     setTimeout(() => {
         showCheck.value = false
-
+        // Advance through letters or finish word
         if(index.value < letters.length - 1){
             index.value++
 
@@ -89,7 +91,7 @@ watch(isMatch ,(val) => {
     }, 400);
 })
 
- 
+// reset practice session to first letter 
 function retry() {
     index.value = 0
     currentLetter.value = letters[0]
@@ -98,6 +100,7 @@ function retry() {
     startDetection()
 }
 
+// move manually to next letter or complete word flow
 async function handleNext(){
     if(index.value < letters.length - 1) {
         index.value++
@@ -110,7 +113,7 @@ async function handleNext(){
         router.push(`/commonWords`)
     }
 }
-
+// save completed word progress to backend
 async function markDone() {
     if ( !userStore.user?._id) 
     return

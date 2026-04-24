@@ -2,18 +2,19 @@
     <div class="learn">
     <Header />
     <NavBar />
-
+   <!-- page title -->
     <div class="title">
         <h1 class="heading">Learn</h1>
         <p class="subheading">Master ASL basics at your own pace</p>
     </div>
 
+       <!-- learning modules -->
     <div class="bodyContainer">
         <div class="cardContainer" v-on:click="router.push('/aslAlphabet')">
             <div class="imageContainer">
                 <img class="aslImage" src="/public/images/ASL.png" alt="">
             </div>
-            
+               <!-- ASL alphabet -->
             <div class="aslBody">
                 <div class="textblock"> 
                     <p class="type">Fundamentals</p> 
@@ -38,7 +39,7 @@
             <div class="imageContainer">
                 <img src="/public/images/commonWords.png" alt="">
             </div>
-            
+             <!--  Common Words -->
             <div class="aslBody">
                  <div class="textblock"> 
                 <p class="type">Fundamentals</p> 
@@ -57,11 +58,11 @@
             </div>
         </div>
     </div>
-
+         <!--  section -->
         <div class="quiz" v-on:click="router.push('/quiz')">
             <p class="dailyP">Daily Practice</p>
             <div class="quizBlock">
-                <span class="iconbg">
+                <span class="icon">
                     <i class="fa-solid fa-book-open-reader"></i>
                 </span>
                 <p>Quiz</p>
@@ -71,7 +72,8 @@
     </div>
 </template>
 
-<script setup>
+<script setup> 
+// imports
 import {useRouter} from 'vue-router'
 import { ref, onMounted } from 'vue';
 import NavBar from '../components/navBar.vue';
@@ -81,22 +83,24 @@ import { useUserStore } from '../stores/user';
 const router  = useRouter()
 const userStore = useUserStore()
 
-
-const progressPercent = ref(0)
-
+// Progress state for modules
 const aslProgressPercent = ref(0)
 const wordsProgressPercent = ref(0)
 
-async function userProgress(word) {
+// Fetch user progress from backend and calculate percentages
+async function userProgress() {
+    // Prevent API call if user is not logged in
     if(!userStore.user?._id) return
 
     try{
         const response = await fetch(`https://gestura-backend-production.up.railway.app/gestura/userStats/${userStore.user._id}`)
         const data = await response.json()
 
+        // ASL alphabet progress
         const aslCompleted = data.modules?.['ASL Alphabet']?.length || 0
         aslProgressPercent.value = Math.round((aslCompleted / 26) * 100)
 
+        // Common words progress
         const wordsCompleted = data.modules?.['Common Words']?.length || 0
         wordsProgressPercent.value = Math.round((wordsCompleted / 8) *100)
     } catch (err) {
@@ -104,6 +108,7 @@ async function userProgress(word) {
     }
 }
 
+// fetch progress when component loads
 onMounted(() => userProgress())
 
 </script>
