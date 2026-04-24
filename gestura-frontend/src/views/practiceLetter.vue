@@ -95,7 +95,6 @@ watch(isMatch, async (val) => {
 // Save completed letter progress to backend
 async function markDone() {
     if ( !userStore.user?._id) {
-    alert('You need to be logged in!')
     return; }
 
     isSaving.value = true
@@ -118,7 +117,6 @@ async function markDone() {
         }
     }  catch (err) {
         console.error('Error saving letter')
-        alert('Error saving progress')
      } finally {
         isSaving.value = false
      }
