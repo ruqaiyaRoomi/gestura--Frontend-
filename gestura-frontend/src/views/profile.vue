@@ -19,7 +19,7 @@
         <div class="progressCards">
             <div class="progressCard">
             <span class="icon">🔥</span>
-            <span class="stat">5 Days</span>
+            <span class="stat">0 Days</span>
             </div>
             <div class="progressCard">
             <span class="icon">🤚</span>
