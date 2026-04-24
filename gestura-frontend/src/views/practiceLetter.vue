@@ -2,7 +2,7 @@
     
     <div class="translate">
     <header>
-        <span class="close"  v-on:click="router.back()"><i class="fa-solid fa-xmark"></i></span>
+        <span class="close"  v-on:click="router.push('/letterDetails')"><i class="fa-solid fa-xmark"></i></span>
         <span class="heading">Practice</span>
         <span></span>
     </header>

@@ -5,7 +5,7 @@
     <!-- letter detail screen -->
     <div class="letterDetail">
         <div class="header">
-            <span class="back" v-on:click="router.back()"><i class="fa-solid fa-xmark"></i></span>
+            <span class="back" v-on:click="router.push('/learn')"><i class="fa-solid fa-xmark"></i></span>
             <span class="title">ASL Alphabet</span>
             <span></span>
         </div>
