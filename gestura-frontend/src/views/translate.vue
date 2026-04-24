@@ -87,7 +87,7 @@ function exit() {
 
 
 // Reset everything and restart detection loop
-function retry(){
+async function retry(){
     frozen.value = false
     predictedText.value = ''
 
