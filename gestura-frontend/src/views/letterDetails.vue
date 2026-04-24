@@ -47,7 +47,7 @@ import Header from '../components/header.vue';
 import NavBar from '../components/navBar.vue';
 import {alphabetData} from '../data/alphabetData.js';
 import { useUserStore } from '../stores/user.js';
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 
 const userStore = useUserStore()
 const route = useRoute();
