@@ -90,8 +90,17 @@ function exit() {
 function retry(){
     frozen.value = false
     predictedText.value = ''
-    const ctx = snapShot.value?.getContext('2d')
+
+    stopDetection()
+    await new Promise(resolve => setTimeout(resolve, 300))
+    try {
+        const ctx = snapShot.value?.getContext('2d')
+        if(ctx && snapShot.value) {
     ctx?.clearRect(0,0,snapShot.value.width, snapShot.value.handleDone)
+        }} catch(err) {
+            console.warn('Canvas clear failed:', err)
+        }
+    
     startDetection()
 }
 
