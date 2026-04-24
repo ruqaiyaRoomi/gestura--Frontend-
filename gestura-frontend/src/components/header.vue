@@ -1,6 +1,8 @@
 <template>
     <div class="header">
+        <!-- gestura logo-->
        <div class="image"> <img  src="/images/gestura.png"/> </div>
+        <!-- settings logo -->
         <span @click="router.push('/settings')"><i class="fa-solid fa-gear"></i></span>
     </div>
 </template>
@@ -9,11 +11,10 @@
 import {onMounted } from "vue";
 import { useRouter } from 'vue-router';
 
-
 const router = useRouter()
 const emit = defineEmits(['done'])
 
-
+// emit 'done' after 3.6s 
 onMounted(() => {
     setTimeout(() => {
     emit('done')} ,3600)

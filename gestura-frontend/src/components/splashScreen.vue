@@ -1,4 +1,5 @@
 <template>
+    <!-- splash screen, fade out via 'hide' class when hiding is true-->
     <div class="splash" :class="{ hide: hiding}">
      <div class="circle"></div>
         <div  class="content">
@@ -14,7 +15,7 @@ import { ref, onMounted } from "vue";
 const hiding = ref(false)
 const emit = defineEmits(['done'])
 
-
+// show splash for 3s, trigger fade out, them emit 'done' after the 600ms transitions finishes
 onMounted(() => {
     setTimeout(() => {
         hiding.value = true

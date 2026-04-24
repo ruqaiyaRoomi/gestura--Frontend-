@@ -1,6 +1,7 @@
 <template>
    <div class="navbar">
     <div class="nav-item">
+        <!-- Home Button-->
         <button v-on:click="router.push('/index')" :class="{active: route.path === '/index'}">
             <i class="fa-solid fa-house"></i>
             <p class="label">Home</p>
@@ -8,12 +9,14 @@
         
     </div>
     <div class="nav-item">
+         <!-- translate Button-->
         <button v-on:click="router.push('/translate')" :class="{active: route.path === '/translate'}" >
             <i class="fa-solid fa-language"></i>
             <p class="label">Translate</p>
         </button>
     </div>
     <div class="nav-item">
+         <!-- Learn Button-->
         <button v-on:click="router.push('/learn')" :class="{active: route.path === '/learn'}">
             <i class="fa-solid fa-book-open"></i>
             <p class="label">Learn</p>
@@ -21,6 +24,7 @@
       
     </div>
     <div class="nav-item">
+         <!-- Profile Button-->
         <button v-on:click="profileView" :class="{active: route.path === '/profile'}">
         <i class="fa-solid fa-user"></i>
         <p class="label">Profile</p>
@@ -39,7 +43,7 @@
     const route = useRoute()
     const userStore = useUserStore()
 
-
+// redirect to profile or show guest overlay if not authenticated
 function profileView(){ 
     if (!userStore.user?._id) {
         triggerGuestOverlay()

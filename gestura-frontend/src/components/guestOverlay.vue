@@ -1,11 +1,14 @@
 
 <template>
+    <!-- guest overlay, only renders when showOverlay is true-->
     <div v-if="showGuestOverlay" class="overlay">
         <div class="modal">
             <h2 class="heading">You're in Guest Mode</h2>
             <p class="description">Create an Account to save progress and unlock all features</p>
 
+             <!-- redirects to login/signup page-->
             <button @click="goToLogin">Login / Sign Up</button>
+            <!-- dismisses the overlay without navigating-->
             <button @click="close" class="closeBtn">Maybe Later</button>
         </div>
     </div>
@@ -18,10 +21,12 @@ import { showGuestOverlay, closeGuestOverlay } from '../stores/guest';
 
 const router = useRouter()
 
+// close overlay without any naviagtion
 function close () {
     closeGuestOverlay()
 }
 
+// close overlay and redirect to login
 function goToLogin() {
     closeGuestOverlay()
     router.push('/login')
