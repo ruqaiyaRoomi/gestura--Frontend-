@@ -31,7 +31,7 @@
 import { useRouter } from "vue-router";
 import NavBar from "../components/navBar.vue";
 import Header from "../components/header.vue";
-import { computed } from "vue";
+import { computed, ref } from "vue";
 
 const router = useRouter();
 
